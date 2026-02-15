@@ -1,0 +1,11 @@
+development:
+  adapter: redis
+  url: <%= Rails.application.credentials.redis_url %>
+
+test:
+  adapter: test
+
+production:
+  adapter: redis
+  url: <%= Rails.application.credentials.redis_url %>
+  channel_prefix: rubycrow_production

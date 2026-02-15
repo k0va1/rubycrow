@@ -1,0 +1,17 @@
+---
+:verbose: false
+:concurrency: 10
+:timeout: 25
+
+:queues:
+  - critical
+  - default
+  - <%= `hostname`.strip %>
+  - low
+
+development:
+  :concurrency: 2
+production:
+  :concurrency: 25
+staging:
+  :concurrency: 15

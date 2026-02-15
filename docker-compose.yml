@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    networks:
+      rubycrow_net:
+        ipv4_address: 172.29.0.10
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+
+  redis:
+    image: redis:8-alpine
+    volumes:
+      - redis:/data
+    networks:
+      rubycrow_net:
+        ipv4_address: 172.29.0.11
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+networks:
+  rubycrow_net:
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
+
+volumes:
+  postgres:
+  redis:

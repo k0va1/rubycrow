@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if ! command -v overmind &> /dev/null; then
+  echo "overmind is required. Install it:"
+  echo "  brew install overmind"
+  exit 1
+fi
+
+exec overmind start -f Procfile.dev "$@"
