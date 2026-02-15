@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>App</title>
+    <title>RubyCrow — A Curated Ruby & Rails Newsletter</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A weekly curated newsletter for Ruby and Rails developers. Hand-picked articles, gems, and community highlights delivered to your inbox.">
+    <meta property="og:title" content="RubyCrow — A Curated Ruby & Rails Newsletter">
+    <meta property="og:description" content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RubyCrow — A Curated Ruby & Rails Newsletter">
+    <meta name="twitter:description" content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly.">
+    <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
     <%= javascript_include_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5">
+  <body class="bg-crow-dark text-crow-sand font-body antialiased">
+    <%# Grain texture overlay %>
+    <div class="grain-overlay"></div>
+    <main>
       <%= yield %>
     </main>
   </body>

@@ -1,0 +1,10 @@
+<%= turbo_stream.replace @form_id do %>
+  <div id="<%= @form_id %>" class="text-center">
+    <div class="inline-flex items-center gap-3 rounded-lg border border-gold/20 bg-gold-glow px-6 py-3.5">
+      <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+      <span class="text-crow-cream font-body text-sm tracking-wide">You're in. Watch your inbox.</span>
+    </div>
+  </div>
+<% end %>

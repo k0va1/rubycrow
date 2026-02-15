@@ -11,7 +11,6 @@ require "minitest/autorun"
 require "minitest/mock"
 require "webmock/minitest"
 require "mocha/minitest"
-require_relative "support/openapi"
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -25,7 +24,6 @@ class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
 
   setup do
-    ActiveStorage::Current.url_options = {host: "http://localhost:6000"}
     ActiveJob::Base.queue_adapter = :test
     clear_uniqueness_locks
   end
@@ -50,7 +48,6 @@ class ActionDispatch::IntegrationTest
   self.use_transactional_tests = true
 
   setup do
-    ActiveStorage::Current.url_options = {host: "http://localhost:6000"}
     ActiveJob::Base.queue_adapter = :test
   end
 
@@ -103,10 +100,6 @@ class ActionDispatch::SystemTestCase
     driven_by :chrome, screen_size: [1400, 1400]
   else
     driven_by :chrome_headless, screen_size: [1400, 1400]
-  end
-
-  setup do
-    ActiveStorage::Current.url_options = {host: "http://localhost:6000"}
   end
 
   def sign_in(user)

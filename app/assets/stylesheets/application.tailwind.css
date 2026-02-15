@@ -1,1 +1,252 @@
 @import "tailwindcss";
+
+@theme {
+  --color-crow-dark: #060506;
+  --color-crow-surface: #0e0d0f;
+  --color-crow-card: #12111400;
+  --color-crow-border: rgba(201, 168, 76, 0.08);
+  --color-crow-border-hover: rgba(201, 168, 76, 0.2);
+  --color-crow-sand: #c8bfa9;
+  --color-crow-sand-dim: #7d776b;
+  --color-crow-cream: #e8dfd0;
+  --color-ruby: #9B1B30;
+  --color-ruby-light: #c4243f;
+  --color-ruby-glow: rgba(155, 27, 48, 0.15);
+  --color-gold: #C9A84C;
+  --color-gold-dim: rgba(201, 168, 76, 0.5);
+  --color-gold-glow: rgba(201, 168, 76, 0.08);
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ===== GRAIN TEXTURE OVERLAY ===== */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== PAGE LOAD ORCHESTRATION ===== */
+@keyframes curtain-rise {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-emerge {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes warm-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 40px rgba(155, 27, 48, 0.2),
+      0 0 80px rgba(155, 27, 48, 0.08),
+      0 0 120px rgba(201, 168, 76, 0.04);
+  }
+  50% {
+    box-shadow:
+      0 0 50px rgba(155, 27, 48, 0.3),
+      0 0 100px rgba(155, 27, 48, 0.12),
+      0 0 160px rgba(201, 168, 76, 0.06);
+  }
+}
+
+@keyframes shimmer-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-logo {
+  animation: float-gentle 5s ease-in-out infinite, warm-pulse 4s ease-in-out infinite;
+}
+
+.stagger-1 { animation: curtain-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.stagger-2 { animation: curtain-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both; }
+.stagger-3 { animation: curtain-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+.stagger-4 { animation: curtain-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both; }
+.stagger-5 { animation: curtain-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both; }
+
+/* ===== EDITORIAL DIVIDER ===== */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.3) 20%,
+    rgba(201, 168, 76, 0.5) 50%,
+    rgba(201, 168, 76, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+.divider-animated {
+  transform-origin: center;
+  animation: shimmer-line 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+/* ===== CARD HOVER EFFECTS ===== */
+.editorial-card {
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    rgba(201, 168, 76, 0.03) 0%,
+    rgba(12, 11, 14, 0.6) 40%,
+    rgba(155, 27, 48, 0.02) 100%
+  );
+  border: 1px solid rgba(201, 168, 76, 0.06);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(201, 168, 76, 0.06) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.editorial-card:hover {
+  border-color: rgba(201, 168, 76, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(201, 168, 76, 0.03);
+}
+
+.editorial-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== STEP NUMBERS ===== */
+.step-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: rgba(201, 168, 76, 0.1);
+  transition: color 0.5s ease;
+}
+
+.editorial-card:hover .step-number {
+  color: rgba(201, 168, 76, 0.2);
+}
+
+/* ===== FORM STYLING ===== */
+.subscribe-input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  transition: all 0.3s ease;
+}
+
+.subscribe-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.06);
+  outline: none;
+}
+
+.subscribe-input::placeholder {
+  color: rgba(200, 191, 169, 0.3);
+  font-style: italic;
+}
+
+.subscribe-btn {
+  background: linear-gradient(135deg, #9B1B30 0%, #7a1526 100%);
+  border: 1px solid rgba(155, 27, 48, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.subscribe-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.subscribe-btn:hover {
+  box-shadow: 0 4px 20px rgba(155, 27, 48, 0.3);
+  transform: translateY(-1px);
+}
+
+.subscribe-btn:hover::after {
+  opacity: 1;
+}
+
+/* ===== SCROLL REVEAL ===== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal]:nth-child(2) { transition-delay: 0.12s; }
+[data-reveal]:nth-child(3) { transition-delay: 0.24s; }
+
+/* ===== SOCIAL LINK HOVER ===== */
+.social-link {
+  color: rgba(200, 191, 169, 0.3);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+/* ===== HERO SPOTLIGHT ===== */
+.hero-spotlight {
+  background:
+    radial-gradient(ellipse 600px 400px at 50% 35%, rgba(155, 27, 48, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 50% 30%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
+}
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim);
+}

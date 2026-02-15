@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  resources :subscribers, only: [:create]
+
   namespace :admin do
     mount Sidekiq::Web => "/sidekiq"
   end

@@ -39,3 +39,9 @@ group :test do
   gem "simplecov", require: false
   gem "webmock"
 end
+
+gem "mocha", "~> 3.0", group: :test
+
+gem "minitest-mock", "~> 5.27", group: :test
+
+gem "selenium-webdriver", "~> 4.40", group: :test
