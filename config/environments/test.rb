@@ -4,7 +4,6 @@
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
-
   config.app_host = "localhost:3000"
   config.app_origin = "http://#{config.app_host}"
   # Settings specified here will take precedence over those in config/application.rb.
@@ -19,7 +18,7 @@ Rails.application.configure do
   config.eager_load = ENV["CI"].present?
 
   # Configure public file server for tests with cache-control for performance.
-  config.public_file_server.headers = { "cache-control" => "public, max-age=3600" }
+  config.public_file_server.headers = {"cache-control" => "public, max-age=3600"}
 
   # Show full error reports.
   config.consider_all_requests_local = true

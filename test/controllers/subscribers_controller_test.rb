@@ -28,7 +28,7 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
       post subscribers_path, params: {email: "not-an-email", form_id: "subscribe-form-hero"}, as: :turbo_stream
     end
 
-    assert_response :success
+    assert_response :unprocessable_content
     assert_includes response.body, 'turbo-stream action="replace" target="subscribe-form-hero"'
     assert_includes response.body, "doesn&#39;t look valid"
   end
@@ -40,7 +40,7 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
       post subscribers_path, params: {email: "dupe@example.com", form_id: "subscribe-form-footer"}, as: :turbo_stream
     end
 
-    assert_response :success
+    assert_response :unprocessable_content
     assert_includes response.body, 'target="subscribe-form-footer"'
     assert_includes response.body, "already subscribed"
   end
@@ -52,7 +52,7 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
       post subscribers_path, params: {email: "USER@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
     end
 
-    assert_response :success
+    assert_response :unprocessable_content
     assert_includes response.body, "already subscribed"
   end
 
@@ -61,7 +61,7 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
       post subscribers_path, params: {email: "", form_id: "subscribe-form-hero"}, as: :turbo_stream
     end
 
-    assert_response :success
+    assert_response :unprocessable_content
     assert_includes response.body, "turbo-stream"
   end
 

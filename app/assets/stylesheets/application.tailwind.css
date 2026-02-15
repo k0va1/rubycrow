@@ -43,15 +43,6 @@
   }
 }
 
-@keyframes soft-emerge {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes float-gentle {
   0%, 100% {
     transform: translateY(0);
@@ -150,36 +141,8 @@
   opacity: 1;
 }
 
-/* ===== STEP NUMBERS ===== */
-.step-number {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: 4rem;
-  line-height: 1;
-  color: rgba(201, 168, 76, 0.1);
-  transition: color 0.5s ease;
-}
-
 .editorial-card:hover .step-number {
   color: rgba(201, 168, 76, 0.2);
-}
-
-/* ===== FORM STYLING ===== */
-.subscribe-input {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 168, 76, 0.12);
-  transition: all 0.3s ease;
-}
-
-.subscribe-input:focus {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(201, 168, 76, 0.35);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.06);
-  outline: none;
-}
-
-.subscribe-input::placeholder {
-  color: rgba(200, 191, 169, 0.3);
-  font-style: italic;
 }
 
 .subscribe-btn {
@@ -223,17 +186,6 @@
 [data-reveal]:nth-child(2) { transition-delay: 0.12s; }
 [data-reveal]:nth-child(3) { transition-delay: 0.24s; }
 
-/* ===== SOCIAL LINK HOVER ===== */
-.social-link {
-  color: rgba(200, 191, 169, 0.3);
-  transition: all 0.3s ease;
-}
-
-.social-link:hover {
-  color: var(--color-gold);
-  transform: translateY(-2px);
-}
-
 /* ===== HERO SPOTLIGHT ===== */
 .hero-spotlight {
   background:
@@ -241,12 +193,3 @@
     radial-gradient(ellipse 400px 300px at 50% 30%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
 }
 
-/* ===== SECTION LABEL ===== */
-.section-label {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-gold-dim);
-}
