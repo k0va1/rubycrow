@@ -5,3 +5,9 @@ application.register("subscriber-count", SubscriberCountController)
 
 import ScrollRevealController from "./scroll_reveal_controller"
 application.register("scroll-reveal", ScrollRevealController)
+
+import LiveFeedController from "./live_feed_controller"
+application.register("live-feed", LiveFeedController)
+
+import CounterAnimationController from "./counter_animation_controller"
+application.register("counter-animation", CounterAnimationController)

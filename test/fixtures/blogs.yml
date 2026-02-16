@@ -1,0 +1,29 @@
+speedshop:
+  name: "Nate Berkopec"
+  url: "https://www.speedshop.co"
+  rss_url: "https://www.speedshop.co/feed.xml"
+  description: "Ruby and Rails performance optimization"
+  tags:
+    - performance
+    - rails
+  twitter: "nateberkopec"
+  active: true
+
+evil_martians:
+  name: "Evil Martians"
+  url: "https://evilmartians.com/chronicles"
+  rss_url: "https://evilmartians.com/chronicles.atom"
+  description: "Product development consultancy"
+  tags:
+    - rails
+    - ruby
+  twitter: "eaborai"
+  active: true
+
+inactive_blog:
+  name: "Old Blog"
+  url: "https://old-blog.example.com"
+  rss_url: "https://old-blog.example.com/feed.xml"
+  description: "No longer active"
+  tags: []
+  active: false

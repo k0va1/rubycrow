@@ -19,6 +19,8 @@ gem "sidekiq"
 gem "sidekiq-scheduler"
 gem "strong_migrations"
 gem "pagy"
+gem "feedjira"
+gem "faraday"
 
 gem "lightning_ui_kit"
 

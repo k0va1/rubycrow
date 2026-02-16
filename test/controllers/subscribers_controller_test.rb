@@ -20,7 +20,7 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_includes response.body, 'turbo-stream action="replace" target="subscribe-form-hero"'
-    assert_includes response.body, "You're in."
+    assert_includes response.body, "Welcome to the flock."
   end
 
   test "rejects invalid email format" do

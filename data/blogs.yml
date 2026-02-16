@@ -1,0 +1,1947 @@
+# Personal Blogs
+- name: "Aaron Patterson"
+  url: "https://tenderlovemaking.com/"
+  rss_url: "https://tenderlovemaking.com/feed/"
+  tags:
+    - personal
+
+- name: "Abiodun Olowode"
+  url: "https://abiodunolowode.com/"
+  rss_url: "https://abiodunolowode.com/feed/"
+  tags:
+    - personal
+
+- name: "Adarsh Pandit"
+  url: "https://www.adarshpandit.com/"
+  rss_url: "https://www.adarshpandit.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Ahmad Elassuty"
+  url: "https://elassuty.com/"
+  rss_url: "https://elassuty.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Akhil Gautam"
+  url: "https://www.akhilgautam.dev/"
+  rss_url: "https://www.akhilgautam.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Akshay Khot"
+  url: "https://www.akshaykhot.com/"
+  rss_url: "https://www.akshaykhot.com/rss/"
+  tags:
+    - personal
+
+- name: "Alex Barret"
+  url: "https://alexbarret.com/"
+  rss_url: "https://alexbarret.com/blog/feed/"
+  tags:
+    - personal
+
+- name: "Alex Popov"
+  url: "https://alexpopov.me/"
+  rss_url: "https://alexpopov.me/feed.xml"
+  tags:
+    - personal
+
+- name: "Alexandre Ruban"
+  url: "https://alexandreruban.com/"
+  rss_url: "https://alexandreruban.com/rss"
+  tags:
+    - personal
+
+- name: "Alexey Poimtsev"
+  url: "https://alec-c4.com/posts/"
+  rss_url: "https://alec-c4.com/posts/index.xml"
+  tags:
+    - personal
+
+- name: "Alexey Vasiliev"
+  url: "https://leopard.in.ua/"
+  rss_url: "https://leopard.in.ua/rss.xml"
+  tags:
+    - personal
+
+- name: "Ali Hamdi Ali Fadel"
+  url: "https://rematch.dev/"
+  rss_url: "https://rematch.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Ana Nunes da Silva"
+  url: "https://ananunesdasilva.com/"
+  rss_url: "https://ananunesdasilva.com/feed"
+  tags:
+    - personal
+
+- name: "Andrei Kaleshka"
+  url: "https://blog.kaleshka.by/"
+  rss_url: "https://blog.kaleshka.by/rss/"
+  tags:
+    - personal
+
+- name: "Andrew Fomera"
+  url: "https://andrewfomera.com/"
+  rss_url: "https://andrewfomera.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Andrew Kane"
+  url: "https://ankane.org/"
+  rss_url: "https://ankane.org/feed.xml"
+  tags:
+    - personal
+
+- name: "Andrey Novikov"
+  url: "https://dev.to/Envek/"
+  rss_url: "https://dev.to/feed/Envek"
+  tags:
+    - personal
+
+- name: "Andy Croll"
+  url: "https://andycroll.com/"
+  rss_url: "https://andycroll.com/ruby/feed.xml"
+  tags:
+    - personal
+
+- name: "Ariel Juodziukynas"
+  url: "https://arieljuod.github.io/blog/"
+  rss_url: "https://arieljuod.github.io/blog/feed.xml"
+  tags:
+    - personal
+
+- name: "Avdi Grimm"
+  url: "https://avdi.codes/blog/"
+  rss_url: "https://avdi.codes/feed/"
+  tags:
+    - personal
+
+- name: "Benito Serna"
+  url: "https://bhserna.com/"
+  rss_url: "https://bhserna.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Benjamin Wood"
+  url: "https://www.benjaminwood.dev/blog/"
+  rss_url: "https://www.benjaminwood.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Bijan Rahmani"
+  url: "https://bijanrahimi.com/"
+  rss_url: "https://bijanrahimi.com/blog/rss.xml"
+  tags:
+    - personal
+
+- name: "Bill Tihen"
+  url: "https://btihen.dev/"
+  rss_url: "https://btihen.dev/index.xml"
+  tags:
+    - personal
+
+- name: "Boaz Segev"
+  url: "https://bowild.wordpress.com/"
+  rss_url: "https://bowild.wordpress.com/feed/"
+  tags:
+    - personal
+
+- name: "Bram Jetten"
+  url: "https://bramjetten.dev/"
+  rss_url: "https://bramjetten.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Brandon Weaver"
+  url: "https://dev.to/baweaver/"
+  rss_url: "https://dev.to/feed/baweaver"
+  tags:
+    - personal
+
+- name: "Breno Gazzola"
+  url: "https://www.brenogazzola.com/"
+  rss_url: "https://www.brenogazzola.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Cameron Dutro"
+  url: "https://blog.camertron.com/"
+  rss_url: "https://blog.camertron.com/feed/"
+  tags:
+    - personal
+
+- name: "Carlos Ramirez III"
+  url: "https://carlosramireziii.com/"
+  rss_url: "https://carlosramireziii.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Chris Aragao"
+  url: "https://chrisaragao.me/"
+  rss_url: "https://chrisaragao.me/feed.xml"
+  tags:
+    - personal
+
+- name: "Chris Oliver"
+  url: "https://chrisoliver.me/"
+  rss_url: "https://chrisoliver.me/rss"
+  tags:
+    - personal
+
+- name: "Christian Bruckmayer"
+  url: "https://www.bruckmayer.net/posts/"
+  rss_url: "https://www.bruckmayer.net/posts/index.xml"
+  tags:
+    - personal
+
+- name: "Code with Rails"
+  url: "https://codewithrails.com/"
+  rss_url: "https://codewithrails.com/rss"
+  tags:
+    - personal
+
+- name: "Cody Norman"
+  url: "https://www.codynorman.com/"
+  rss_url: "https://www.codynorman.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Collin Jilbert"
+  url: "https://collinjilbert.com/"
+  rss_url: "https://collinjilbert.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Daniel Colson"
+  url: "https://daniel-colson.com/"
+  rss_url: "https://daniel-colson.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Daniel Lemire"
+  url: "https://lemire.me/blog/"
+  rss_url: "https://lemire.me/blog/feed/"
+  tags:
+    - personal
+
+- name: "Daniel Magliola"
+  url: "https://www.intricatevisions.com/"
+  rss_url: "https://www.intricatevisions.com/rss/"
+  tags:
+    - personal
+
+- name: "Daniel P. Clark"
+  url: "https://danielpclark.com/"
+  rss_url: "https://danielpclark.com/feed/"
+  tags:
+    - personal
+
+- name: "David Bryant Copeland"
+  url: "https://naildrivin5.com/blog/index.html"
+  rss_url: "https://naildrivin5.com/atom.xml"
+  tags:
+    - personal
+
+- name: "David Colby"
+  url: "https://www.colby.so/"
+  rss_url: "https://www.colby.so/rss"
+  tags:
+    - personal
+
+- name: "David Heinemeier Hansson"
+  url: "https://world.hey.com/dhh"
+  rss_url: "https://world.hey.com/dhh/feed.atom"
+  tags:
+    - personal
+
+- name: "David Stosik"
+  url: "https://www.yourfirstpr.dev/"
+  rss_url: "https://www.yourfirstpr.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Dmitry Ishkov"
+  url: "https://blog.widefix.com/"
+  rss_url: "https://blog.widefix.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Dmitry Tsepelev"
+  url: "https://dmitrytsepelev.dev/"
+  rss_url: "https://dmitrytsepelev.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Drew Bragg"
+  url: "https://www.drbragg.dev/"
+  rss_url: "https://www.drbragg.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Eelco Wiersma"
+  url: "https://paras.cafe/"
+  rss_url: "https://paras.cafe/index.xml"
+  tags:
+    - personal
+
+- name: "Egor Iskrenkov"
+  url: "https://blog.eiskrenkov.com/"
+  rss_url: "https://blog.eiskrenkov.com/rss/"
+  tags:
+    - personal
+
+- name: "Elise Shaffer"
+  url: "https://eliseshaffer.com/"
+  rss_url: "https://eliseshaffer.com/feed/"
+  tags:
+    - personal
+
+- name: "Emi Do"
+  url: "https://emidor.net/"
+  rss_url: "https://emidor.net/feed.xml"
+  tags:
+    - personal
+
+- name: "Enes Talha Ucar"
+  url: "https://enesucar.com/"
+  rss_url: "https://enesucar.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Essen Relansen"
+  url: "https://relansen.com/"
+  rss_url: "https://relansen.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Eugene Desnenko"
+  url: "https://desnenko.com/"
+  rss_url: "https://desnenko.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Exequiel Rozas"
+  url: "https://exequielrozas.com/blog/"
+  rss_url: "https://exequielrozas.com/blog/feed.xml"
+  tags:
+    - personal
+
+- name: "Ferdy Christant"
+  url: "https://ferdychristant.com/tagged/ruby"
+  rss_url: "https://ferdychristant.com/feed"
+  tags:
+    - personal
+
+- name: "Filip Bartuzi"
+  url: "https://bartuziblog.dev/"
+  rss_url: "https://bartuziblog.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Garrett Dimon"
+  url: "https://garrettdimon.com/"
+  rss_url: "https://garrettdimon.com/journal/feed.xml"
+  tags:
+    - personal
+
+- name: "George Claghorn"
+  url: "https://www.georgehotz.com/"
+  rss_url: "https://www.georgehotz.com/rss"
+  tags:
+    - personal
+
+- name: "Gleb Mazovetskiy"
+  url: "https://glebm.com/"
+  rss_url: "https://glebm.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Greg Molnar"
+  url: "https://greg.molnar.io/"
+  rss_url: "https://greg.molnar.io/blog/feed.xml"
+  tags:
+    - personal
+
+- name: "Greg Navis"
+  url: "https://www.gregnavis.com/articles/"
+  rss_url: "https://www.gregnavis.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Greydon Potts"
+  url: "https://greydonpotts.com/"
+  rss_url: "https://greydonpotts.com/rss/"
+  tags:
+    - personal
+
+- name: "Grzegorz Jakubiak"
+  url: "https://blog.grzegorz.dev/"
+  rss_url: "https://blog.grzegorz.dev/rss/"
+  tags:
+    - personal
+
+- name: "Guido Schmitz"
+  url: "https://www.guidoschmitz.dev/"
+  rss_url: "https://www.guidoschmitz.dev/index.xml"
+  tags:
+    - personal
+
+- name: "Gustavo Barranquero"
+  url: "https://gushogg-blake.com/blog"
+  rss_url: "https://gushogg-blake.com/blog/rss.xml"
+  tags:
+    - personal
+
+- name: "Harry Schwartz"
+  url: "https://harryrschwartz.com/archive"
+  rss_url: "https://harryrschwartz.com/atom.xml"
+  tags:
+    - personal
+
+- name: "Hitesh Sahu"
+  url: "https://hiteshsahu.com/"
+  rss_url: "https://hiteshsahu.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Igor Kasyanchuk"
+  url: "https://igorkasyanchuk.com/"
+  rss_url: "https://igorkasyanchuk.com/rss"
+  tags:
+    - personal
+
+- name: "Igor Morozov"
+  url: "https://www.morozov.is/posts/"
+  rss_url: "https://www.morozov.is/feed.xml"
+  tags:
+    - personal
+
+- name: "Ivo Anjo"
+  url: "https://ivoanjo.me/"
+  rss_url: "https://ivoanjo.me/feed.xml"
+  tags:
+    - personal
+
+- name: "James Adam"
+  url: "https://lazyatom.com/"
+  rss_url: "https://lazyatom.com/index.xml"
+  tags:
+    - personal
+
+- name: "James Brooks"
+  url: "https://jamesbrooks.net/"
+  rss_url: "https://jamesbrooks.net/feed/"
+  tags:
+    - personal
+
+- name: "Janet A. Carr"
+  url: "https://dev.to/jetthoughts/"
+  rss_url: "https://dev.to/feed/jetthoughts"
+  tags:
+    - personal
+
+- name: "Jason Charnes"
+  url: "https://jasoncharnes.com/"
+  rss_url: "https://jasoncharnes.com/rss"
+  tags:
+    - personal
+
+- name: "Jason Swett"
+  url: "https://www.codewithjason.com/"
+  rss_url: "https://www.codewithjason.com/feed/"
+  tags:
+    - personal
+
+- name: "Javi"
+  url: "https://thejavireyes.com/notes/"
+  rss_url: "https://thejavireyes.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Jean Boussier"
+  url: "https://byroot.github.io/"
+  rss_url: "https://byroot.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Jeremy Evans"
+  url: "https://code.jeremyevans.net/"
+  rss_url: "https://code.jeremyevans.net/atom.xml"
+  tags:
+    - personal
+
+- name: "Jeremy Smith"
+  url: "https://www.jeremysmith.co/"
+  rss_url: "https://www.jeremysmith.co/feed.xml"
+  tags:
+    - personal
+
+- name: "Jesse Spevack"
+  url: "https://jessespevack.com/"
+  rss_url: "https://jessespevack.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Jim Gay"
+  url: "https://www.saturnflyer.com/"
+  rss_url: "https://www.saturnflyer.com/blog?format=rss"
+  tags:
+    - personal
+
+- name: "Joe Masilotti"
+  url: "https://masilotti.com/"
+  rss_url: "https://masilotti.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Joel Drapper"
+  url: "https://www.joeldrapper.com/"
+  rss_url: "https://www.joeldrapper.com/rss"
+  tags:
+    - personal
+
+- name: "John Hawthorn"
+  url: "https://www.johnhawthorn.com/"
+  rss_url: "https://www.johnhawthorn.com/feed.xml"
+  tags:
+    - personal
+
+- name: "John Nunemaker"
+  url: "https://www.johnnunemaker.com/"
+  rss_url: "https://www.johnnunemaker.com/feed/"
+  tags:
+    - personal
+
+- name: "Jonathan Rochkind"
+  url: "https://bibwild.wordpress.com/"
+  rss_url: "https://bibwild.wordpress.com/feed/"
+  tags:
+    - personal
+
+- name: "Jonathan Yeong"
+  url: "https://jonathanyeong.com/"
+  rss_url: "https://jonathanyeong.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Jorge Manrubia"
+  url: "https://jorgemanrubia.com/"
+  rss_url: "https://jorgemanrubia.com/feed/"
+  tags:
+    - personal
+
+- name: "Josef Strzibny"
+  url: "https://nts.strzibny.name/"
+  rss_url: "https://nts.strzibny.name/rss/"
+  tags:
+    - personal
+
+- name: "Josh Cheek"
+  url: "https://josh.works/archive"
+  rss_url: "https://josh.works/feed"
+  tags:
+    - personal
+
+- name: "Josh Habdas"
+  url: "https://habd.as/post/"
+  rss_url: "https://habd.as/post/index.xml"
+  tags:
+    - personal
+
+- name: "Josh Susser"
+  url: "https://blog.joshsusser.com/"
+  rss_url: "https://blog.joshsusser.com/feed/"
+  tags:
+    - personal
+
+- name: "Joy of Rails"
+  url: "https://joyofrails.com/"
+  rss_url: "https://joyofrails.com/feed"
+  tags:
+    - personal
+
+- name: "Juan Vásquez"
+  url: "https://juanvasquez.dev/"
+  rss_url: "https://juanvasquez.dev/feed"
+  tags:
+    - personal
+
+- name: "Julia Evans"
+  url: "https://jvns.ca/"
+  rss_url: "https://jvns.ca/atom.xml"
+  tags:
+    - personal
+
+- name: "Julian Rubisch"
+  url: "https://julianrubisch.at/"
+  rss_url: "https://julianrubisch.at/rss.xml"
+  tags:
+    - personal
+
+- name: "Justin Searls"
+  url: "https://justin.searls.co/"
+  rss_url: "https://justin.searls.co/feed.xml"
+  tags:
+    - personal
+
+- name: "Juuso Leinonen"
+  url: "https://codeadventures.substack.com/"
+  rss_url: "https://codeadventures.substack.com/feed"
+  tags:
+    - personal
+
+- name: "Kasper Timm Hansen"
+  url: "https://kaspth.com/"
+  rss_url: "https://kaspth.com/feed"
+  tags:
+    - personal
+
+- name: "Kevin Guebert"
+  url: "https://kevinguebert.com/"
+  rss_url: "https://kevinguebert.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Kevin McConnell"
+  url: "https://rconaway.com/"
+  rss_url: "https://rconaway.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Kevin Murphy"
+  url: "https://kevinjmurphy.com/"
+  rss_url: "https://kevinjmurphy.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Kevin Newton"
+  url: "https://kddnewton.com/"
+  rss_url: "https://kddnewton.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Konnor Rogers"
+  url: "https://konnorrogers.com/"
+  rss_url: "https://konnorrogers.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Kyle d'Oliveira"
+  url: "https://kdoliveira.com/articles"
+  rss_url: "https://kdoliveira.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Lazar Nikolov"
+  url: "https://nikolovlazar.com/blog"
+  rss_url: "https://nikolovlazar.com/blog/rss.xml"
+  tags:
+    - personal
+
+- name: "Luca Guidi"
+  url: "https://lucaguidi.com/"
+  rss_url: "https://lucaguidi.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Lucian Ghinda"
+  url: "https://allaboutcoding.ghinda.com/"
+  rss_url: "https://allaboutcoding.ghinda.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Lucian Ghinda (Short Ruby)"
+  url: "https://newsletter.shortruby.com/"
+  rss_url: "https://newsletter.shortruby.com/feed"
+  tags:
+    - personal
+
+- name: "Luke Murphy"
+  url: "https://www.lukemurphy.co/"
+  rss_url: "https://www.lukemurphy.co/rss"
+  tags:
+    - personal
+
+- name: "Maciej Mensfeld"
+  url: "https://mensfeld.pl/"
+  rss_url: "https://mensfeld.pl/feed/"
+  tags:
+    - personal
+
+- name: "Marco Roth"
+  url: "https://marcoroth.dev/"
+  rss_url: "https://marcoroth.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Mark Lodato"
+  url: "https://blog.marklodato.me/"
+  rss_url: "https://blog.marklodato.me/feeds/posts/default"
+  tags:
+    - personal
+
+- name: "Martin Fowler"
+  url: "https://martinfowler.com/tags/ruby.html"
+  rss_url: "https://martinfowler.com/feed.atom"
+  tags:
+    - personal
+
+- name: "Matheus Richard"
+  url: "https://www.matheusrich.com/"
+  rss_url: "https://www.matheusrich.com/feed"
+  tags:
+    - personal
+
+- name: "Matt Brictson"
+  url: "https://mattbrictson.com/"
+  rss_url: "https://mattbrictson.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Matt Swanson"
+  url: "https://mattswanson.com/"
+  rss_url: "https://mattswanson.com/feed/"
+  tags:
+    - personal
+
+- name: "Matt Wynn"
+  url: "https://mattwynne.net/"
+  rss_url: "https://mattwynne.net/atom.xml"
+  tags:
+    - personal
+
+- name: "Matthew Hutchinson"
+  url: "https://matthewhutchinson.net/"
+  rss_url: "https://matthewhutchinson.net/rss"
+  tags:
+    - personal
+
+- name: "Mike Coutermarsh"
+  url: "https://mikecoutermarsh.com/"
+  rss_url: "https://mikecoutermarsh.com/rss/"
+  tags:
+    - personal
+
+- name: "Mike Perham"
+  url: "https://www.mikeperham.com/"
+  rss_url: "https://www.mikeperham.com/index.xml"
+  tags:
+    - personal
+
+- name: "Mike Rogers"
+  url: "https://mikerogers.io/"
+  rss_url: "https://mikerogers.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Mikolaj Pater"
+  url: "https://mikolajpater.com/"
+  rss_url: "https://mikolajpater.com/index.xml"
+  tags:
+    - personal
+
+- name: "Miles Woodroffe"
+  url: "https://tapster.dev/"
+  rss_url: "https://tapster.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Mohammad A. Ali"
+  url: "https://malafortune.com/"
+  rss_url: "https://malafortune.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Mykhaylo Bilyanskyy"
+  url: "https://blog.mbrt.dev/"
+  rss_url: "https://blog.mbrt.dev/index.xml"
+  tags:
+    - personal
+
+- name: "Nate Berkopec"
+  url: "https://www.speedshop.co/"
+  rss_url: "https://www.speedshop.co/feed.xml"
+  tags:
+    - personal
+    - performance
+
+- name: "Nick Schwaderer"
+  url: "https://schwad.github.io/"
+  rss_url: "https://schwad.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Nick Sutterer"
+  url: "https://apotonick.wordpress.com/"
+  rss_url: "https://apotonick.wordpress.com/feed/"
+  tags:
+    - personal
+
+- name: "Nikola Đuza"
+  url: "https://pragmaticpineapple.com/"
+  rss_url: "https://pragmaticpineapple.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Nikolas Britton"
+  url: "https://dev.to/metruzanca/"
+  rss_url: "https://dev.to/feed/metruzanca"
+  tags:
+    - personal
+
+- name: "Nithin Bekal"
+  url: "https://nithinbekal.com/"
+  rss_url: "https://nithinbekal.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Noah Gibbs"
+  url: "https://codefol.io/"
+  rss_url: "https://codefol.io/feed/"
+  tags:
+    - personal
+
+- name: "Noel Rappin"
+  url: "https://noelrappin.com/"
+  rss_url: "https://noelrappin.com/blog/rss.xml"
+  tags:
+    - personal
+
+- name: "Nolan Phillips"
+  url: "https://blog.nolanphillips.com/"
+  rss_url: "https://blog.nolanphillips.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Olly Headey"
+  url: "https://olly.world/archive"
+  rss_url: "https://olly.world/feed.xml"
+  tags:
+    - personal
+
+- name: "Pablo Enoc"
+  url: "https://enocc.com/"
+  rss_url: "https://enocc.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Paul Sadauskas"
+  url: "https://blog.theamazingrando.com/"
+  rss_url: "https://blog.theamazingrando.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Pawel Dabrowski"
+  url: "https://www.paweldabrowski.com/articles"
+  rss_url: "https://www.paweldabrowski.com/undefined/rss/feed.xml"
+  tags:
+    - personal
+
+- name: "Pawel Swiatkowski"
+  url: "https://katafrakt.me/posts/"
+  rss_url: "https://katafrakt.me/feed.xml"
+  tags:
+    - personal
+
+- name: "Peter Keogh"
+  url: "https://keoghpe.github.io/"
+  rss_url: "https://keoghpe.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Peter Solnica"
+  url: "https://solnic.dev/"
+  rss_url: "https://solnic.dev/rss/"
+  tags:
+    - personal
+
+- name: "Peter Zhu"
+  url: "https://blog.peterzhu.ca/"
+  rss_url: "https://blog.peterzhu.ca/feed.xml"
+  tags:
+    - personal
+
+- name: "Petr Hlavicka"
+  url: "https://petr.codes/blog/"
+  rss_url: "https://petr.codes/feed.xml"
+  tags:
+    - personal
+
+- name: "Phil Pirozhkov"
+  url: "https://fili.pp.ru/"
+  rss_url: "https://fili.pp.ru/feed.xml"
+  tags:
+    - personal
+
+- name: "Philippe Creux"
+  url: "https://pcreux.com/"
+  rss_url: "https://pcreux.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Piotr Chmolowski"
+  url: "https://ptrchm.com/posts/"
+  rss_url: "https://ptrchm.com/posts/index.xml"
+  tags:
+    - personal
+
+- name: "Piotr Murach"
+  url: "https://piotrmurach.com/"
+  rss_url: "https://piotrmurach.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Prabin Poudel"
+  url: "https://prabinpoudel.com.np/articles/"
+  rss_url: "https://prabinpoudel.com.np/atom.xml"
+  tags:
+    - personal
+
+- name: "Prabin Poudel (Zero Config Rails)"
+  url: "https://blog.zeroconfigrails.com/"
+  rss_url: "https://blog.zeroconfigrails.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Rachael Wright-Munn"
+  url: "https://www.chael.codes/"
+  rss_url: "https://www.chael.codes/feed.xml"
+  tags:
+    - personal
+
+- name: "Radan Skoric"
+  url: "https://radanskoric.com/tags/ruby/"
+  rss_url: "https://radanskoric.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Radoslav Stankov (Blog)"
+  url: "https://blog.rstankov.com/tag/ruby/"
+  rss_url: "https://blog.rstankov.com/rss/"
+  tags:
+    - personal
+
+- name: "Radoslav Stankov (Tips)"
+  url: "https://tips.rstankov.com/archive"
+  rss_url: "https://tips.rstankov.com/feed"
+  tags:
+    - personal
+
+- name: "Rafael Montas"
+  url: "https://www.rafaelmontas.com/"
+  rss_url: "https://www.rafaelmontas.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Rahoul Baruah"
+  url: "https://theartandscienceofruby.com/"
+  rss_url: "https://theartandscienceofruby.com/rss/"
+  tags:
+    - personal
+
+- name: "Remi Mercier"
+  url: "https://remimercier.com/blog/"
+  rss_url: "https://remimercier.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Renato Nitta"
+  url: "https://renatonitta.com/"
+  rss_url: "https://renatonitta.com/feed/"
+  tags:
+    - personal
+
+- name: "Rich Steinmetz"
+  url: "https://richstone.io/tag/ruby/"
+  rss_url: "https://richstone.io/rss/"
+  tags:
+    - personal
+
+- name: "Richard Schneeman"
+  url: "https://schneems.com/"
+  rss_url: "https://schneems.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Rico Sta. Cruz"
+  url: "https://ricostacruz.com/til/"
+  rss_url: "https://ricostacruz.com/til/rss.xml"
+  tags:
+    - personal
+
+- name: "Rob Race"
+  url: "https://robrace.dev/"
+  rss_url: "https://robrace.dev/blog/rss.xml"
+  tags:
+    - personal
+
+- name: "Rob Zolkos"
+  url: "https://www.zolkos.com/"
+  rss_url: "https://www.zolkos.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Robby Russell"
+  url: "https://robbyonrails.com/"
+  rss_url: "https://robbyonrails.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Robert Pankowecki"
+  url: "https://pankowecki.pl/"
+  rss_url: "https://pankowecki.pl/index.xml"
+  tags:
+    - personal
+
+- name: "Rodrigo Rosenfeld Rosas"
+  url: "https://rosenfeld.page/articles/tags/ruby"
+  rss_url: "https://rosenfeld.page/articles/tags/ruby/atom"
+  tags:
+    - personal
+
+- name: "Roland Studer"
+  url: "https://rstuder.ch/"
+  rss_url: "https://rstuder.ch/feed.xml"
+  tags:
+    - personal
+
+- name: "Ronan Limon Duparcmeur"
+  url: "https://2-45.pm/articles/"
+  rss_url: "https://2-45.pm/feed.xml"
+  tags:
+    - personal
+
+- name: "Ross"
+  url: "https://www.reinhardt.io/blog/"
+  rss_url: "http://reinhardt.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Ross Kaffenberger"
+  url: "https://rossta.net/blog/"
+  rss_url: "https://rossta.net/feed.xml"
+  tags:
+    - personal
+
+- name: "Ryan Bates"
+  url: "https://rbates.dev/"
+  rss_url: "https://rbates.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Ryan Bigg"
+  url: "https://ryanbigg.com/blog"
+  rss_url: "https://ryanbigg.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Ryan Davis"
+  url: "https://www.zenspider.com/ruby/tags/ruby.html"
+  rss_url: "https://www.zenspider.com/atom.xml"
+  tags:
+    - personal
+
+- name: "Sahil Gadimbayli"
+  url: "https://www.ramblingcode.dev/tags/ruby/"
+  rss_url: "https://www.ramblingcode.dev/tags/ruby/index.xml"
+  tags:
+    - personal
+
+- name: "Samuel Williams"
+  url: "https://www.codeotaku.com/journal/index"
+  rss_url: "https://www.codeotaku.com/journal/atom"
+  tags:
+    - personal
+
+- name: "Sandi Metz"
+  url: "https://sandimetz.com/blog"
+  rss_url: "https://sandimetz.com/blog?format=rss"
+  tags:
+    - personal
+
+- name: "Scott Bartell"
+  url: "https://scottbartell.com/"
+  rss_url: "https://scottbartell.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Scott Hanselman"
+  url: "https://www.hanselman.com/blog/category/ruby"
+  rss_url: "https://www.hanselman.com/blog/feed/rss"
+  tags:
+    - personal
+
+- name: "Scott Johnson"
+  url: "https://fuzzyblog.io/blog/tag.html#ruby"
+  rss_url: "http://fuzzyblog.io/blog/feed.xml"
+  tags:
+    - personal
+
+- name: "Scott Watermasysk"
+  url: "https://scottw.com/"
+  rss_url: "https://scottw.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Scott Werner"
+  url: "https://worksonmymachine.substack.com/"
+  rss_url: "https://worksonmymachine.substack.com/feed"
+  tags:
+    - personal
+
+- name: "Sean C Davis"
+  url: "https://www.seancdavis.com/topics/ruby/"
+  rss_url: "https://www.seancdavis.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Seb Wilgosz"
+  url: "https://swilgosz.hashnode.dev/"
+  rss_url: "https://swilgosz.hashnode.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Shayon Mukherjee"
+  url: "https://www.shayon.dev/post/"
+  rss_url: "https://www.shayon.dev/post/index.xml"
+  tags:
+    - personal
+
+- name: "Shivam Chahar"
+  url: "https://www.shivamchahar.com/posts"
+  rss_url: "https://www.shivamchahar.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Sihui Huang"
+  url: "https://www.sihui.io/category/ruby-on-rails/"
+  rss_url: "https://www.sihui.io/feed/"
+  tags:
+    - personal
+
+- name: "Sreeram Venkitesh"
+  url: "https://sreeram.xyz/blog"
+  rss_url: "https://sreeram.xyz/feed.xml"
+  tags:
+    - personal
+
+- name: "Stan Lo"
+  url: "https://st0012.dev/"
+  rss_url: "https://st0012.dev/rss.xml"
+  tags:
+    - personal
+
+- name: "Stanislav Katkov"
+  url: "https://skatkov.com/blog"
+  rss_url: "https://skatkov.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Stanko Krtalic"
+  url: "https://stanko.io/articles"
+  rss_url: "https://stanko.io/articles/rss"
+  tags:
+    - personal
+
+- name: "Stefan Botzenhart"
+  url: "https://www.botzenhart.io/articles"
+  rss_url: "https://www.botzenhart.io/undefined/rss/feed.xml"
+  tags:
+    - personal
+
+- name: "Stefan Wienert"
+  url: "https://www.stefanwienert.de/categories/ruby/"
+  rss_url: "https://www.stefanwienert.de/feed.xml"
+  tags:
+    - personal
+
+- name: "Stefan Wintermeyer"
+  url: "https://medium.com/@wintermeyer"
+  rss_url: "https://medium.com/feed/@wintermeyer"
+  tags:
+    - personal
+
+- name: "Stephan Kamper"
+  url: "https://seasidetesting.com/"
+  rss_url: "https://seasidetesting.com/feed/"
+  tags:
+    - personal
+
+- name: "Stephen Margheim"
+  url: "https://fractaledmind.github.io/posts/"
+  rss_url: "https://fractaledmind.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Steve Klabnik"
+  url: "https://steveklabnik.com/writing"
+  rss_url: "https://steveklabnik.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Steve Polito"
+  url: "https://stevepolito.design/blog"
+  rss_url: "https://stevepolito.design/feed.xml"
+  tags:
+    - personal
+
+- name: "Steven Harman"
+  url: "https://stevenharman.net/archive"
+  rss_url: "https://stevenharman.net/feed.xml"
+  tags:
+    - personal
+
+- name: "Steven Yue"
+  url: "https://stevenyue.com/"
+  rss_url: "https://stevenyue.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Stuart Frost"
+  url: "https://www.stufro.com/"
+  rss_url: "https://www.stufro.com/%20/feed.xml"
+  tags:
+    - personal
+
+- name: "Sulman Baig"
+  url: "https://sulmanweb.com/"
+  rss_url: "https://sulmanweb.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Suraj Mishra"
+  url: "https://monorails.substack.com/"
+  rss_url: "https://monorails.substack.com/feed"
+  tags:
+    - personal
+
+- name: "Tejas Bubane"
+  url: "https://tejasbubane.github.io/tags/ruby/"
+  rss_url: "https://tejasbubane.github.io/rss.xml"
+  tags:
+    - personal
+
+- name: "Tekin Suleyman"
+  url: "https://tekin.co.uk/writing/"
+  rss_url: "https://tekin.co.uk/atom.xml"
+  tags:
+    - personal
+
+- name: "Thomas Countz"
+  url: "https://thomascountz.com/"
+  rss_url: "https://thomascountz.com/atom.xml"
+  tags:
+    - personal
+
+- name: "Thomas Leitner"
+  url: "https://gettalong.org/posts.html"
+  rss_url: "https://gettalong.org/posts.rss"
+  tags:
+    - personal
+
+- name: "Tiago (honeyryder)"
+  url: "https://honeyryderchuck.gitlab.io/posts/"
+  rss_url: "https://honeyryderchuck.gitlab.io/atom.xml"
+  tags:
+    - personal
+
+- name: "Tim Riley"
+  url: "https://timriley.info/posts"
+  rss_url: "https://timriley.info/posts_feed"
+  tags:
+    - personal
+
+- name: "Tom Dalling"
+  url: "https://www.tomdalling.com/blog/"
+  rss_url: "https://www.tomdalling.com/blog/feed/"
+  tags:
+    - personal
+
+- name: "Tom de Bruijn"
+  url: "https://tomdebruijn.com/"
+  rss_url: "https://tomdebruijn.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Tom Mango"
+  url: "https://sleepingpotato.com/"
+  rss_url: "https://sleepingpotato.com/rss/"
+  tags:
+    - personal
+
+- name: "Tom Stuart"
+  url: "https://tomstu.art/articles"
+  rss_url: "https://tomstu.art/articles.atom"
+  tags:
+    - personal
+
+- name: "Tomas Valent"
+  url: "https://blog.eq8.eu/"
+  rss_url: "https://blog.eq8.eu/feed.xml"
+  tags:
+    - personal
+
+- name: "Tristan Dunn"
+  url: "https://tristandunn.com"
+  rss_url: "https://tristandunn.com/feed"
+  tags:
+    - personal
+
+- name: "Tristan Penman"
+  url: "https://tristanpenman.com/blog/"
+  rss_url: "https://tristanpenman.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Tema Bolshakov"
+  url: "https://blog.bolshakov.dev/"
+  rss_url: "https://blog.bolshakov.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Unathi Chonco"
+  url: "https://blog.unathichonco.com/"
+  rss_url: "https://blog.unathichonco.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Vasiliy Ermolovich"
+  url: "https://nashby.github.io/"
+  rss_url: "https://nashby.github.io/atom.xml"
+  tags:
+    - personal
+
+- name: "Vasily Polovnyov"
+  url: "https://vasily.polovnyov.ru/"
+  rss_url: "https://vasily.polovnyov.ru/feed.xml"
+  tags:
+    - personal
+
+- name: "Victor Afanasev"
+  url: "https://vifreefly.github.io/"
+  rss_url: "https://vifreefly.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Victor Shepelev (zverok)"
+  url: "https://zverok.space/writing/"
+  rss_url: "https://zverok.space/feed.xml"
+  tags:
+    - personal
+
+- name: "Victor Wynne"
+  url: "https://victorwynne.com/vault/"
+  rss_url: "https://victorwynne.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Vinay Keerthi"
+  url: "https://tech.stonecharioteer.com/posts/"
+  rss_url: "https://tech.stonecharioteer.com/posts/index.xml"
+  tags:
+    - personal
+
+- name: "Vini Oyama"
+  url: "https://vinioyama.com/blog/"
+  rss_url: "https://vinioyama.com/feed/"
+  tags:
+    - personal
+
+- name: "Vitalii Elenhaupt"
+  url: "https://veelenga.github.io/"
+  rss_url: "https://veelenga.github.io/feed.xml"
+  tags:
+    - personal
+
+- name: "Vladislav Kopylov"
+  url: "https://kopilov-vlad.medium.com/"
+  rss_url: "https://medium.com/feed/@kopilov-vlad"
+  tags:
+    - personal
+
+- name: "Way Mondo"
+  url: "https://waymondo.com/"
+  rss_url: "https://waymondo.com/index.xml"
+  tags:
+    - personal
+
+- name: "Will Jessop"
+  url: "https://willj.net/tags/ruby/"
+  rss_url: "https://willj.net/rss.xml"
+  tags:
+    - personal
+
+- name: "William Kennedy"
+  url: "https://williamkennedy.ninja/posts/"
+  rss_url: "https://williamkennedy.ninja/feed.xml"
+  tags:
+    - personal
+
+- name: "Yegor Bugayenko"
+  url: "https://www.yegor256.com/tag/ruby.html"
+  rss_url: "https://www.yegor256.com/rss.xml"
+  tags:
+    - personal
+
+- name: "Yehuda Katz"
+  url: "https://yehudakatz.com/"
+  rss_url: "https://yehudakatz.com/rss/"
+  tags:
+    - personal
+
+- name: "Yevhen Kuzminov"
+  url: "http://stdout.in/en"
+  rss_url: "http://stdout.in/en/cat/all.rss"
+  tags:
+    - personal
+
+- name: "Yorick Peterse"
+  url: "https://yorickpeterse.com/"
+  rss_url: "https://yorickpeterse.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Yoshiki"
+  url: "https://takagi.blog/tags/ruby/"
+  rss_url: "https://takagi.blog/tags/ruby/rss.xml"
+  tags:
+    - personal
+
+- name: "Younes SERRAJ"
+  url: "https://younes.codes/"
+  rss_url: "https://younes.codes/posts.rss"
+  tags:
+    - personal
+
+- name: "Youssef Boulkaid"
+  url: "https://blog.yboulkaid.com/blog"
+  rss_url: "https://blog.yboulkaid.com/feed.xml"
+  tags:
+    - personal
+
+- name: "Yuri Bocharov"
+  url: "https://blog.yuribocharov.dev/"
+  rss_url: "https://blog.yuribocharov.dev/feed.xml"
+  tags:
+    - personal
+
+- name: "Vladimir Miroshchenko"
+  url: "https://gururuby.ru/"
+  rss_url: "https://gururuby.ru/atom.xml"
+  tags:
+    - personal
+
+- name: "Ivan Shikhalev"
+  url: "https://shikhalev.github.io/tech/programming/ruby/"
+  rss_url: "https://shikhalev.github.io/feed.xml"
+  tags:
+    - personal
+
+# Company Blogs
+- name: "37signals"
+  url: "https://dev.37signals.com/"
+  rss_url: "https://dev.37signals.com/feed/posts.xml"
+  tags:
+    - company
+
+- name: "8th Light"
+  url: "https://8thlight.com/insights/"
+  rss_url: "https://8thlight.com/insights/feed/rss.xml"
+  tags:
+    - company
+
+- name: "Aha!"
+  url: "https://www.aha.io/engineering"
+  rss_url: "https://www.aha.io/blog/feed.xml"
+  tags:
+    - company
+
+- name: "Airbrake"
+  url: "https://blog.airbrake.io/"
+  rss_url: "https://blog.airbrake.io/rss.xml"
+  tags:
+    - company
+
+- name: "Alchemists"
+  url: "https://www.alchemists.io/articles/"
+  rss_url: "https://www.alchemists.io/feeds/news.xml"
+  tags:
+    - company
+
+- name: "Appfolio Engineering"
+  url: "https://engineering.appfolio.com/"
+  rss_url: "https://engineering.appfolio.com/appfolio-engineering?format=rss"
+  tags:
+    - company
+
+- name: "AppSignal"
+  url: "https://blog.appsignal.com/category/ruby-magic.html"
+  rss_url: "https://blog.appsignal.com/category/ruby-magic-feed.xml"
+  tags:
+    - company
+
+- name: "Arkency"
+  url: "https://blog.arkency.com/"
+  rss_url: "https://blog.arkency.com/feed.xml"
+  tags:
+    - company
+
+- name: "Avo"
+  url: "https://avohq.io/blog"
+  rss_url: "https://avohq.io/blog/rss"
+  tags:
+    - company
+
+- name: "Bemi"
+  url: "https://blog.bemi.io/"
+  rss_url: "https://blog.bemi.io/rss/"
+  tags:
+    - company
+
+- name: "BetaCraft"
+  url: "https://betacraft.com/category/ruby/"
+  rss_url: "https://betacraft.com/feed/"
+  tags:
+    - company
+
+- name: "BigBinary"
+  url: "https://www.bigbinary.com/blog"
+  rss_url: "https://www.bigbinary.com/blog/feed.xml"
+  tags:
+    - company
+
+- name: "BoTree Technologies"
+  url: "https://www.botreetechnologies.com/blog/category/technology/ruby-on-rails/"
+  rss_url: "https://www.botreetechnologies.com/blog/feed/"
+  tags:
+    - company
+
+- name: "Brainspec"
+  url: "http://brainspec.com/blog/"
+  rss_url: "http://brainspec.com/blog/atom.xml"
+  tags:
+    - company
+
+- name: "Carmatec"
+  url: "https://www.carmatec.com/blog/"
+  rss_url: "https://www.carmatec.com/feed/"
+  tags:
+    - company
+
+- name: "Census"
+  url: "https://census.dev/"
+  rss_url: "https://census.dev/blog?format=rss"
+  tags:
+    - company
+
+- name: "Codemancers"
+  url: "https://www.codemancers.com/blog/?tag=rails"
+  rss_url: "https://www.codemancers.com/rss.xml"
+  tags:
+    - company
+
+- name: "Codeminer 42"
+  url: "https://blog.codeminer42.com/"
+  rss_url: "https://blog.codeminer42.com/feed/"
+  tags:
+    - company
+
+- name: "Codica"
+  url: "https://www.codica.com/blog/"
+  rss_url: "https://www.codica.com/rss.xml"
+  tags:
+    - company
+
+- name: "Collective Idea"
+  url: "https://collectiveidea.com/blog/labels/rails/"
+  rss_url: "https://collectiveidea.com/blog/feed/"
+  tags:
+    - company
+
+- name: "Cookpad"
+  url: "https://sourcediving.com/tagged/ruby"
+  rss_url: "https://sourcediving.com/feed"
+  tags:
+    - company
+
+- name: "Cycode"
+  url: "https://cycode.com/blog/"
+  rss_url: "https://cycode.com/feed/"
+  tags:
+    - company
+
+- name: "Decode Fix"
+  url: "https://decodefix.com/tag/ruby/"
+  rss_url: "https://decodefix.com/feed/"
+  tags:
+    - company
+
+- name: "DotRuby"
+  url: "https://www.dotruby.com/articles"
+  rss_url: "https://www.dotruby.com/articles.atom"
+  tags:
+    - company
+
+- name: "Engine Yard"
+  url: "https://www.engineyard.com/blog/tag/ruby-on-rails/"
+  rss_url: "https://www.engineyard.com/blog/tag/ruby-on-rails/feed/"
+  tags:
+    - company
+
+- name: "Evil Martians"
+  url: "https://evilmartians.com/chronicles"
+  rss_url: "https://evilmartians.com/chronicles.atom"
+  tags:
+    - company
+
+- name: "Fast Ruby"
+  url: "https://www.fastruby.io/blog"
+  rss_url: "https://fastruby.io/blog/rss.xml"
+  tags:
+    - company
+
+- name: "FireHydrant"
+  url: "https://firehydrant.com/blog/"
+  rss_url: "https://firehydrant.com/rss.xml"
+  tags:
+    - company
+
+- name: "Flagrant"
+  url: "https://www.beflagrant.com/blog/"
+  rss_url: "https://www.beflagrant.com/feed.xml"
+  tags:
+    - company
+
+- name: "Fly.io"
+  url: "https://fly.io/ruby-dispatch/"
+  rss_url: "https://fly.io/ruby-dispatch/feed.xml"
+  tags:
+    - company
+
+- name: "FreeAgent"
+  url: "https://engineering.freeagent.com/tag/ruby/"
+  rss_url: "https://engineering.freeagent.com/feed/"
+  tags:
+    - company
+
+- name: "Getaround"
+  url: "https://getaround.tech/"
+  rss_url: "https://getaround.tech/feed.xml"
+  tags:
+    - company
+
+- name: "Good Enough"
+  url: "https://goodenough.us/blog/"
+  rss_url: "https://goodenough.us/feed.xml"
+  tags:
+    - company
+
+- name: "Grab Tech"
+  url: "https://engineering.grab.com/tags#ruby"
+  rss_url: "https://engineering.grab.com/feed.xml"
+  tags:
+    - company
+
+- name: "Gusto"
+  url: "https://engineering.gusto.com/tagged/ruby-on-rails"
+  rss_url: "https://engineering.gusto.com/feed"
+  tags:
+    - company
+
+- name: "Hashrocket"
+  url: "https://hashrocket.com/blog/tags/ruby"
+  rss_url: "https://hashrocket.com/blog.rss"
+  tags:
+    - company
+
+- name: "Heroku"
+  url: "https://blog.heroku.com/"
+  rss_url: "https://blog.heroku.com/feed/"
+  tags:
+    - company
+
+- name: "Honeybadger"
+  url: "https://www.honeybadger.io/blog/"
+  rss_url: "https://www.honeybadger.io/blog/feed.xml"
+  tags:
+    - company
+
+- name: "Hybrd"
+  url: "https://hybrd.co/posts"
+  rss_url: "https://hybrd.co/posts.atom"
+  tags:
+    - company
+
+- name: "Ideamotive"
+  url: "https://www.ideamotive.co/blog"
+  rss_url: "https://www.ideamotive.co/blog/rss.xml"
+  tags:
+    - company
+
+- name: "Infinum"
+  url: "https://infinum.com/blog/category/engineering/"
+  rss_url: "https://infinum.com/blog/category/engineering/feed/"
+  tags:
+    - company
+
+- name: "JetRockets"
+  url: "https://jetrockets.com/blog"
+  rss_url: "https://jetrockets.com/blog.rss"
+  tags:
+    - company
+
+- name: "JetRuby"
+  url: "https://jetruby.com/blog/"
+  rss_url: "https://jetruby.com/feed/"
+  tags:
+    - company
+
+- name: "Judoscale"
+  url: "https://judoscale.com/blog"
+  rss_url: "https://judoscale.com/rss.xml"
+  tags:
+    - company
+
+- name: "Kiprosh"
+  url: "https://blog.kiprosh.com/tag/ruby/"
+  rss_url: "https://blog.kiprosh.com/rss/"
+  tags:
+    - company
+
+- name: "Knapsack Pro"
+  url: "https://docs.knapsackpro.com/blog/"
+  rss_url: "https://docs.knapsackpro.com/feed.xml"
+  tags:
+    - company
+
+- name: "Kolosek"
+  url: "https://kolosek.com/tag/ruby-on-rails/"
+  rss_url: "https://kolosek.com/blog/rss/"
+  tags:
+    - company
+
+- name: "Learnetto"
+  url: "https://learnetto.com/blog"
+  rss_url: "https://learnetto.com/blog/rss"
+  tags:
+    - company
+
+- name: "ManageIQ"
+  url: "https://www.manageiq.org/blog/tags/ruby/"
+  rss_url: "http://manageiq.org/feed.xml"
+  tags:
+    - company
+
+- name: "Mintbit"
+  url: "https://www.mintbit.com/blog/"
+  rss_url: "https://www.mintbit.com/feed.xml"
+  tags:
+    - company
+
+- name: "Mkdev"
+  url: "https://mkdev.me/posts"
+  rss_url: "https://mkdev.me/posts.atom"
+  tags:
+    - company
+
+- name: "Netguru"
+  url: "https://www.netguru.com/blog/topic/ruby"
+  rss_url: "https://www.netguru.com/blog/rss.xml"
+  tags:
+    - company
+
+- name: "Olio"
+  url: "https://tech.olioex.com/"
+  rss_url: "https://tech.olioex.com/feed.xml"
+  tags:
+    - company
+
+- name: "Ombu Labs"
+  url: "https://www.ombulabs.com/blog"
+  rss_url: "https://www.ombulabs.com/blog/rss.xml"
+  tags:
+    - company
+
+- name: "Planet Argon"
+  url: "https://blog.planetargon.com/blog"
+  rss_url: "https://blog.planetargon.com/blog/entries.rss"
+  tags:
+    - company
+
+- name: "PlanetScale"
+  url: "https://planetscale.com/blog"
+  rss_url: "https://planetscale.com/blog/feed.atom"
+  tags:
+    - company
+
+- name: "Plataformatec"
+  url: "https://blog.plataformatec.com.br/tag/rails/"
+  rss_url: "https://blog.plataformatec.com.br/feed/"
+  tags:
+    - company
+
+- name: "Prefab"
+  url: "https://prefab.cloud/blog/"
+  rss_url: "https://prefab.cloud/blog/rss.xml"
+  tags:
+    - company
+
+- name: "Qameta"
+  url: "https://qameta.com/posts/"
+  rss_url: "https://qameta.com/index.xml"
+  tags:
+    - company
+
+- name: "RailsCarma"
+  url: "https://www.railscarma.com/blog/"
+  rss_url: "https://www.railscarma.com/feed/"
+  tags:
+    - company
+
+- name: "Railsware"
+  url: "https://railsware.com/blog/"
+  rss_url: "https://railsware.com/blog/feed/"
+  tags:
+    - company
+
+- name: "Rebased"
+  url: "https://blog.rebased.pl/"
+  rss_url: "https://blog.rebased.pl/feed.xml"
+  tags:
+    - company
+
+- name: "RNDSOFT"
+  url: "https://blog.rnds.pro/"
+  rss_url: "https://blog.rnds.pro/data/rss"
+  tags:
+    - company
+
+- name: "Ruby & Elixir MobiDev Team Blog"
+  url: "https://ruby.mobidev.biz/posts/"
+  rss_url: "https://ruby.mobidev.biz/posts/index.xml"
+  tags:
+    - company
+
+- name: "Ruby Elders"
+  url: "https://rubyelders.com/writings.html"
+  rss_url: "https://rubyelders.com/writings.atom"
+  tags:
+    - company
+
+- name: "RubyGarage"
+  url: "https://rubygarage.org/blog"
+  rss_url: "https://rubygarage.org/blog.rss"
+  tags:
+    - company
+
+- name: "Rubyroid Labs"
+  url: "https://rubyroidlabs.com/blog/category/ror-web-dev/"
+  rss_url: "https://rubyroidlabs.com/blog/feed/"
+  tags:
+    - company
+
+- name: "Saeloun"
+  url: "https://blog.saeloun.com/"
+  rss_url: "https://blog.saeloun.com/feed.xml"
+  tags:
+    - company
+
+- name: "SerpApi"
+  url: "https://serpapi.com/blog/tag/ruby/"
+  rss_url: "https://serpapi.com/blog/rss/"
+  tags:
+    - company
+
+- name: "Simple Thread"
+  url: "https://www.simplethread.com/tag/rails/"
+  rss_url: "https://www.simplethread.com/feed/"
+  tags:
+    - company
+
+- name: "Skylight"
+  url: "https://blog.skylight.io/"
+  rss_url: "https://blog.skylight.io/rss/"
+  tags:
+    - company
+
+- name: "Sloboda Studio"
+  url: "https://sloboda-studio.com/"
+  rss_url: "https://sloboda-studio.com/feed/rdf/"
+  tags:
+    - company
+
+- name: "Snyk"
+  url: "https://snyk.io/blog/"
+  rss_url: "https://snyk.io/blog/feed/"
+  tags:
+    - company
+
+- name: "Splitwise"
+  url: "https://blog.splitwise.com/"
+  rss_url: "https://blog.splitwise.com/feed/"
+  tags:
+    - company
+
+- name: "Spritle"
+  url: "https://www.spritle.com/blog/category/ruby/"
+  rss_url: "https://www.spritle.com/blog/feed/"
+  tags:
+    - company
+
+- name: "Square"
+  url: "https://developer.squareup.com/blog/archive/tags/ruby/"
+  rss_url: "https://developer.squareup.com/blog/rss.xml"
+  tags:
+    - company
+
+- name: "Super Good Software"
+  url: "https://supergood.software/blog/"
+  rss_url: "https://supergood.software/rss.xml"
+  tags:
+    - company
+
+- name: "The Dev Post (Truemark)"
+  url: "https://www.thedevpost.com/"
+  rss_url: "https://www.thedevpost.com/feed/"
+  tags:
+    - company
+
+- name: "thoughtbot"
+  url: "https://thoughtbot.com/blog"
+  rss_url: "https://thoughtbot.com/blog/summaries.xml"
+  tags:
+    - company
+
+- name: "Tosbourn"
+  url: "https://tosbourn.com/ruby/"
+  rss_url: "https://tosbourn.com/feed.xml"
+  tags:
+    - company
+
+- name: "Ubicloud"
+  url: "https://www.ubicloud.com/blog/"
+  rss_url: "https://www.ubicloud.com/rss/rss.xml"
+  tags:
+    - company
+
+- name: "Vector Logic"
+  url: "https://www.vector-logic.com/blog/posts"
+  rss_url: "https://www.vector-logic.com/blog/posts.rss"
+  tags:
+    - company
+
+- name: "Wonolo"
+  url: "https://engineeringblog.wonolo.com/tag/ruby"
+  rss_url: "https://engineeringblog.wonolo.com/tag/ruby/rss.xml"
+  tags:
+    - company
+
+- name: "Riding Rails"
+  url: "https://rubyonrails.org/blog"
+  rss_url: "https://rubyonrails.org/blog.xml"
+  tags:
+    - community
+    - rails

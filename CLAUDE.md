@@ -49,6 +49,11 @@ bin/rails test   # Run all tests
 - Dark editorial aesthetic with grain texture overlay
 - CSS classes: `font-display`, `font-body`, `editorial-card`, `subscribe-input`, `subscribe-btn`, `divider-gold`, `section-label`, `social-link`
 
+## Skills
+
+- Use /frontend-design skill for any frontend related stuff
+- Use /hotwire for any Hotwire related stuff (Turbo + Stimulus)
+
 ### IMPORTANT NOTES
 
 - DO NOT GENERATE DOCUMENTATION UNLESS THE USER SPECIFICALLY ASKS FOR IT!

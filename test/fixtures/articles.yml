@@ -1,0 +1,32 @@
+rails_performance:
+  blog: speedshop
+  title: "How to Make Your Rails App Fast"
+  url: "https://www.speedshop.co/2025/01/01/rails-fast.html"
+  published_at: <%= 2.days.ago.to_fs(:db) %>
+  summary: "Tips for Rails performance"
+  processed: false
+
+older_article:
+  blog: speedshop
+  title: "Ruby Memory Management"
+  url: "https://www.speedshop.co/2024/12/01/memory.html"
+  published_at: <%= 10.days.ago.to_fs(:db) %>
+  summary: "Understanding Ruby memory"
+  processed: true
+
+martians_article:
+  blog: evil_martians
+  title: "ViewComponent Best Practices"
+  url: "https://evilmartians.com/chronicles/viewcomponent"
+  published_at: <%= 1.day.ago.to_fs(:db) %>
+  summary: "How to use ViewComponent effectively"
+  processed: false
+
+featured_article:
+  blog: evil_martians
+  title: "AnyCable Pro Tips"
+  url: "https://evilmartians.com/chronicles/anycable-tips"
+  published_at: <%= 5.days.ago.to_fs(:db) %>
+  summary: "Advanced AnyCable usage"
+  processed: true
+  featured_in_issue: 1

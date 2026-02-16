@@ -1,37 +1,30 @@
 <%# ===== HERO SECTION ===== %>
 <section class="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative overflow-hidden hero-spotlight">
   <div class="relative z-10 text-center max-w-2xl mx-auto">
-    <%# Logo %>
     <div class="mb-10 stagger-1">
       <%= image_tag "rubycrow.png", alt: "RubyCrow", class: "w-28 h-28 mx-auto hero-logo rounded-2xl" %>
     </div>
 
-    <%# Heading %>
     <h1 class="font-display text-6xl sm:text-8xl tracking-tight mb-6 stagger-2 text-crow-cream">
       RubyCrow
     </h1>
 
-    <%# Tagline %>
     <p class="text-xl sm:text-2xl text-crow-sand-dim mb-12 max-w-md mx-auto leading-relaxed font-body font-light stagger-3">
-      A curated weekly newsletter for Ruby &amp; Rails developers. Hand-picked articles, gems, and community&nbsp;highlights.
+      A community-powered article feed for Ruby &amp; Rails developers. Fresh posts from the best blogs, delivered&nbsp;weekly.
     </p>
 
-    <%# Subscribe Form %>
     <div class="stagger-4">
       <%= render "subscribers/form", form_id: "subscribe-form-hero" %>
     </div>
 
-    <%# Subscriber Count %>
     <% if @subscriber_count > 0 %>
       <p class="mt-8 text-sm text-crow-sand-dim tracking-wide stagger-5">
-        Join
         <span class="text-gold font-medium" data-controller="subscriber-count" data-subscriber-count-goal-value="<%= @subscriber_count %>">0</span>
-        developers already reading
+        developers in the flock
       </p>
     <% end %>
   </div>
 
-  <%# Scroll hint %>
   <div class="absolute bottom-10 left-1/2 -translate-x-1/2 stagger-5">
     <div class="w-px h-12 bg-gradient-to-b from-transparent via-gold/20 to-gold/40"></div>
   </div>
@@ -54,7 +47,6 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-5">
-      <%# Card 1: Crow's Pick %>
       <div class="editorial-card rounded-xl p-7 relative overflow-hidden" data-reveal>
         <div class="relative z-10">
           <div class="flex items-start justify-between mb-6">
@@ -70,7 +62,6 @@
         </div>
       </div>
 
-      <%# Card 2: Shiny Objects %>
       <div class="editorial-card rounded-xl p-7 relative overflow-hidden" data-reveal>
         <div class="relative z-10">
           <div class="flex items-start justify-between mb-6">
@@ -86,7 +77,6 @@
         </div>
       </div>
 
-      <%# Card 3: Crow Call %>
       <div class="editorial-card rounded-xl p-7 relative overflow-hidden" data-reveal>
         <div class="relative z-10">
           <div class="flex items-start justify-between mb-6">
@@ -108,6 +98,38 @@
 <%# ===== EDITORIAL DIVIDER ===== %>
 <div class="divider-gold max-w-xs mx-auto"></div>
 
+<%# ===== LIVE FEED ===== %>
+<section class="py-28 px-6" data-controller="scroll-reveal live-feed">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16" data-reveal>
+      <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">Fresh From the Flock</span>
+      <h2 class="font-display text-4xl sm:text-5xl text-crow-cream mt-3 mb-5">
+        Live feed
+      </h2>
+      <p class="text-crow-sand-dim text-xl max-w-lg mx-auto leading-relaxed font-light">
+        The latest articles from Ruby &amp; Rails blogs the crow watches.
+      </p>
+    </div>
+
+    <div data-reveal>
+      <%= turbo_frame_tag "live-feed", src: articles_path, loading: :lazy do %>
+        <div class="text-center py-12">
+          <div class="inline-flex items-center gap-3">
+            <svg class="w-5 h-5 text-gold/40 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <span class="text-crow-sand-dim text-sm font-light">Loading articles...</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ===== EDITORIAL DIVIDER ===== %>
+<div class="divider-gold max-w-xs mx-auto"></div>
+
 <%# ===== HOW IT WORKS ===== %>
 <section class="py-28 px-6" data-controller="scroll-reveal">
   <div class="max-w-3xl mx-auto">
@@ -117,37 +139,81 @@
     </div>
 
     <div class="space-y-16">
-      <%# Step 1 %>
       <div class="flex items-start gap-8" data-reveal>
         <div class="flex-shrink-0 w-14 h-14 rounded-full border border-gold/10 flex items-center justify-center">
           <span class="font-display text-2xl text-gold/40">1</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-2xl text-crow-cream mb-2">We scour the ecosystem</h3>
-          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Hundreds of blog posts, pull requests, and discussions. Every corner of the Ruby world, every week.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">Add your blog</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Submit your Ruby or Rails blog via a simple pull request to our open registry on GitHub. Add your name, URL, and RSS feed.</p>
         </div>
       </div>
 
-      <%# Step 2 %>
       <div class="flex items-start gap-8" data-reveal>
         <div class="flex-shrink-0 w-14 h-14 rounded-full border border-gold/10 flex items-center justify-center">
           <span class="font-display text-2xl text-gold/40">2</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-2xl text-crow-cream mb-2">We curate ruthlessly</h3>
-          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Only the best makes the cut. Each piece is hand-picked and summarized with context that matters to working developers.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">The crow watches</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">We automatically sync your RSS feed every few hours, collecting new articles as they appear. No manual submission needed after setup.</p>
         </div>
       </div>
 
-      <%# Step 3 %>
       <div class="flex items-start gap-8" data-reveal>
         <div class="flex-shrink-0 w-14 h-14 rounded-full border border-gold/10 flex items-center justify-center">
           <span class="font-display text-2xl text-gold/40">3</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-2xl text-crow-cream mb-2">You read, we repeat</h3>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">Get discovered</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Your best posts get curated into our weekly newsletter, reaching developers who care about quality Ruby content.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-8" data-reveal>
+        <div class="flex-shrink-0 w-14 h-14 rounded-full border border-gold/10 flex items-center justify-center">
+          <span class="font-display text-2xl text-gold/40">4</span>
+        </div>
+        <div class="pt-2">
+          <h3 class="font-display text-2xl text-crow-cream mb-2">The flock reads</h3>
           <p class="text-crow-sand-dim text-base leading-relaxed font-light">A concise, beautifully formatted newsletter lands in your inbox. No spam, no fluff, no tracking pixels. Ever.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-20" data-reveal>
+      <a href="https://github.com/k0va1/rubycrow" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg border border-gold/15 text-crow-sand text-base font-body tracking-wide hover:border-gold/30 hover:text-crow-cream transition-all duration-300">
+        <svg class="w-4 h-4 text-gold/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        Add Your Blog &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<%# ===== EDITORIAL DIVIDER ===== %>
+<div class="divider-gold max-w-xs mx-auto"></div>
+
+<%# ===== STATS BAR ===== %>
+<section class="py-20 px-6" data-controller="scroll-reveal">
+  <div class="max-w-3xl mx-auto">
+    <div class="grid grid-cols-3 gap-8 text-center" data-reveal>
+      <div>
+        <span class="font-display text-4xl sm:text-5xl text-crow-cream"
+              data-controller="counter-animation"
+              data-counter-animation-goal-value="<%= @blog_count %>">0</span>
+        <p class="text-sm text-crow-sand-dim mt-2 tracking-wide font-light">Blogs Watched</p>
+      </div>
+      <div>
+        <span class="font-display text-4xl sm:text-5xl text-crow-cream"
+              data-controller="counter-animation"
+              data-counter-animation-goal-value="<%= @article_count %>">0</span>
+        <p class="text-sm text-crow-sand-dim mt-2 tracking-wide font-light">Articles Collected</p>
+      </div>
+      <div>
+        <span class="font-display text-4xl sm:text-5xl text-crow-cream"
+              data-controller="counter-animation"
+              data-counter-animation-goal-value="<%= @subscriber_count %>">0</span>
+        <p class="text-sm text-crow-sand-dim mt-2 tracking-wide font-light">Subscribers</p>
       </div>
     </div>
   </div>
@@ -162,15 +228,12 @@
     <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">Contribute</span>
     <h2 class="font-display text-4xl sm:text-5xl text-crow-cream mt-3 mb-5">For authors</h2>
     <p class="text-crow-sand-dim text-xl leading-relaxed font-light mb-10">
-      Writing about Ruby or Rails? We'd love to feature your work.
-      Submit your blog post or project and reach thousands of developers who care.
+      Join <%= @blog_count %> blogs already in the registry. Submit a pull request to add your blog's RSS feed, and the crow will handle the rest. Your articles appear in our live feed and get considered for the weekly newsletter.
     </p>
-    <a href="mailto:hello@rubycrow.com?subject=Content%20Submission"
+    <a href="https://github.com/k0va1/rubycrow" target="_blank" rel="noopener"
        class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg border border-gold/15 text-crow-sand text-base font-body tracking-wide hover:border-gold/30 hover:text-crow-cream transition-all duration-300">
-      <svg class="w-4 h-4 text-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-      </svg>
-      Submit your content
+      <svg class="w-4 h-4 text-gold/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      Submit via GitHub PR
     </a>
   </div>
 </section>
@@ -189,7 +252,7 @@
       <a href="https://x.com/rubycrow" target="_blank" rel="noopener" class="text-crow-sand/30 transition-all duration-300 hover:text-gold hover:-translate-y-0.5" aria-label="Twitter/X">
         <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a href="https://github.com/rubycrow" target="_blank" rel="noopener" class="text-crow-sand/30 transition-all duration-300 hover:text-gold hover:-translate-y-0.5" aria-label="GitHub">
+      <a href="https://github.com/k0va1/rubycrow" target="_blank" rel="noopener" class="text-crow-sand/30 transition-all duration-300 hover:text-gold hover:-translate-y-0.5" aria-label="GitHub">
         <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
       </a>
       <a href="/feed.xml" class="text-crow-sand/30 transition-all duration-300 hover:text-gold hover:-translate-y-0.5" aria-label="RSS Feed">
