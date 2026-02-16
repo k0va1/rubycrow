@@ -12,7 +12,7 @@
     </h1>
 
     <%# Tagline %>
-    <p class="text-base sm:text-lg text-crow-sand-dim mb-12 max-w-md mx-auto leading-relaxed font-body font-light stagger-3">
+    <p class="text-xl sm:text-2xl text-crow-sand-dim mb-12 max-w-md mx-auto leading-relaxed font-body font-light stagger-3">
       A curated weekly newsletter for Ruby &amp; Rails developers. Hand-picked articles, gems, and community&nbsp;highlights.
     </p>
 
@@ -23,7 +23,7 @@
 
     <%# Subscriber Count %>
     <% if @subscriber_count > 0 %>
-      <p class="mt-8 text-xs text-crow-sand-dim tracking-wide stagger-5">
+      <p class="mt-8 text-sm text-crow-sand-dim tracking-wide stagger-5">
         Join
         <span class="text-gold font-medium" data-controller="subscriber-count" data-subscriber-count-goal-value="<%= @subscriber_count %>">0</span>
         developers already reading
@@ -48,7 +48,7 @@
       <h2 class="font-display text-4xl sm:text-5xl text-crow-cream mt-3 mb-5">
         What you'll find inside
       </h2>
-      <p class="text-crow-sand-dim max-w-lg mx-auto leading-relaxed font-light">
+      <p class="text-crow-sand-dim text-xl max-w-lg mx-auto leading-relaxed font-light">
         Every week, we scour the Ruby ecosystem so you don't have to. Three sections, zero filler.
       </p>
     </div>
@@ -65,8 +65,8 @@
             </div>
             <span class="step-number font-display text-7xl leading-none text-gold/10 transition-colors duration-500">I</span>
           </div>
-          <h3 class="font-display text-xl text-crow-cream mb-2">Crow's Pick</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">The single most impactful article of the week — the one you can't afford to miss.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">Crow's Pick</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">The single most impactful article of the week — the one you can't afford to miss.</p>
         </div>
       </div>
 
@@ -81,8 +81,8 @@
             </div>
             <span class="step-number font-display text-7xl leading-none text-gold/10 transition-colors duration-500">II</span>
           </div>
-          <h3 class="font-display text-xl text-crow-cream mb-2">Shiny Objects</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">New gems, tools, and libraries that caught our eye. Evaluated so you can decide what's worth adopting.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">Shiny Objects</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">New gems, tools, and libraries that caught our eye. Evaluated so you can decide what's worth adopting.</p>
         </div>
       </div>
 
@@ -97,8 +97,8 @@
             </div>
             <span class="step-number font-display text-7xl leading-none text-gold/10 transition-colors duration-500">III</span>
           </div>
-          <h3 class="font-display text-xl text-crow-cream mb-2">Crow Call</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">Community voices, hot takes, and conversations worth joining. The pulse of Ruby.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">Crow Call</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Community voices, hot takes, and conversations worth joining. The pulse of Ruby.</p>
         </div>
       </div>
     </div>
@@ -123,8 +123,8 @@
           <span class="font-display text-2xl text-gold/40">1</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-xl text-crow-cream mb-2">We scour the ecosystem</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">Hundreds of blog posts, pull requests, and discussions. Every corner of the Ruby world, every week.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">We scour the ecosystem</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Hundreds of blog posts, pull requests, and discussions. Every corner of the Ruby world, every week.</p>
         </div>
       </div>
 
@@ -134,8 +134,8 @@
           <span class="font-display text-2xl text-gold/40">2</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-xl text-crow-cream mb-2">We curate ruthlessly</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">Only the best makes the cut. Each piece is hand-picked and summarized with context that matters to working developers.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">We curate ruthlessly</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">Only the best makes the cut. Each piece is hand-picked and summarized with context that matters to working developers.</p>
         </div>
       </div>
 
@@ -145,8 +145,8 @@
           <span class="font-display text-2xl text-gold/40">3</span>
         </div>
         <div class="pt-2">
-          <h3 class="font-display text-xl text-crow-cream mb-2">You read, we repeat</h3>
-          <p class="text-crow-sand-dim text-sm leading-relaxed font-light">A concise, beautifully formatted newsletter lands in your inbox. No spam, no fluff, no tracking pixels. Ever.</p>
+          <h3 class="font-display text-2xl text-crow-cream mb-2">You read, we repeat</h3>
+          <p class="text-crow-sand-dim text-base leading-relaxed font-light">A concise, beautifully formatted newsletter lands in your inbox. No spam, no fluff, no tracking pixels. Ever.</p>
         </div>
       </div>
     </div>
@@ -161,12 +161,12 @@
   <div class="max-w-xl mx-auto text-center" data-reveal>
     <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">Contribute</span>
     <h2 class="font-display text-4xl sm:text-5xl text-crow-cream mt-3 mb-5">For authors</h2>
-    <p class="text-crow-sand-dim leading-relaxed font-light mb-10">
+    <p class="text-crow-sand-dim text-xl leading-relaxed font-light mb-10">
       Writing about Ruby or Rails? We'd love to feature your work.
       Submit your blog post or project and reach thousands of developers who care.
     </p>
     <a href="mailto:hello@rubycrow.com?subject=Content%20Submission"
-       class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg border border-gold/15 text-crow-sand text-sm font-body tracking-wide hover:border-gold/30 hover:text-crow-cream transition-all duration-300">
+       class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg border border-gold/15 text-crow-sand text-base font-body tracking-wide hover:border-gold/30 hover:text-crow-cream transition-all duration-300">
       <svg class="w-4 h-4 text-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
       </svg>
@@ -181,7 +181,7 @@
 
   <div class="max-w-lg mx-auto text-center">
     <h2 class="font-display text-3xl sm:text-4xl text-crow-cream mb-3">Don't miss an issue</h2>
-    <p class="text-crow-sand-dim text-sm mb-10 font-light">The next edition is already being written.</p>
+    <p class="text-crow-sand-dim text-lg mb-10 font-light">The next edition is already being written.</p>
 
     <%= render "subscribers/form", form_id: "subscribe-form-footer" %>
 
