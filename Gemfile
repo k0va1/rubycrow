@@ -29,6 +29,7 @@ group :development, :test do
   gem "brakeman"
   gem "debug"
   gem "standard"
+  gem "standard-rails"
 end
 
 group :development do

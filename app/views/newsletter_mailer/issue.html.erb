@@ -2,9 +2,13 @@
 
 <tr>
   <td style="padding: 32px 24px 24px 24px;">
-    <h1 class="hero-title" style="margin: 0 0 12px 0; font-size: 28px; line-height: 34px; font-weight: 700; color: #f0f0f0; text-align: center;">
+    <h1
+      class="hero-title"
+      style="margin: 0 0 12px 0; font-size: 28px; line-height: 34px; font-weight: 700; color: #f0f0f0; text-align: center;"
+    >
       Issue #<%= @newsletter_issue.issue_number.to_s.rjust(3, "0") %>
     </h1>
+
     <p class="tagline" style="margin: 0; font-size: 16px; line-height: 24px; color: #888; text-align: center;">
       <%= @newsletter_issue.subject %>
     </p>
@@ -14,10 +18,17 @@
 <% if sections["crows_pick"].present? %>
   <tr>
     <td style="padding: 8px 24px 24px 24px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+      <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+      >
         <tr>
           <td style="padding-bottom: 16px;">
-            <span style="display: inline-block; font-size: 11px; font-weight: 700; color: #CC342D; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #CC342D; padding-bottom: 4px;">
+            <span
+              style="display: inline-block; font-size: 11px; font-weight: 700; color: #CC342D; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #CC342D; padding-bottom: 4px;"
+            >
               ⭐ Crow's Pick
             </span>
           </td>
@@ -25,19 +36,33 @@
       </table>
 
       <% sections["crows_pick"].each do |tracked_link| %>
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <table
+          role="presentation"
+          cellpadding="0"
+          cellspacing="0"
+          width="100%"
+        >
           <tr>
-            <td class="article-card" style="padding: 24px; background-color: #141414; border: 1px solid #2a2a2a; border-left: 3px solid #CC342D; border-radius: 8px; margin-bottom: 12px;">
+            <td
+              class="article-card"
+              style="padding: 24px; background-color: #141414; border: 1px solid #2a2a2a; border-left: 3px solid #CC342D; border-radius: 8px; margin-bottom: 12px;"
+            >
               <a href="<%= tracked_link.tracked_url(subscriber: @subscriber) %>" style="text-decoration: none;">
-                <h2 class="article-title" style="margin: 0 0 8px 0; font-size: 20px; line-height: 26px; font-weight: 700; color: #f0f0f0;">
+                <h2
+                  class="article-title"
+                  style="margin: 0 0 8px 0; font-size: 20px; line-height: 26px; font-weight: 700; color: #f0f0f0;"
+                >
                   <%= tracked_link.article&.title %>
                 </h2>
               </a>
+
               <p class="article-meta" style="margin: 0 0 12px 0; font-size: 13px; color: #666;">
                 <% if tracked_link.article&.blog %>
-                  by <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
+                  by
+                  <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
                 <% end %>
               </p>
+
               <% if tracked_link.article&.summary.present? %>
                 <p style="margin: 0; font-size: 15px; line-height: 22px; color: #aaa;">
                   <%= tracked_link.article.summary %>
@@ -54,28 +79,45 @@
 <% if sections["shiny_objects"].present? %>
   <tr>
     <td style="padding: 8px 24px 8px 24px;">
-      <span style="display: inline-block; font-size: 11px; font-weight: 700; color: #7c6baf; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #7c6baf; padding-bottom: 4px;">
+      <span
+        style="display: inline-block; font-size: 11px; font-weight: 700; color: #7c6baf; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #7c6baf; padding-bottom: 4px;"
+      >
         💎 Shiny Objects
       </span>
     </td>
   </tr>
-
   <% sections["shiny_objects"].each_with_index do |tracked_link, i| %>
     <tr>
-      <td style="padding: <%= i == 0 ? '12px' : '4px' %> 24px <%= i == sections['shiny_objects'].size - 1 ? '24px' : '4px' %> 24px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+      <td
+        style="padding: <%= i == 0 ? '12px' : '4px' %> 24px <%= i == sections['shiny_objects'].size - 1 ? '24px' : '4px' %> 24px;"
+      >
+        <table
+          role="presentation"
+          cellpadding="0"
+          cellspacing="0"
+          width="100%"
+        >
           <tr>
-            <td class="article-card" style="padding: 20px; background-color: #111111; border: 1px solid #1e1e1e; border-radius: 8px;">
+            <td
+              class="article-card"
+              style="padding: 20px; background-color: #111111; border: 1px solid #1e1e1e; border-radius: 8px;"
+            >
               <a href="<%= tracked_link.tracked_url(subscriber: @subscriber) %>" style="text-decoration: none;">
-                <h3 class="article-title" style="margin: 0 0 6px 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #e8e8e8;">
+                <h3
+                  class="article-title"
+                  style="margin: 0 0 6px 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #e8e8e8;"
+                >
                   <%= tracked_link.article&.title %>
                 </h3>
               </a>
+
               <p class="article-meta" style="margin: 0 0 10px 0; font-size: 13px; color: #666;">
                 <% if tracked_link.article&.blog %>
-                  by <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
+                  by
+                  <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
                 <% end %>
               </p>
+
               <% if tracked_link.article&.summary.present? %>
                 <p style="margin: 0; font-size: 14px; line-height: 21px; color: #999;">
                   <%= tracked_link.article.summary %>
@@ -92,31 +134,47 @@
 <% if sections["crow_call"].present? %>
   <tr>
     <td style="padding: 8px 24px 8px 24px;">
-      <span style="display: inline-block; font-size: 11px; font-weight: 700; color: #4a9e6b; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #4a9e6b; padding-bottom: 4px;">
+      <span
+        style="display: inline-block; font-size: 11px; font-weight: 700; color: #4a9e6b; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #4a9e6b; padding-bottom: 4px;"
+      >
         📢 Crow Call — New Voice
       </span>
     </td>
   </tr>
-
   <% sections["crow_call"].each do |tracked_link| %>
     <tr>
       <td style="padding: 12px 24px 24px 24px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <table
+          role="presentation"
+          cellpadding="0"
+          cellspacing="0"
+          width="100%"
+        >
           <tr>
-            <td class="article-card" style="padding: 24px; background-color: #0f1512; border: 1px solid #1a2e20; border-left: 3px solid #4a9e6b; border-radius: 8px;">
+            <td
+              class="article-card"
+              style="padding: 24px; background-color: #0f1512; border: 1px solid #1a2e20; border-left: 3px solid #4a9e6b; border-radius: 8px;"
+            >
               <p style="margin: 0 0 12px 0; font-size: 13px; line-height: 18px; color: #4a9e6b; font-style: italic;">
                 "The Crow spotted this author writing quietly brilliant stuff with almost no audience. Not anymore."
               </p>
+
               <a href="<%= tracked_link.tracked_url(subscriber: @subscriber) %>" style="text-decoration: none;">
-                <h3 class="article-title" style="margin: 0 0 6px 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #e8e8e8;">
+                <h3
+                  class="article-title"
+                  style="margin: 0 0 6px 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #e8e8e8;"
+                >
                   <%= tracked_link.article&.title %>
                 </h3>
               </a>
+
               <p class="article-meta" style="margin: 0 0 10px 0; font-size: 13px; color: #666;">
                 <% if tracked_link.article&.blog %>
-                  by <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
+                  by
+                  <span style="color: #999;"><%= tracked_link.article.blog.name %></span>
                 <% end %>
               </p>
+
               <% if tracked_link.article&.summary.present? %>
                 <p style="margin: 0; font-size: 14px; line-height: 21px; color: #999;">
                   <%= tracked_link.article.summary %>
@@ -133,19 +191,33 @@
 <% if sections["quick_gems"].present? %>
   <tr>
     <td style="padding: 8px 24px 8px 24px;">
-      <span style="display: inline-block; font-size: 11px; font-weight: 700; color: #888; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 4px;">
+      <span
+        style="display: inline-block; font-size: 11px; font-weight: 700; color: #888; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 4px;"
+      >
         ⚡ Quick Gems
       </span>
     </td>
   </tr>
-
   <tr>
     <td style="padding: 12px 24px 32px 24px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+      <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+      >
         <% sections["quick_gems"].each_with_index do |tracked_link, i| %>
           <tr>
-            <td style="padding: 12px 0; <%= i < sections['quick_gems'].size - 1 ? 'border-bottom: 1px solid #1a1a1a;' : '' %>">
-              <a href="<%= tracked_link.tracked_url(subscriber: @subscriber) %>" style="font-size: 15px; color: #e05555; text-decoration: none; font-weight: 600;"><%= tracked_link.article&.title %> →</a>
+            <td
+              style="padding: 12px 0; <%= i < sections['quick_gems'].size - 1 ? 'border-bottom: 1px solid #1a1a1a;' : '' %>"
+            >
+              <a
+                href="<%= tracked_link.tracked_url(subscriber: @subscriber) %>"
+                style="font-size: 15px; color: #e05555; text-decoration: none; font-weight: 600;"
+              >
+                <%= tracked_link.article&.title %> →
+              </a>
+
               <% if tracked_link.article&.blog %>
                 <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;"><%= tracked_link.article.blog.name %></p>
               <% end %>

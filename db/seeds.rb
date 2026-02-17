@@ -28,7 +28,7 @@ blogs = [
     url: "https://rubyonrails.org/blog",
     rss_url: "https://rubyonrails.org/blog.xml",
     description: "Official Ruby on Rails blog",
-    tags: ["rails", "releases"],
+    tags: ["rails", "releases"]
   }
 ]
 

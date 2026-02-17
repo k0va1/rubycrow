@@ -1,0 +1,2 @@
+[servers]
+vinyl ansible_host=49.13.117.76 ansible_user=root

@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id             :bigint           not null, primary key
+#  active         :boolean          default(TRUE), not null
+#  description    :text
+#  github_pr_url  :string
+#  last_synced_at :datetime
+#  name           :string           not null
+#  rss_url        :string           not null
+#  tags           :text             default([]), is an Array
+#  twitter        :string
+#  url            :string           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+# Indexes
+#
+#  index_blogs_on_active   (active)
+#  index_blogs_on_rss_url  (rss_url) UNIQUE
+#  index_blogs_on_url      (url) UNIQUE
+#
 class Blog < ApplicationRecord
   include RssParseable
 

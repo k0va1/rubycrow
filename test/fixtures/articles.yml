@@ -1,3 +1,32 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id                :bigint           not null, primary key
+#  content_snippet   :text
+#  featured_in_issue :integer
+#  processed         :boolean          default(FALSE)
+#  published_at      :datetime
+#  summary           :text
+#  title             :string           not null
+#  url               :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  blog_id           :bigint           not null
+#
+# Indexes
+#
+#  index_articles_on_blog_id                   (blog_id)
+#  index_articles_on_blog_id_and_published_at  (blog_id,published_at)
+#  index_articles_on_featured_in_issue         (featured_in_issue)
+#  index_articles_on_processed                 (processed)
+#  index_articles_on_published_at              (published_at)
+#  index_articles_on_url                       (url) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (blog_id => blogs.id)
+#
 rails_performance:
   blog: speedshop
   title: "How to Make Your Rails App Fast"

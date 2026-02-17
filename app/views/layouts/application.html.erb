@@ -1,19 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <title>RubyCrow — A Curated Ruby & Rails Newsletter</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="A weekly curated newsletter for Ruby and Rails developers. Hand-picked articles, gems, and community highlights delivered to your inbox.">
+
+    <meta
+      name="description"
+      content="A weekly curated newsletter for Ruby and Rails developers. Hand-picked articles, gems, and community highlights delivered to your inbox."
+    >
+
     <meta property="og:title" content="RubyCrow — A Curated Ruby & Rails Newsletter">
-    <meta property="og:description" content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly.">
+
+    <meta
+      property="og:description"
+      content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly."
+    >
+
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="RubyCrow — A Curated Ruby & Rails Newsletter">
-    <meta name="twitter:description" content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly.">
+
+    <meta
+      name="twitter:description"
+      content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly."
+    >
+
     <link rel="icon" type="image/png" href="/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    >
+
     <meta name="turbo-prefetch" content="true">
     <% turbo_refreshes_with method: :morph, scroll: :preserve %>
     <%= csrf_meta_tags %>
@@ -22,27 +44,51 @@
     <%= javascript_include_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
   </head>
 
-  <body class="bg-crow-dark text-crow-sand font-body antialiased">
+  <body class="bg-crow-dark font-body text-crow-sand antialiased">
     <%# Grain texture overlay %>
     <div class="grain-overlay"></div>
 
-    <nav class="glass-nav px-5 py-2.5 flex items-center gap-5" data-controller="navbar theme" data-navbar-threshold-value="80">
-      <div class="hidden sm:flex items-center gap-5 text-sm font-body tracking-wide">
+    <nav
+      class="glass-nav flex items-center gap-5 px-5 py-2.5"
+      data-controller="navbar theme"
+      data-navbar-threshold-value="80"
+    >
+      <div class="hidden items-center gap-5 font-body text-sm tracking-wide sm:flex">
         <a href="#feed" class="glass-nav-link" data-action="click->navbar#scrollTo">Feed</a>
         <a href="#how-it-works" class="glass-nav-link" data-action="click->navbar#scrollTo">How It Works</a>
         <a href="#authors" class="glass-nav-link" data-action="click->navbar#scrollTo">Authors</a>
-        <a href="https://github.com/k0va1/rubycrow" target="_blank" rel="noopener" class="glass-nav-link">GitHub</a>
+
+        <a
+          href="https://github.com/k0va1/rubycrow"
+          target="_blank"
+          rel="noopener"
+          class="glass-nav-link"
+        >
+          GitHub
+        </a>
       </div>
 
-      <button type="button" class="glass-nav-link flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/5 transition-colors cursor-pointer" data-action="click->theme#toggle" aria-label="Toggle theme">
+      <button
+        type="button"
+        class="
+          glass-nav-link flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-colors
+          hover:bg-white/5
+        "
+        data-action="click->theme#toggle"
+        aria-label="Toggle theme"
+      >
         <span data-theme-target="icon"></span>
       </button>
 
-      <a href="#subscribe" class="glass-nav-cta px-4 py-1.5 rounded-full text-sm text-white font-body tracking-wide" data-action="click->navbar#scrollTo">Subscribe</a>
+      <a
+        href="#subscribe"
+        class="glass-nav-cta rounded-full px-4 py-1.5 font-body text-sm tracking-wide text-white"
+        data-action="click->navbar#scrollTo"
+      >
+        Subscribe
+      </a>
     </nav>
 
-    <main>
-      <%= yield %>
-    </main>
+    <main><%= yield %></main>
   </body>
 </html>

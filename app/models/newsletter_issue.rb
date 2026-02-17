@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: newsletter_issues
+#
+#  id                  :bigint           not null, primary key
+#  issue_number        :integer          not null
+#  sent_at             :datetime
+#  subject             :string           not null
+#  subscriber_count    :integer          default(0)
+#  total_clicks        :integer          default(0)
+#  total_unique_clicks :integer          default(0)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+# Indexes
+#
+#  index_newsletter_issues_on_issue_number  (issue_number) UNIQUE
+#  index_newsletter_issues_on_sent_at       (sent_at)
+#
 class NewsletterIssue < ApplicationRecord
   has_many :tracked_links, dependent: :destroy
   has_many :clicks, through: :tracked_links

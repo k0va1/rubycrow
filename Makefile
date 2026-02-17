@@ -23,9 +23,11 @@ test:
 
 lint:
 	bundle exec rake standard
+	herb-format --check
 
 lint-fix:
 	bundle exec rake standard:fix
+	herb-format
 
 db-reset:
 	bundle exec rails db:drop

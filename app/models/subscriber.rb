@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: subscribers
+#
+#  id              :bigint           not null, primary key
+#  confirmed       :boolean          default(FALSE)
+#  email           :string           not null
+#  subscribed_at   :datetime
+#  unsubscribed_at :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_subscribers_on_email  (email) UNIQUE
+#
 class Subscriber < ApplicationRecord
   has_many :clicks
 

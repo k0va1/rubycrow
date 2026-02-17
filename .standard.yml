@@ -1,0 +1,7 @@
+parallel: true
+format: progress
+plugins:
+  - standard-rails
+ignore:
+  - db/seeds.rb:
+    - Rails/Output
