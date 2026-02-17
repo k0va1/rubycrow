@@ -10,6 +10,7 @@ development:
 test:
   <<: *default
   url: <%= Rails.application.credentials.database_url %>
+  gssencmode: disable
 
 production:
   <<: *default

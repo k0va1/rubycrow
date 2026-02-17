@@ -1,0 +1,50 @@
+RubyCrow - Issue #<%= @newsletter_issue.issue_number %>
+<%= "=" * 40 %>
+
+<% sections = @tracked_links.group_by(&:section) %>
+<% if sections["crows_pick"].present? %>
+CROW'S PICK
+<%= "-" * 20 %>
+<% sections["crows_pick"].each do |tracked_link| %>
+<%= tracked_link.article&.title %>
+<%= tracked_link.article&.blog&.name %>
+<%= tracked_link.article&.summary %>
+<%= tracked_link.tracked_url(subscriber: @subscriber) %>
+
+<% end %>
+<% end %>
+<% if sections["shiny_objects"].present? %>
+SHINY OBJECTS
+<%= "-" * 20 %>
+<% sections["shiny_objects"].each do |tracked_link| %>
+<%= tracked_link.article&.title %>
+<%= tracked_link.article&.blog&.name %>
+<%= tracked_link.article&.summary %>
+<%= tracked_link.tracked_url(subscriber: @subscriber) %>
+
+<% end %>
+<% end %>
+<% if sections["crow_call"].present? %>
+CROW CALL
+<%= "-" * 20 %>
+<% sections["crow_call"].each do |tracked_link| %>
+<%= tracked_link.article&.title %>
+<%= tracked_link.article&.blog&.name %>
+<%= tracked_link.article&.summary %>
+<%= tracked_link.tracked_url(subscriber: @subscriber) %>
+
+<% end %>
+<% end %>
+<% if sections["quick_gems"].present? %>
+QUICK GEMS
+<%= "-" * 20 %>
+<% sections["quick_gems"].each do |tracked_link| %>
+<%= tracked_link.article&.title %>
+<%= tracked_link.article&.blog&.name %>
+<%= tracked_link.article&.summary %>
+<%= tracked_link.tracked_url(subscriber: @subscriber) %>
+
+<% end %>
+<% end %>
+---
+You're receiving this because you subscribed to RubyCrow.

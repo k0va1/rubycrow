@@ -22,6 +22,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "index shows empty state when no articles" do
+    Click.delete_all
+    TrackedLink.delete_all
     Article.delete_all
     get articles_path
     assert_select "p", text: /No articles yet/

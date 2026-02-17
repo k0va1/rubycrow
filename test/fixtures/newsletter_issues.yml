@@ -1,0 +1,15 @@
+issue_one:
+  issue_number: 1
+  subject: "RubyCrow Issue #1"
+  sent_at: <%= 1.week.ago.to_fs(:db) %>
+  subscriber_count: 10
+  total_clicks: 5
+  total_unique_clicks: 3
+
+issue_two:
+  issue_number: 2
+  subject: "RubyCrow Issue #2"
+  sent_at: null
+  subscriber_count: 0
+  total_clicks: 0
+  total_unique_clicks: 0

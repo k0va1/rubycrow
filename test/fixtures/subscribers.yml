@@ -1,5 +1,16 @@
 one:
   email: "dev@example.com"
+  confirmed: true
 
 two:
   email: "rubyist@example.com"
+  confirmed: true
+
+inactive:
+  email: "inactive@example.com"
+  confirmed: false
+
+unsubscribed:
+  email: "gone@example.com"
+  confirmed: true
+  unsubscribed_at: <%= 1.week.ago.to_fs(:db) %>

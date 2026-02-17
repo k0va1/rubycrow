@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :blog
+  has_many :tracked_links, dependent: :destroy
 
   validates :title, presence: true
   validates :url, presence: true, uniqueness: true

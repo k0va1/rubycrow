@@ -1,0 +1,17 @@
+click_one:
+  tracked_link: link_one
+  subscriber: one
+  clicked_at: <%= 1.day.ago.to_fs(:db) %>
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
+  ip_hash: "abcdef1234567890"
+  device_type: "desktop"
+  unique_click: true
+
+click_two:
+  tracked_link: link_one
+  subscriber: two
+  clicked_at: <%= 2.days.ago.to_fs(:db) %>
+  user_agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"
+  ip_hash: "1234567890abcdef"
+  device_type: "mobile"
+  unique_click: true

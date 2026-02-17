@@ -70,6 +70,8 @@ class BlogTest < ActiveSupport::TestCase
 
     stub_request(:get, Blog::REGISTRY_URL).to_return(body: registry_yaml)
 
+    Click.delete_all
+    TrackedLink.delete_all
     Article.delete_all
     Blog.delete_all
 

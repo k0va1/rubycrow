@@ -1,0 +1,19 @@
+link_one:
+  token: "abc123token"
+  newsletter_issue: issue_one
+  article: older_article
+  destination_url: "https://www.speedshop.co/2024/12/01/memory.html?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
+  position_in_newsletter: 1
+  section: "shiny_objects"
+  total_clicks: 3
+  unique_clicks: 2
+
+link_two:
+  token: "def456token"
+  newsletter_issue: issue_one
+  article: martians_article
+  destination_url: "https://evilmartians.com/chronicles/viewcomponent?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
+  position_in_newsletter: 2
+  section: "shiny_objects"
+  total_clicks: 2
+  unique_clicks: 1

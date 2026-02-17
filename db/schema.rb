@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_16_114319) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_16_181202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,14 +50,65 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_114319) do
     t.index ["url"], name: "index_blogs_on_url", unique: true
   end
 
+  create_table "clicks", force: :cascade do |t|
+    t.datetime "clicked_at", null: false
+    t.datetime "created_at", null: false
+    t.string "device_type"
+    t.string "ip_hash"
+    t.bigint "subscriber_id"
+    t.bigint "tracked_link_id", null: false
+    t.boolean "unique_click", default: false
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.index ["clicked_at"], name: "index_clicks_on_clicked_at"
+    t.index ["subscriber_id"], name: "index_clicks_on_subscriber_id"
+    t.index ["tracked_link_id", "ip_hash"], name: "index_clicks_on_tracked_link_id_and_ip_hash"
+    t.index ["tracked_link_id"], name: "index_clicks_on_tracked_link_id"
+  end
+
+  create_table "newsletter_issues", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "issue_number", null: false
+    t.datetime "sent_at"
+    t.string "subject", null: false
+    t.integer "subscriber_count", default: 0
+    t.integer "total_clicks", default: 0
+    t.integer "total_unique_clicks", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["issue_number"], name: "index_newsletter_issues_on_issue_number", unique: true
+    t.index ["sent_at"], name: "index_newsletter_issues_on_sent_at"
+  end
+
   create_table "subscribers", force: :cascade do |t|
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.string "email", null: false
     t.datetime "subscribed_at"
+    t.datetime "unsubscribed_at"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_subscribers_on_email", unique: true
   end
 
+  create_table "tracked_links", force: :cascade do |t|
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.string "destination_url", null: false
+    t.bigint "newsletter_issue_id", null: false
+    t.integer "position_in_newsletter"
+    t.string "section"
+    t.string "token", null: false
+    t.integer "total_clicks", default: 0
+    t.integer "unique_clicks", default: 0
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_tracked_links_on_article_id"
+    t.index ["newsletter_issue_id", "destination_url"], name: "index_tracked_links_on_issue_and_url"
+    t.index ["newsletter_issue_id"], name: "index_tracked_links_on_newsletter_issue_id"
+    t.index ["token"], name: "index_tracked_links_on_token", unique: true
+  end
+
   add_foreign_key "articles", "blogs"
+  add_foreign_key "clicks", "subscribers"
+  add_foreign_key "clicks", "tracked_links"
+  add_foreign_key "tracked_links", "articles"
+  add_foreign_key "tracked_links", "newsletter_issues"
 end

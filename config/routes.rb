@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :subscribers, only: [:create]
   resources :articles, only: [:index]
 
+  get "/go/:token", to: "redirects#show", as: :tracked_redirect
+  get "/unsubscribe/:signed_id", to: "unsubscribes#show", as: :unsubscribe
+
   namespace :admin do
     mount Sidekiq::Web => "/sidekiq"
   end
