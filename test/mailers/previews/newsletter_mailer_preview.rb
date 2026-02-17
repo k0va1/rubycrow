@@ -1,7 +1,7 @@
 class NewsletterMailerPreview < ActionMailer::Preview
   def issue
     newsletter_issue = NewsletterIssue.joins(:tracked_links).first || seed_preview_data
-    subscriber = Subscriber.active.first || Subscriber.create!(email: "preview@example.com", confirmed: true)
+    subscriber = Subscriber.active.first || Subscriber.find_or_create_by!(email: "preview@example.com", confirmed: true)
 
     NewsletterMailer.issue(newsletter_issue: newsletter_issue, subscriber: subscriber)
   end

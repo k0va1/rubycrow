@@ -11,3 +11,9 @@ application.register("live-feed", LiveFeedController)
 
 import CounterAnimationController from "./counter_animation_controller"
 application.register("counter-animation", CounterAnimationController)
+
+import NavbarController from "./navbar_controller"
+application.register("navbar", NavbarController)
+
+import ThemeController from "./theme_controller"
+application.register("theme", ThemeController)

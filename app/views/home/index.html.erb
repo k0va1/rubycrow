@@ -2,7 +2,10 @@
 <section class="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative overflow-hidden hero-spotlight">
   <div class="relative z-10 text-center max-w-2xl mx-auto">
     <div class="mb-10 stagger-1">
-      <%= image_tag "rubycrow.png", alt: "RubyCrow", class: "w-28 h-28 mx-auto hero-logo rounded-2xl" %>
+      <picture>
+        <source srcset="<%= image_path("rubycrow.webp") %>" type="image/webp">
+        <%= image_tag "rubycrow.png", alt: "RubyCrow", class: "w-28 h-28 mx-auto hero-logo rounded-2xl" %>
+      </picture>
     </div>
 
     <h1 class="font-display text-6xl sm:text-8xl tracking-tight mb-6 stagger-2 text-crow-cream">
@@ -99,7 +102,7 @@
 <div class="divider-gold max-w-xs mx-auto"></div>
 
 <%# ===== LIVE FEED ===== %>
-<section class="py-28 px-6" data-controller="scroll-reveal live-feed">
+<section id="feed" class="py-28 px-6" data-controller="scroll-reveal live-feed">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-16" data-reveal>
       <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">Fresh From the Flock</span>
@@ -131,7 +134,7 @@
 <div class="divider-gold max-w-xs mx-auto"></div>
 
 <%# ===== HOW IT WORKS ===== %>
-<section class="py-28 px-6" data-controller="scroll-reveal">
+<section id="how-it-works" class="py-28 px-6" data-controller="scroll-reveal">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-20" data-reveal>
       <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">The Process</span>
@@ -223,7 +226,7 @@
 <div class="divider-gold max-w-xs mx-auto"></div>
 
 <%# ===== FOR AUTHORS ===== %>
-<section class="py-28 px-6" data-controller="scroll-reveal">
+<section id="authors" class="py-28 px-6" data-controller="scroll-reveal">
   <div class="max-w-xl mx-auto text-center" data-reveal>
     <span class="font-body text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-gold-dim">Contribute</span>
     <h2 class="font-display text-4xl sm:text-5xl text-crow-cream mt-3 mb-5">For authors</h2>
@@ -239,7 +242,7 @@
 </section>
 
 <%# ===== FOOTER ===== %>
-<footer class="pt-20 pb-16 px-6">
+<footer id="subscribe" class="pt-20 pb-16 px-6">
   <div class="divider-gold max-w-xs mx-auto mb-20"></div>
 
   <div class="max-w-lg mx-auto text-center">
@@ -260,6 +263,6 @@
       </a>
     </div>
 
-    <p class="mt-14 text-xs text-crow-sand-dim/40 tracking-wider font-light">Built with ❤️ by <a href="https://x.com/k0va1_" class="underline hover:text-crow-sand-dim/60 transition-colors">Alex</a></p>
+    <p class="mt-14 text-xs text-crow-sand-dim tracking-wider font-light">Built with ❤️ by <a href="https://x.com/k0va1_" class="underline hover:text-crow-cream transition-colors">Alex</a></p>
   </div>
 </footer>
