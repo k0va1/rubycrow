@@ -26,6 +26,7 @@ gem "resend"
 gem "lightning_ui_kit"
 
 group :development, :test do
+  gem "brakeman"
   gem "debug"
   gem "standard"
 end
