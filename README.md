@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="app/assets/images/rubycrow.png" alt="RubyCrow" width="200">
+</p>
+
 # RubyCrow
 
 A curated weekly newsletter for Ruby & Rails developers. Aggregates high-quality articles from 100+ Ruby community blogs and delivers them weekly to subscribers.
