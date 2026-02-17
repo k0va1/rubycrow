@@ -105,7 +105,7 @@ GEM
     colorize (1.1.0)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
-    counter_culture (2.9.0)
+    counter_culture (3.12.1)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     crack (1.0.1)
@@ -432,7 +432,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   colorize
-  counter_culture (~> 2.0)
+  counter_culture (~> 3.12)
   cssbundling-rails
   debug
   faraday
@@ -489,7 +489,7 @@ CHECKSUMS
   colorize (1.1.0) sha256=30b5237f0603f6662ab8d1fc2bd4a96142b806c6415d79e45ef5fdc6a0cfc837
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
-  counter_culture (2.9.0) sha256=0220ad64336f2fe17d90f2533d3c426ee4d51c2cccfc8cbb7c733e55eec414de
+  counter_culture (3.12.1) sha256=8a880092321941732bfa639c449a133ff08c5197c29e853371cc03c486e43980
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   cssbundling-rails (1.4.3) sha256=53aecd5a7d24ac9c8fcd92975acd0e830fead4ee4583d3d3d49bb64651946e41
