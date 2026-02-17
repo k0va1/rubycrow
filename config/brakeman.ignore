@@ -1,0 +1,10 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "492c2372e5e23e9314defed486799522ad1bb62c9fe4a8bd43d2d27ed0e72094",
+      "note": "Destination URLs are created internally by TrackedLink model, not user-supplied"
+    }
+  ],
+  "updated": "2026-02-17",
+  "brakeman_version": "8.0.2"
+}
