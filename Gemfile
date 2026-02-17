@@ -5,7 +5,7 @@ ruby "4.0.1"
 gem "bootsnap", require: false
 gem "bundler-audit"
 gem "pg", "~> 1.1"
-gem "puma", "~> 6.4"
+gem "puma", "~> 7.2"
 gem "rails", "~> 8.1"
 gem "propshaft"
 gem "stimulus-rails"
