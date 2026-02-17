@@ -5,7 +5,6 @@
 #  id             :bigint           not null, primary key
 #  active         :boolean          default(TRUE), not null
 #  description    :text
-#  github_pr_url  :string
 #  last_synced_at :datetime
 #  name           :string           not null
 #  rss_url        :string           not null
@@ -46,8 +45,6 @@ class Blog < ApplicationRecord
         rss_url: entry["rss_url"],
         description: entry["description"],
         tags: entry["tags"] || [],
-        twitter: entry["twitter"],
-        github_pr_url: entry["github_pr_url"],
         active: true
       )
       blog.save!
