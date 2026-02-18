@@ -57,7 +57,7 @@ class BlogTest < ActiveSupport::TestCase
     end
   end
 
-  test "sync_from_registry creates blogs from YAML" do
+  test "sync_from_registry! creates blogs from YAML" do
     registry_yaml = <<~YAML
       - name: "New Blog"
         url: "https://newblog.example.com"
@@ -76,7 +76,7 @@ class BlogTest < ActiveSupport::TestCase
     Blog.delete_all
 
     assert_difference "Blog.count", 1 do
-      Blog.sync_from_registry
+      Blog.sync_from_registry!
     end
 
     blog = Blog.last
@@ -86,7 +86,7 @@ class BlogTest < ActiveSupport::TestCase
     assert blog.active?
   end
 
-  test "sync_from_registry deactivates blogs not in registry" do
+  test "sync_from_registry! deactivates blogs not in registry" do
     registry_yaml = <<~YAML
       - name: "Nate Berkopec"
         url: "https://www.speedshop.co"
@@ -96,13 +96,13 @@ class BlogTest < ActiveSupport::TestCase
 
     stub_request(:get, Blog::REGISTRY_URL).to_return(body: registry_yaml)
 
-    Blog.sync_from_registry
+    Blog.sync_from_registry!
 
     assert blogs(:speedshop).reload.active?
     assert_not blogs(:evil_martians).reload.active?
   end
 
-  test "sync_feed creates articles from RSS" do
+  test "sync_feed! creates articles from RSS" do
     blog = blogs(:evil_martians)
 
     rss_xml = <<~XML
@@ -123,7 +123,7 @@ class BlogTest < ActiveSupport::TestCase
     stub_request(:get, blog.rss_url).to_return(body: rss_xml)
 
     assert_difference "blog.articles.count", 1 do
-      blog.sync_feed
+      blog.sync_feed!
     end
 
     article = blog.articles.find_by(url: "https://evilmartians.com/chronicles/new-post")
@@ -132,16 +132,16 @@ class BlogTest < ActiveSupport::TestCase
     assert_not_nil blog.reload.last_synced_at
   end
 
-  test "sync_feed handles network errors gracefully" do
+  test "sync_feed! handles network errors gracefully" do
     blog = blogs(:speedshop)
     stub_request(:get, blog.rss_url).to_raise(Faraday::ConnectionFailed)
 
     assert_nothing_raised do
-      blog.sync_feed
+      blog.sync_feed!
     end
   end
 
-  test "sync_feed deduplicates by normalized URL" do
+  test "sync_feed! deduplicates by normalized URL" do
     blog = blogs(:evil_martians)
 
     rss_xml = <<~XML
@@ -160,10 +160,10 @@ class BlogTest < ActiveSupport::TestCase
 
     stub_request(:get, blog.rss_url).to_return(body: rss_xml)
 
-    blog.sync_feed
+    blog.sync_feed!
     initial_count = blog.articles.count
 
-    blog.sync_feed
+    blog.sync_feed!
     assert_equal initial_count, blog.articles.count
   end
 end

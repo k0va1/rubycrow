@@ -33,7 +33,7 @@ class Blog < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  def self.sync_from_registry
+  def self.sync_from_registry!
     response = Faraday.get(REGISTRY_URL)
     entries = YAML.safe_load(response.body, permitted_classes: [Symbol])
     registry_urls = []

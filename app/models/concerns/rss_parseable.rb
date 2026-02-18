@@ -4,7 +4,7 @@ module RssParseable
   FEED_TIMEOUT = 15
   CONTENT_MAX_LENGTH = 500
 
-  def sync_feed
+  def sync_feed!
     response = Faraday.get(rss_url) { |req| req.options.timeout = FEED_TIMEOUT }
     feed = Feedjira.parse(response.body)
 

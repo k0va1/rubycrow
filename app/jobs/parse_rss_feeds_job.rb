@@ -3,9 +3,7 @@ class ParseRssFeedsJob < ApplicationJob
 
   def perform
     Blog.active.find_each do |blog|
-      blog.sync_feed
-    rescue => e
-      Rails.logger.error("Failed to parse feed for blog #{blog.id} (#{blog.name}): #{e.message}")
+      blog.sync_feed!
     end
   end
 end
