@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_17_182655) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_18_121825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_17_182655) do
     t.datetime "updated_at", null: false
     t.string "url", null: false
     t.index ["blog_id", "published_at"], name: "index_articles_on_blog_id_and_published_at"
+    t.index ["blog_id", "url"], name: "index_articles_on_blog_id_and_url", unique: true
     t.index ["blog_id"], name: "index_articles_on_blog_id"
     t.index ["featured_in_issue"], name: "index_articles_on_featured_in_issue"
     t.index ["processed"], name: "index_articles_on_processed"

@@ -2,7 +2,7 @@
 #
 - name: "Alex Barret"
   url: "https://alexbarret.com/"
-  rss_url: "https://alexbarret.com/blog/feed/"
+  rss_url: "https://alexbarret.com/feed.xml"
   tags:
     - personal
 
@@ -15,18 +15,6 @@
 - name: "Alexey Vasiliev"
   url: "https://leopard.in.ua/"
   rss_url: "https://leopard.in.ua/rss.xml"
-  tags:
-    - personal
-
-- name: "Ali Hamdi Ali Fadel"
-  url: "https://rematch.dev/"
-  rss_url: "https://rematch.dev/rss.xml"
-  tags:
-    - personal
-
-- name: "Andrew Fomera"
-  url: "https://andrewfomera.com/"
-  rss_url: "https://andrewfomera.com/feed.xml"
   tags:
     - personal
 
@@ -67,14 +55,8 @@
     - personal
 
 - name: "Chris Oliver"
-  url: "https://chrisoliver.me/"
-  rss_url: "https://chrisoliver.me/rss"
-  tags:
-    - personal
-
-- name: "Christian Bruckmayer"
-  url: "https://www.bruckmayer.net/posts/"
-  rss_url: "https://www.bruckmayer.net/posts/index.xml"
+  url: "https://excid3.com/"
+  rss_url: "https://excid3.com/feed.xml"
   tags:
     - personal
 
@@ -110,7 +92,7 @@
 
 - name: "David Heinemeier Hansson"
   url: "https://world.hey.com/dhh"
-  rss_url: "https://world.hey.com/dhh/feed"
+  rss_url: "https://world.hey.com/dhh/feed.atom"
   tags:
     - personal
 
@@ -132,21 +114,9 @@
   tags:
     - personal
 
-- name: "Ferdy Christant"
-  url: "https://ferdychristant.com/tagged/ruby"
-  rss_url: "https://ferdychristant.com/feed"
-  tags:
-    - personal
-
 - name: "Garrett Dimon"
   url: "https://garrettdimon.com/"
   rss_url: "https://garrettdimon.com/feed.xml"
-  tags:
-    - personal
-
-- name: "George Claghorn"
-  url: "https://www.georgehotz.com/"
-  rss_url: "https://www.georgehotz.com/rss"
   tags:
     - personal
 
@@ -170,7 +140,7 @@
 
 - name: "James Brooks"
   url: "https://jamesbrooks.net/"
-  rss_url: "https://jamesbrooks.net/feed/"
+  rss_url: "https://jamesbrooks.net/index.xml"
   tags:
     - personal
 
@@ -183,12 +153,6 @@
 - name: "Jean Boussier"
   url: "https://byroot.github.io/"
   rss_url: "https://byroot.github.io/feed.xml"
-  tags:
-    - personal
-
-- name: "Jeremy Smith"
-  url: "https://www.jeremysmith.co/"
-  rss_url: "https://www.jeremysmith.co/feed.xml"
   tags:
     - personal
 
@@ -260,7 +224,7 @@
 
 - name: "Justin Searls"
   url: "https://justin.searls.co/"
-  rss_url: "https://justin.searls.co/rss"
+  rss_url: "https://justin.searls.co/atom.xml"
   tags:
     - personal
 
@@ -297,12 +261,6 @@
 - name: "Lucian Ghinda"
   url: "https://allaboutcoding.ghinda.com/"
   rss_url: "https://allaboutcoding.ghinda.com/rss.xml"
-  tags:
-    - personal
-
-- name: "Lucian Ghinda (Short Ruby)"
-  url: "https://newsletter.shortruby.com/"
-  rss_url: "https://newsletter.shortruby.com/feed"
   tags:
     - personal
 
@@ -363,18 +321,6 @@
 - name: "Mike Perham"
   url: "https://www.mikeperham.com/"
   rss_url: "https://www.mikeperham.com/index.xml"
-  tags:
-    - personal
-
-- name: "Mike Rogers"
-  url: "https://mikerogers.io/"
-  rss_url: "https://mikerogers.io/feed.xml"
-  tags:
-    - personal
-
-- name: "Miles Woodroffe"
-  url: "https://tapster.dev/"
-  rss_url: "https://tapster.dev/feed.xml"
   tags:
     - personal
 
@@ -550,12 +496,6 @@
 - name: "Renato Nitta"
   url: "https://renatonitta.com/"
   rss_url: "https://renatonitta.com/feed/"
-  tags:
-    - personal
-
-- name: "Rich Steinmetz"
-  url: "https://richstone.io/tag/ruby/"
-  rss_url: "https://richstone.io/rss/"
   tags:
     - personal
 
@@ -1088,12 +1028,6 @@
   tags:
     - company
 
-- name: "Census"
-  url: "https://census.dev/"
-  rss_url: "https://census.dev/blog?format=rss"
-  tags:
-    - company
-
 - name: "Codemancers"
   url: "https://www.codemancers.com/blog/?tag=rails"
   rss_url: "https://www.codemancers.com/rss.xml"
@@ -1121,12 +1055,6 @@
 - name: "Cycode"
   url: "https://cycode.com/blog/"
   rss_url: "https://cycode.com/feed/"
-  tags:
-    - company
-
-- name: "Decode Fix"
-  url: "https://decodefix.com/tag/ruby/"
-  rss_url: "https://decodefix.com/feed/"
   tags:
     - company
 
@@ -1229,12 +1157,6 @@
 - name: "Infinum"
   url: "https://infinum.com/blog/category/engineering/"
   rss_url: "https://infinum.com/blog/category/engineering/feed/"
-  tags:
-    - company
-
-- name: "JetRockets"
-  url: "https://jetrockets.com/blog"
-  rss_url: "https://jetrockets.com/blog.rss"
   tags:
     - company
 
@@ -1370,12 +1292,6 @@
   tags:
     - company
 
-- name: "RubyGarage"
-  url: "https://rubygarage.org/blog"
-  rss_url: "https://rubygarage.org/blog.rss"
-  tags:
-    - company
-
 - name: "Rubyroid Labs"
   url: "https://rubyroidlabs.com/blog/category/ror-web-dev/"
   rss_url: "https://rubyroidlabs.com/blog/feed/"
@@ -1460,9 +1376,9 @@
   tags:
     - company
 
-- name: "Vector Logic"
-  url: "https://www.vector-logic.com/blog/posts"
-  rss_url: "https://www.vector-logic.com/blog/posts/feed.xml"
+- name: "Boring Rails"
+  url: "https://boringrails.com/"
+  rss_url: "https://boringrails.com/feed.xml"
   tags:
     - company
 

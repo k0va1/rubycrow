@@ -21,6 +21,7 @@ gem "strong_migrations"
 gem "pagy"
 gem "feedjira"
 gem "faraday"
+gem "faraday-follow_redirects"
 gem "resend"
 
 gem "lightning_ui_kit"

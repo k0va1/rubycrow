@@ -3,7 +3,7 @@ class ParseRssFeedsJob < ApplicationJob
 
   def perform
     Blog.active.find_each do |blog|
-      blog.sync_feed!
+      ParseRssFeedJob.perform_later(blog.id)
     end
   end
 end

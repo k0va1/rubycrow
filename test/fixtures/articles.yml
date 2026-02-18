@@ -18,6 +18,7 @@
 #
 #  index_articles_on_blog_id                   (blog_id)
 #  index_articles_on_blog_id_and_published_at  (blog_id,published_at)
+#  index_articles_on_blog_id_and_url           (blog_id,url) UNIQUE
 #  index_articles_on_featured_in_issue         (featured_in_issue)
 #  index_articles_on_processed                 (processed)
 #  index_articles_on_published_at              (published_at)
