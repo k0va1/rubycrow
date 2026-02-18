@@ -1,0 +1,35 @@
+<div class="mb-2">
+  <%= link_to "← Clicks", admin_clicks_path, class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+</div>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-semibold text-zinc-950">Click Details</h1>
+  <%= link_to "Delete", admin_click_path(@click), data: { turbo_method: :delete, turbo_confirm: "Delete this click?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Clicked At", value: @click.clicked_at.strftime("%b %d, %Y %H:%M")) %>
+  <% list.with_item(label: "Tracked Link") do %>
+    <%= link_to @click.tracked_link.token, admin_tracked_link_path(@click.tracked_link) %>
+  <% end %>
+  <% list.with_item(label: "Destination URL", value: @click.tracked_link.destination_url) %>
+  <% list.with_item(label: "Subscriber") do %>
+    <% if @click.subscriber %>
+      <%= link_to @click.subscriber.email, admin_subscriber_path(@click.subscriber) %>
+    <% else %>
+      Anonymous
+    <% end %>
+  <% end %>
+  <% list.with_item(label: "Device Type") do %>
+    <%= lui.badge { @click.device_type || "—" } %>
+  <% end %>
+  <% list.with_item(label: "Unique Click") do %>
+    <% if @click.unique_click? %>
+      <%= lui.badge(status: :success) { "Yes" } %>
+    <% else %>
+      <%= lui.badge { "No" } %>
+    <% end %>
+  <% end %>
+  <% list.with_item(label: "IP Hash", value: @click.ip_hash || "—") %>
+  <% list.with_item(label: "User Agent", value: @click.user_agent || "—") %>
+<% end %>

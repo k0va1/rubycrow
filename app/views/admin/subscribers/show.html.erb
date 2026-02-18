@@ -1,0 +1,30 @@
+<div class="mb-2">
+  <%= link_to "← Subscribers", admin_subscribers_path, class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+</div>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-semibold text-zinc-950"><%= @subscriber.email %></h1>
+  <div class="flex gap-2">
+    <%= lui.button(url: edit_admin_subscriber_path(@subscriber), style: :outline) { "Edit" } %>
+    <%= link_to "Delete", admin_subscriber_path(@subscriber), data: { turbo_method: :delete, turbo_confirm: "Delete this subscriber?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+  </div>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Email", value: @subscriber.email) %>
+  <% list.with_item(label: "Status") do %>
+    <% if @subscriber.unsubscribed_at.present? %>
+      <%= lui.badge(status: :error) { "Unsubscribed" } %>
+    <% elsif @subscriber.confirmed? %>
+      <%= lui.badge(status: :success) { "Active" } %>
+    <% else %>
+      <%= lui.badge(status: :warning) { "Unconfirmed" } %>
+    <% end %>
+  <% end %>
+  <% list.with_item(label: "Confirmed", value: @subscriber.confirmed? ? "Yes" : "No") %>
+  <% list.with_item(label: "Subscribed At", value: @subscriber.subscribed_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Unsubscribed At", value: @subscriber.unsubscribed_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Clicks") do %>
+    <%= link_to "#{@subscriber.clicks.count} clicks", admin_clicks_path(subscriber_id: @subscriber.id) %>
+  <% end %>
+<% end %>

@@ -68,6 +68,13 @@ class ActionDispatch::IntegrationTest
   def json_response
     JSON.parse(response.body)
   end
+
+  def sign_in_admin
+    post admin_session_path, params: {
+      email: Rails.application.credentials.admin_email,
+      password: Rails.application.credentials.admin_password
+    }
+  end
 end
 
 class ActionDispatch::SystemTestCase

@@ -1,0 +1,31 @@
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-zinc-950">Blogs</h1>
+    <p class="mt-1 text-sm text-zinc-500"><%= @blogs.size %> blogs on this page</p>
+  </div>
+  <%= lui.button(url: new_admin_blog_path, icon: "plus") { "New Blog" } %>
+</div>
+
+<% if @blogs.any? %>
+  <%= lui.table(data: @blogs) do |table| %>
+    <% table.with_column("Name") { |blog| link_to blog.name, admin_blog_path(blog) } %>
+    <% table.with_column("URL") { |blog| truncate(blog.url, length: 40) } %>
+    <% table.with_column("Active") do |blog| %>
+      <% if blog.active? %>
+        <%= lui.badge(status: :success) { "Active" } %>
+      <% else %>
+        <%= lui.badge(status: :error) { "Inactive" } %>
+      <% end %>
+    <% end %>
+    <% table.with_column("Last Synced") { |blog| blog.last_synced_at&.strftime("%b %d, %Y %H:%M") || "Never" } %>
+    <% table.with_action { |blog| link_to "Edit", edit_admin_blog_path(blog) } %>
+    <% table.with_action { |blog| link_to "Delete", admin_blog_path(blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" } } %>
+  <% end %>
+
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
+    <p class="text-sm text-zinc-500 mb-4">No blogs yet</p>
+    <%= lui.button(url: new_admin_blog_path, icon: "plus") { "Add your first blog" } %>
+  </div>
+<% end %>

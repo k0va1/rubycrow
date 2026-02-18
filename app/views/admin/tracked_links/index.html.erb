@@ -1,0 +1,26 @@
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-zinc-950">Tracked Links</h1>
+    <p class="mt-1 text-sm text-zinc-500"><%= @tracked_links.size %> links on this page</p>
+  </div>
+  <%= lui.button(url: new_admin_tracked_link_path, icon: "plus") { "New Tracked Link" } %>
+</div>
+
+<% if @tracked_links.any? %>
+  <%= lui.table(data: @tracked_links) do |table| %>
+    <% table.with_column("Token") { |tl| link_to tl.token, admin_tracked_link_path(tl) } %>
+    <% table.with_column("Destination") { |tl| truncate(tl.destination_url, length: 40) } %>
+    <% table.with_column("Issue") { |tl| link_to "##{tl.newsletter_issue.issue_number}", admin_newsletter_issue_path(tl.newsletter_issue) } %>
+    <% table.with_column("Section") { |tl| tl.section || "—" } %>
+    <% table.with_column("Clicks") { |tl| tl.total_clicks } %>
+    <% table.with_action { |tl| link_to "Edit", edit_admin_tracked_link_path(tl) } %>
+    <% table.with_action { |tl| link_to "Delete", admin_tracked_link_path(tl), data: { turbo_method: :delete, turbo_confirm: "Delete this tracked link?" } } %>
+  <% end %>
+
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
+    <p class="text-sm text-zinc-500 mb-4">No tracked links yet</p>
+    <%= lui.button(url: new_admin_tracked_link_path, icon: "plus") { "Add your first tracked link" } %>
+  </div>
+<% end %>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RubyCrow Admin</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-prefetch" content="true">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <%= lui.layout do |layout| %>
+      <% layout.with_header do %>
+        <%= link_to admin_root_path, class: "flex items-center gap-2 text-zinc-950 font-semibold text-lg" do %>
+          RubyCrow Admin
+        <% end %>
+      <% end %>
+
+      <% layout.with_section(title: "Navigation") do |section| %>
+        <% section.with_link(title: "Dashboard", url: admin_root_path, icon: "home", current: current_page?(admin_root_path)) %>
+        <% section.with_link(title: "Blogs", url: admin_blogs_path, icon: "rss", current: request.path.start_with?("/admin/blogs")) %>
+        <% section.with_link(title: "Articles", url: admin_articles_path, icon: "document-text", current: request.path.start_with?("/admin/articles")) %>
+        <% section.with_link(title: "Newsletter Issues", url: admin_newsletter_issues_path, icon: "envelope", current: request.path.start_with?("/admin/newsletter_issues")) %>
+        <% section.with_link(title: "Subscribers", url: admin_subscribers_path, icon: "users", current: request.path.start_with?("/admin/subscribers")) %>
+        <% section.with_link(title: "Tracked Links", url: admin_tracked_links_path, icon: "link", current: request.path.start_with?("/admin/tracked_links")) %>
+        <% section.with_link(title: "Clicks", url: admin_clicks_path, icon: "cursor-arrow-rays", current: request.path.start_with?("/admin/clicks")) %>
+      <% end %>
+
+      <% layout.with_section(title: "Tools") do |section| %>
+        <% section.with_link(title: "Sidekiq", url: admin_sidekiq_web_path, icon: "cog-6-tooth") %>
+      <% end %>
+
+      <% layout.with_footer do %>
+        <div class="p-4">
+          <%= link_to "Sign Out", admin_session_path, data: { turbo_method: :delete }, class: "flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-950" %>
+        </div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="mb-4">
+          <%= lui.alert(type: :success) { flash[:notice] } %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="mb-4">
+          <%= lui.alert(type: :error) { flash[:alert] } %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

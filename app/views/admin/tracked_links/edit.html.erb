@@ -1,0 +1,6 @@
+<div class="mb-6">
+  <%= link_to "← #{@tracked_link.token}", admin_tracked_link_path(@tracked_link), class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+  <h1 class="mt-2 text-2xl font-semibold text-zinc-950">Edit Tracked Link</h1>
+</div>
+
+<%= render "form", tracked_link: @tracked_link %>

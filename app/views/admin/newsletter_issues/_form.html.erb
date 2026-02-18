@@ -1,0 +1,25 @@
+<%# locals: (newsletter_issue:) -%>
+<% if newsletter_issue.errors.any? %>
+  <div class="mb-4">
+    <%= lui.alert(type: :error) do %>
+      <%= pluralize(newsletter_issue.errors.count, "error") %> prevented this issue from being saved:
+      <ul class="mt-2 list-disc list-inside text-sm">
+        <% newsletter_issue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, newsletter_issue], class: "space-y-4 max-w-2xl" do |form| %>
+  <%= lui.input(name: :issue_number, form: form, type: :number, label: "Issue Number") %>
+  <%= lui.input(name: :subject, form: form, label: "Subject") %>
+  <%= lui.input(name: :sent_at, form: form, type: :datetime_local, label: "Sent At") %>
+  <%= lui.input(name: :subscriber_count, form: form, type: :number, label: "Subscriber Count") %>
+  <%= lui.input(name: :total_clicks, form: form, type: :number, label: "Total Clicks") %>
+  <%= lui.input(name: :total_unique_clicks, form: form, type: :number, label: "Total Unique Clicks") %>
+  <div>
+    <%= lui.button(type: :submit) { newsletter_issue.persisted? ? "Update Issue" : "Create Issue" } %>
+  </div>
+<% end %>

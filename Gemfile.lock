@@ -1,3 +1,12 @@
+PATH
+  remote: ../lightning_ui_kit
+  specs:
+    lightning_ui_kit (0.3.1)
+      heroicons
+      rails (>= 8.0.0)
+      tailwind_merge
+      view_component
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,11 +171,6 @@ GEM
       railties (>= 6.0.0)
     json (2.18.1)
     language_server-protocol (3.17.0.5)
-    lightning_ui_kit (0.3.1)
-      heroicons
-      rails (>= 8.0.0)
-      tailwind_merge
-      view_component
     lint_roller (1.1.0)
     logger (1.7.0)
     loofah (2.25.0)
@@ -442,7 +446,7 @@ DEPENDENCIES
   faraday-follow_redirects
   feedjira
   jsbundling-rails
-  lightning_ui_kit
+  lightning_ui_kit!
   minitest-mock (~> 5.27)
   mocha (~> 3.0)
   pagy
@@ -520,7 +524,7 @@ CHECKSUMS
   jsbundling-rails (1.3.1) sha256=0fa03f6d051c694cbf55a022d8be53399879f2c4cf38b2968f86379c62b1c2ca
   json (2.18.1) sha256=fe112755501b8d0466b5ada6cf50c8c3f41e897fa128ac5d263ec09eedc9f986
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
-  lightning_ui_kit (0.3.1) sha256=d2684fb9163373873d29c9d8e35a97f834da66d332ff57dbe3ea59a3688478e6
+  lightning_ui_kit (0.3.1)
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   loofah (2.25.0) sha256=df5ed7ac3bac6a4ec802df3877ee5cc86d027299f8952e6243b3dac446b060e6

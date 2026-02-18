@@ -1,0 +1,23 @@
+<%# locals: (subscriber:) -%>
+<% if subscriber.errors.any? %>
+  <div class="mb-4">
+    <%= lui.alert(type: :error) do %>
+      <%= pluralize(subscriber.errors.count, "error") %> prevented this subscriber from being saved:
+      <ul class="mt-2 list-disc list-inside text-sm">
+        <% subscriber.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, subscriber], class: "space-y-4 max-w-2xl" do |form| %>
+  <%= lui.input(name: :email, form: form, type: :email, label: "Email") %>
+  <%= lui.switch(name: :confirmed, form: form, label: "Confirmed", enabled: subscriber.confirmed?) %>
+  <%= lui.input(name: :subscribed_at, form: form, type: :datetime_local, label: "Subscribed At") %>
+  <%= lui.input(name: :unsubscribed_at, form: form, type: :datetime_local, label: "Unsubscribed At") %>
+  <div>
+    <%= lui.button(type: :submit) { subscriber.persisted? ? "Update Subscriber" : "Create Subscriber" } %>
+  </div>
+<% end %>

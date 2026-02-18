@@ -1,0 +1,31 @@
+<div class="mb-2">
+  <%= link_to "← Blogs", admin_blogs_path, class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+</div>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-semibold text-zinc-950"><%= @blog.name %></h1>
+  <div class="flex gap-2">
+    <%= lui.button(url: edit_admin_blog_path(@blog), style: :outline) { "Edit" } %>
+    <%= link_to "Delete", admin_blog_path(@blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+  </div>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Name", value: @blog.name) %>
+  <% list.with_item(label: "URL", value: @blog.url) %>
+  <% list.with_item(label: "RSS URL", value: @blog.rss_url) %>
+  <% list.with_item(label: "Description", value: @blog.description || "—") %>
+  <% list.with_item(label: "Twitter", value: @blog.twitter || "—") %>
+  <% list.with_item(label: "Active") do %>
+    <% if @blog.active? %>
+      <%= lui.badge(status: :success) { "Active" } %>
+    <% else %>
+      <%= lui.badge(status: :error) { "Inactive" } %>
+    <% end %>
+  <% end %>
+  <% list.with_item(label: "Tags", value: @blog.tags&.join(", ") || "—") %>
+  <% list.with_item(label: "Last Synced", value: @blog.last_synced_at&.strftime("%b %d, %Y %H:%M") || "Never") %>
+  <% list.with_item(label: "Articles") do %>
+    <%= link_to "#{@blog.articles.count} articles", admin_articles_path(blog_id: @blog.id) %>
+  <% end %>
+<% end %>

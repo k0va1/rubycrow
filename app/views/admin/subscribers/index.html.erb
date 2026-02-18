@@ -1,0 +1,32 @@
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-zinc-950">Subscribers</h1>
+    <p class="mt-1 text-sm text-zinc-500"><%= @subscribers.size %> subscribers on this page</p>
+  </div>
+  <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "New Subscriber" } %>
+</div>
+
+<% if @subscribers.any? %>
+  <%= lui.table(data: @subscribers) do |table| %>
+    <% table.with_column("Email") { |sub| link_to sub.email, admin_subscriber_path(sub) } %>
+    <% table.with_column("Status") do |sub| %>
+      <% if sub.unsubscribed_at.present? %>
+        <%= lui.badge(status: :error) { "Unsubscribed" } %>
+      <% elsif sub.confirmed? %>
+        <%= lui.badge(status: :success) { "Active" } %>
+      <% else %>
+        <%= lui.badge(status: :warning) { "Unconfirmed" } %>
+      <% end %>
+    <% end %>
+    <% table.with_column("Subscribed At") { |sub| sub.subscribed_at&.strftime("%b %d, %Y") || "—" } %>
+    <% table.with_action { |sub| link_to "Edit", edit_admin_subscriber_path(sub) } %>
+    <% table.with_action { |sub| link_to "Delete", admin_subscriber_path(sub), data: { turbo_method: :delete, turbo_confirm: "Delete this subscriber?" } } %>
+  <% end %>
+
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
+    <p class="text-sm text-zinc-500 mb-4">No subscribers yet</p>
+    <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "Add your first subscriber" } %>
+  </div>
+<% end %>

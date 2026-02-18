@@ -1,0 +1,24 @@
+<div class="mb-2">
+  <%= link_to "← Newsletter Issues", admin_newsletter_issues_path, class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+</div>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-semibold text-zinc-950">Issue #<%= @newsletter_issue.issue_number %></h1>
+  <div class="flex gap-2">
+    <%= lui.button(url: edit_admin_newsletter_issue_path(@newsletter_issue), style: :outline) { "Edit" } %>
+    <%= link_to "Delete", admin_newsletter_issue_path(@newsletter_issue), data: { turbo_method: :delete, turbo_confirm: "Delete this issue?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+  </div>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Issue Number", value: @newsletter_issue.issue_number) %>
+  <% list.with_item(label: "Subject", value: @newsletter_issue.subject) %>
+  <% list.with_item(label: "Sent At", value: @newsletter_issue.sent_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Subscriber Count", value: @newsletter_issue.subscriber_count) %>
+  <% list.with_item(label: "Total Clicks", value: @newsletter_issue.total_clicks) %>
+  <% list.with_item(label: "Total Unique Clicks", value: @newsletter_issue.total_unique_clicks) %>
+  <% list.with_item(label: "Click Through Rate", value: "#{@newsletter_issue.click_through_rate}%") %>
+  <% list.with_item(label: "Tracked Links") do %>
+    <%= link_to "View tracked links", admin_tracked_links_path(newsletter_issue_id: @newsletter_issue.id) %>
+  <% end %>
+<% end %>

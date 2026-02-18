@@ -24,7 +24,7 @@ gem "faraday"
 gem "faraday-follow_redirects"
 gem "resend"
 
-gem "lightning_ui_kit"
+gem "lightning_ui_kit", path: "../lightning_ui_kit"
 
 group :development, :test do
   gem "brakeman"

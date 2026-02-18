@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RubyCrow Admin — Sign In</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+  </head>
+  <body class="bg-zinc-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-sm px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-zinc-950 tracking-tight">RubyCrow</h1>
+        <p class="mt-1 text-sm text-zinc-500">Newsletter administration</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm ring-1 ring-zinc-950/5 p-8">
+        <% if flash[:notice] %>
+          <div class="mb-4">
+            <%= lui.alert(type: :success) { flash[:notice] } %>
+          </div>
+        <% end %>
+
+        <% if flash[:alert] %>
+          <div class="mb-4">
+            <%= lui.alert(type: :error) { flash[:alert] } %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

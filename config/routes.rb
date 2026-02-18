@@ -20,6 +20,17 @@ Rails.application.routes.draw do
   get "/unsubscribe/:signed_id", to: "unsubscribes#show", as: :unsubscribe
 
   namespace :admin do
+    root "dashboard#index"
+
+    resource :session, only: [:new, :create, :destroy]
+
+    resources :blogs
+    resources :articles
+    resources :newsletter_issues
+    resources :subscribers
+    resources :tracked_links
+    resources :clicks, only: [:index, :show, :destroy]
+
     mount Sidekiq::Web => "/sidekiq"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

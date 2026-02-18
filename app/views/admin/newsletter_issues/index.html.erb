@@ -1,0 +1,26 @@
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-zinc-950">Newsletter Issues</h1>
+    <p class="mt-1 text-sm text-zinc-500"><%= @newsletter_issues.size %> issues on this page</p>
+  </div>
+  <%= lui.button(url: new_admin_newsletter_issue_path, icon: "plus") { "New Issue" } %>
+</div>
+
+<% if @newsletter_issues.any? %>
+  <%= lui.table(data: @newsletter_issues) do |table| %>
+    <% table.with_column("Issue #") { |issue| link_to "##{issue.issue_number}", admin_newsletter_issue_path(issue) } %>
+    <% table.with_column("Subject") { |issue| truncate(issue.subject, length: 50) } %>
+    <% table.with_column("Sent At") { |issue| issue.sent_at&.strftime("%b %d, %Y") || "—" } %>
+    <% table.with_column("Subscribers") { |issue| issue.subscriber_count } %>
+    <% table.with_column("Total Clicks") { |issue| issue.total_clicks } %>
+    <% table.with_action { |issue| link_to "Edit", edit_admin_newsletter_issue_path(issue) } %>
+    <% table.with_action { |issue| link_to "Delete", admin_newsletter_issue_path(issue), data: { turbo_method: :delete, turbo_confirm: "Delete this issue?" } } %>
+  <% end %>
+
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
+    <p class="text-sm text-zinc-500 mb-4">No newsletter issues yet</p>
+    <%= lui.button(url: new_admin_newsletter_issue_path, icon: "plus") { "Create your first issue" } %>
+  </div>
+<% end %>
