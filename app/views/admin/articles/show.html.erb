@@ -12,7 +12,9 @@
 
 <%= lui.description_list do |list| %>
   <% list.with_item(label: "Title", value: @article.title) %>
-  <% list.with_item(label: "URL", value: @article.url) %>
+  <% list.with_item(label: "URL") do %>
+    <%= link_to @article.url, @article.url, target: "_blank", rel: "noopener noreferrer" %>
+  <% end %>
   <% list.with_item(label: "Blog") do %>
     <%= link_to @article.blog.name, admin_blog_path(@article.blog) %>
   <% end %>

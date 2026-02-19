@@ -9,7 +9,7 @@
 <% if @blogs.any? %>
   <%= lui.table(data: @blogs) do |table| %>
     <% table.with_column("Name") { |blog| link_to blog.name, admin_blog_path(blog) } %>
-    <% table.with_column("URL") { |blog| truncate(blog.url, length: 40) } %>
+    <% table.with_column("URL") { |blog| link_to truncate(blog.url, length: 40), blog.url, target: "_blank", rel: "noopener noreferrer" } %>
     <% table.with_column("Active") do |blog| %>
       <% if blog.active? %>
         <%= lui.badge(status: :success) { "Active" } %>

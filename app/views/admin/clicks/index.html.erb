@@ -8,7 +8,7 @@
 <% if @clicks.any? %>
   <%= lui.table(data: @clicks) do |table| %>
     <% table.with_column("Clicked At") { |click| click.clicked_at.strftime("%b %d, %Y %H:%M") } %>
-    <% table.with_column("Destination") { |click| truncate(click.tracked_link.destination_url, length: 40) } %>
+    <% table.with_column("Destination") { |click| link_to truncate(click.tracked_link.destination_url, length: 40), click.tracked_link.destination_url, target: "_blank", rel: "noopener noreferrer" } %>
     <% table.with_column("Subscriber") do |click| %>
       <% if click.subscriber %>
         <%= link_to click.subscriber.email, admin_subscriber_path(click.subscriber) %>

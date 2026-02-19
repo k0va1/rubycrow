@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
   </head>
-  <body class="bg-zinc-100 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-sm px-4">
+  <body class="min-h-screen flex items-center justify-center" style="background: var(--lui-theme-surface-secondary)">
+    <div class="w-full max-w-sm px-4" data-controller="admin-theme">
       <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-zinc-950 tracking-tight">RubyCrow</h1>
-        <p class="mt-1 text-sm text-zinc-500">Newsletter administration</p>
+        <h1 class="text-3xl font-bold tracking-tight" style="color: var(--lui-theme-foreground)">RubyCrow</h1>
+        <p class="mt-1 text-sm" style="color: var(--lui-theme-foreground-muted)">Newsletter administration</p>
       </div>
 
-      <div class="bg-white rounded-xl shadow-sm ring-1 ring-zinc-950/5 p-8">
+      <div class="rounded-xl shadow-sm p-8" style="background: var(--lui-theme-surface); border: 1px solid var(--lui-theme-border)">
         <% if flash[:notice] %>
           <div class="mb-4">
             <%= lui.alert(type: :success) { flash[:notice] } %>
@@ -29,6 +31,13 @@
         <% end %>
 
         <%= yield %>
+      </div>
+
+      <div class="mt-6 text-center">
+        <button type="button" data-action="admin-theme#toggle" class="inline-flex items-center gap-1.5 text-sm" style="color: var(--lui-theme-foreground-muted)">
+          <span data-admin-theme-target="icon"></span>
+          Toggle theme
+        </button>
       </div>
     </div>
   </body>

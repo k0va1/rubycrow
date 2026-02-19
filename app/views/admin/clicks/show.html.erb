@@ -12,7 +12,9 @@
   <% list.with_item(label: "Tracked Link") do %>
     <%= link_to @click.tracked_link.token, admin_tracked_link_path(@click.tracked_link) %>
   <% end %>
-  <% list.with_item(label: "Destination URL", value: @click.tracked_link.destination_url) %>
+  <% list.with_item(label: "Destination URL") do %>
+    <%= link_to @click.tracked_link.destination_url, @click.tracked_link.destination_url, target: "_blank", rel: "noopener noreferrer" %>
+  <% end %>
   <% list.with_item(label: "Subscriber") do %>
     <% if @click.subscriber %>
       <%= link_to @click.subscriber.email, admin_subscriber_path(@click.subscriber) %>

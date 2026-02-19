@@ -12,7 +12,9 @@
 
 <%= lui.description_list do |list| %>
   <% list.with_item(label: "Token", value: @tracked_link.token) %>
-  <% list.with_item(label: "Destination URL", value: @tracked_link.destination_url) %>
+  <% list.with_item(label: "Destination URL") do %>
+    <%= link_to @tracked_link.destination_url, @tracked_link.destination_url, target: "_blank", rel: "noopener noreferrer" %>
+  <% end %>
   <% list.with_item(label: "Newsletter Issue") do %>
     <%= link_to "##{@tracked_link.newsletter_issue.issue_number}", admin_newsletter_issue_path(@tracked_link.newsletter_issue) %>
   <% end %>

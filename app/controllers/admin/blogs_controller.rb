@@ -3,10 +3,11 @@ module Admin
     before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
     def index
-      @pagy, @blogs = pagy(Blog.order(created_at: :desc))
+      @pagy, @blogs = pagy(Blog.order(updated_at: :desc))
     end
 
     def show
+      @recent_articles = @blog.articles.order(published_at: :desc).limit(20)
     end
 
     def new

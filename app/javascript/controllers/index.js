@@ -17,3 +17,6 @@ application.register("navbar", NavbarController)
 
 import ThemeController from "./theme_controller"
 application.register("theme", ThemeController)
+
+import AdminThemeController from "./admin_theme_controller"
+application.register("admin-theme", AdminThemeController)

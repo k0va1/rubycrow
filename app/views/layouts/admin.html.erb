@@ -8,6 +8,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
   </head>
   <body>
@@ -33,7 +34,11 @@
       <% end %>
 
       <% layout.with_footer do %>
-        <div class="p-4">
+        <div class="p-4 space-y-2" data-controller="admin-theme">
+          <button type="button" data-action="admin-theme#toggle" class="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-950 w-full">
+            <span data-admin-theme-target="icon"></span>
+            Toggle theme
+          </button>
           <%= link_to "Sign Out", admin_session_path, data: { turbo_method: :delete }, class: "flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-950" %>
         </div>
       <% end %>
