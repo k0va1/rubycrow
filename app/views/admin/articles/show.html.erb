@@ -26,6 +26,17 @@
       <%= lui.badge(status: :warning) { "No" } %>
     <% end %>
   <% end %>
+  <% list.with_item(label: "Tags") do %>
+    <% if @article.tags.any? %>
+      <div class="flex flex-wrap gap-1.5">
+        <% @article.tags.each do |tag| %>
+          <%= lui.badge { tag } %>
+        <% end %>
+      </div>
+    <% else %>
+      —
+    <% end %>
+  <% end %>
   <% list.with_item(label: "Featured in Issue", value: @article.featured_in_issue || "—") %>
   <% list.with_item(label: "Summary", value: @article.summary || "—") %>
   <% list.with_item(label: "Content Snippet", value: @article.content_snippet || "—") %>
