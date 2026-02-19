@@ -36,7 +36,7 @@ class Admin::ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Article.count") do
       post admin_articles_path, params: {article: {title: "New Article", url: "https://example.com/new-article", blog_id: blogs(:speedshop).id}}
     end
-    assert_redirected_to admin_article_path(Article.last)
+    assert_redirected_to admin_article_path(Article.unscoped.last)
   end
 
   test "create with invalid params" do

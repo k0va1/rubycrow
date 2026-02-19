@@ -48,11 +48,13 @@ module RssParseable
   end
 
   def persist_feed(records, entry_count)
-    Article.upsert_all(
-      records,
-      unique_by: :index_articles_on_blog_id_and_url,
-      update_only: %i[title published_at summary content_snippet tags]
-    ) if records.any?
+    if records.any?
+      Article.upsert_all(
+        records,
+        unique_by: :index_articles_on_blog_id_and_url,
+        update_only: %i[title published_at summary content_snippet tags]
+      )
+    end
 
     update(last_synced_at: Time.current)
     Rails.logger.info("Successfully synced feed for #{name} (#{rss_url}) with #{entry_count} entries")
@@ -95,7 +97,7 @@ module RssParseable
 
     entry.categories
       .map { |c| c.strip.downcase }
-      .reject(&:blank?)
+      .compact_blank
       .uniq
   end
 
