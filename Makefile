@@ -56,6 +56,21 @@ g:
 d:
 	bundle exec rails d $(filter-out $@,$(MAKECMDGOALS))
 
+kamal:
+	@env $$(cat .env.prod | xargs) kamal $(filter-out $@,$(MAKECMDGOALS))
+
+deploy:
+	@env $$(cat .env.prod | xargs) kamal deploy
+
+infra-setup:
+	@env $$(cat .env.prod | xargs) ansible-playbook -i infra/inventory/hosts infra/setup.yml
+
+prod-cons:
+	@env $$(cat .env.prod | xargs) kamal app exec -i 'bin/rails console'
+
+prod-ssh:
+	ssh www@$(shell grep '^HOST=' .env.prod | cut -d '=' -f2)
+
 %:
 	@:
 

@@ -1,2 +1,2 @@
 [servers]
-vinyl ansible_host=49.13.224.98 ansible_user=root
+rubycrow ansible_host=49.13.224.98 ansible_user=root
