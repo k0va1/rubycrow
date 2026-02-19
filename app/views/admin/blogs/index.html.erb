@@ -1,9 +1,22 @@
 <div class="flex items-center justify-between mb-6">
   <div>
     <h1 class="text-2xl font-semibold admin-heading">Blogs</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @blogs.size %> blogs on this page</p>
+    <p class="mt-1 text-sm admin-subtext"><%= @blogs.length %> blogs on this page</p>
   </div>
-  <%= lui.button(url: new_admin_blog_path, icon: "plus") { "New Blog" } %>
+  <div class="flex items-center gap-3">
+<div data-controller="auto-submit">
+      <%= lui.select(
+        name: :period,
+        label: false,
+        options_for_select: options_for_select(
+          [["All time", ""], ["Last week", "last_week"], ["Last 2 weeks", "last_2_weeks"], ["Last month", "last_month"]],
+          @period
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+    <%= lui.button(url: new_admin_blog_path, icon: "plus") { "New Blog" } %>
+  </div>
 </div>
 
 <% if @blogs.any? %>

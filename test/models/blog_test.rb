@@ -232,6 +232,38 @@ class BlogTest < ActiveSupport::TestCase
     end
   end
 
+  test "sync_feed! extracts categories as tags" do
+    blog = blogs(:evil_martians)
+
+    rss_xml = <<~XML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0">
+        <channel>
+          <title>Evil Martians</title>
+          <item>
+            <title>Karafka Post</title>
+            <link>https://evilmartians.com/chronicles/karafka-post</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+            <description>About Karafka</description>
+            <category><![CDATA[Karafka]]></category>
+            <category><![CDATA[Ruby]]></category>
+            <category><![CDATA[Software]]></category>
+            <category><![CDATA[apache kafka]]></category>
+            <category><![CDATA[karafka]]></category>
+            <category><![CDATA[Performance]]></category>
+            <category><![CDATA[waterdrop]]></category>
+          </item>
+        </channel>
+      </rss>
+    XML
+
+    stub_request(:get, blog.rss_url).to_return(body: rss_xml)
+    blog.sync_feed!
+
+    article = blog.articles.find_by(url: "https://evilmartians.com/chronicles/karafka-post")
+    assert_equal %w[karafka ruby software apache\ kafka performance waterdrop], article.tags
+  end
+
   test "sync_feed! deduplicates by normalized URL" do
     blog = blogs(:evil_martians)
 

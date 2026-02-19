@@ -20,3 +20,6 @@ application.register("theme", ThemeController)
 
 import AdminThemeController from "./admin_theme_controller"
 application.register("admin-theme", AdminThemeController)
+
+import AutoSubmitController from "./auto_submit_controller"
+application.register("auto-submit", AutoSubmitController)

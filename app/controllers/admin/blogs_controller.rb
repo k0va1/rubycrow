@@ -2,8 +2,25 @@ module Admin
   class BlogsController < BaseController
     before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
+    PERIOD_FILTERS = {
+      "last_week" => 1.week,
+      "last_2_weeks" => 2.weeks,
+      "last_month" => 1.month
+    }.freeze
+
     def index
-      @pagy, @blogs = pagy(Blog.order(updated_at: :desc))
+      blogs = Blog
+        .left_joins(:articles)
+        .select("blogs.*, MAX(articles.published_at) AS latest_article_at")
+        .group("blogs.id")
+        .order(Arel.sql("MAX(articles.published_at) DESC NULLS LAST"))
+
+      @period = params[:period]
+      if PERIOD_FILTERS.key?(@period)
+        blogs = blogs.having("MAX(articles.published_at) >= ?", PERIOD_FILTERS[@period].ago)
+      end
+
+      @pagy, @blogs = pagy(blogs)
     end
 
     def show

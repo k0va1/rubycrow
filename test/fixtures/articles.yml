@@ -8,6 +8,7 @@
 #  processed         :boolean          default(FALSE)
 #  published_at      :datetime
 #  summary           :text
+#  tags              :text             default([]), is an Array
 #  title             :string           not null
 #  url               :string           not null
 #  created_at        :datetime         not null

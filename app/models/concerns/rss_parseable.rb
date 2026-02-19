@@ -28,7 +28,8 @@ module RssParseable
         title: entry.title&.strip,
         published_at: entry.published,
         summary: sanitize_text(entry.summary),
-        content_snippet: sanitize_text(entry.content)
+        content_snippet: sanitize_text(entry.content),
+        tags: extract_tags(entry)
       }
     end.values
 
@@ -50,7 +51,7 @@ module RssParseable
     Article.upsert_all(
       records,
       unique_by: :index_articles_on_blog_id_and_url,
-      update_only: %i[title published_at summary content_snippet]
+      update_only: %i[title published_at summary content_snippet tags]
     ) if records.any?
 
     update(last_synced_at: Time.current)
@@ -87,6 +88,15 @@ module RssParseable
     uri.to_s
   rescue URI::InvalidURIError
     url.to_s.strip
+  end
+
+  def extract_tags(entry)
+    return [] unless entry.respond_to?(:categories) && entry.categories.present?
+
+    entry.categories
+      .map { |c| c.strip.downcase }
+      .reject(&:blank?)
+      .uniq
   end
 
   def sanitize_text(text)

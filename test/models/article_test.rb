@@ -28,8 +28,8 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal blogs(:speedshop), articles(:rails_performance).blog
   end
 
-  test "published scope orders by published_at desc" do
-    articles = Article.published
+  test "default scope orders by published_at desc" do
+    articles = Article.all
     dates = articles.map(&:published_at).compact
     assert_equal dates, dates.sort.reverse
   end

@@ -8,6 +8,7 @@
 #  processed         :boolean          default(FALSE)
 #  published_at      :datetime
 #  summary           :text
+#  tags              :text             default([]), is an Array
 #  title             :string           not null
 #  url               :string           not null
 #  created_at        :datetime         not null
@@ -32,11 +33,12 @@ class Article < ApplicationRecord
   belongs_to :blog
   has_many :tracked_links, dependent: :destroy
 
+  default_scope { order(Arel.sql("published_at DESC NULLS LAST")) }
+
   validates :title, presence: true
   validates :url, presence: true, uniqueness: true
 
-  scope :published, -> { order(published_at: :desc) }
-  scope :recent, ->(limit = 15) { published.limit(limit) }
+  scope :recent, ->(limit = 15) { limit(limit) }
   scope :unprocessed, -> { where(processed: false) }
   scope :featured, -> { where.not(featured_in_issue: nil) }
 end

@@ -1,6 +1,6 @@
 <%# locals: (pagy:) -%>
 <% if pagy.pages > 1 %>
   <div class="mt-6">
-    <%= lui.pagination(current_page: pagy.page, total_pages: pagy.pages, path: request.path, with_arrows: true) %>
+    <%= lui.pagination(current_page: pagy.page, total_pages: pagy.pages, path: request.path, params: request.query_parameters.except("page"), with_arrows: true) %>
   </div>
 <% end %>
