@@ -1,6 +1,6 @@
 <div class="mb-8">
-  <h1 class="text-2xl font-semibold text-zinc-950">Dashboard</h1>
-  <p class="mt-1 text-sm text-zinc-500">Overview of your newsletter</p>
+  <h1 class="text-2xl font-semibold admin-heading">Dashboard</h1>
+  <p class="mt-1 text-sm admin-subtext">Overview of your newsletter</p>
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -12,7 +12,7 @@
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
   <div>
-    <h2 class="text-lg font-semibold text-zinc-950 mb-4">Recent Issues</h2>
+    <h2 class="text-lg font-semibold admin-heading mb-4">Recent Issues</h2>
     <% if @recent_issues.any? %>
       <%= lui.table(data: @recent_issues) do |table| %>
         <% table.with_column("Issue #") { |issue| link_to "##{issue.issue_number}", admin_newsletter_issue_path(issue) } %>
@@ -21,14 +21,14 @@
         <% table.with_action { |issue| link_to "View", admin_newsletter_issue_path(issue) } %>
       <% end %>
     <% else %>
-      <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-8 text-center">
-        <p class="text-sm text-zinc-500">No issues yet</p>
+      <div class="admin-card py-8 text-center">
+        <p class="text-sm admin-subtext">No issues yet</p>
       </div>
     <% end %>
   </div>
 
   <div>
-    <h2 class="text-lg font-semibold text-zinc-950 mb-4">Recent Articles</h2>
+    <h2 class="text-lg font-semibold admin-heading mb-4">Recent Articles</h2>
     <% if @recent_articles.any? %>
       <%= lui.table(data: @recent_articles) do |table| %>
         <% table.with_column("Title") { |article| link_to truncate(article.title, length: 35), admin_article_path(article) } %>
@@ -37,8 +37,8 @@
         <% table.with_action { |article| link_to "View", admin_article_path(article) } %>
       <% end %>
     <% else %>
-      <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-8 text-center">
-        <p class="text-sm text-zinc-500">No articles yet</p>
+      <div class="admin-card py-8 text-center">
+        <p class="text-sm admin-subtext">No articles yet</p>
       </div>
     <% end %>
   </div>

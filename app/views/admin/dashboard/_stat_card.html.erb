@@ -1,6 +1,6 @@
 <%# locals: (label:, value:, value_label:, total:) -%>
-<div class="rounded-lg bg-zinc-50 p-4 ring-1 ring-zinc-950/5">
-  <p class="text-sm font-medium text-zinc-500"><%= label %></p>
-  <p class="mt-1 text-2xl font-semibold text-zinc-950"><%= value %></p>
-  <p class="mt-1 text-xs text-zinc-400"><%= value_label %> · <%= total %> total</p>
+<div class="admin-card p-4">
+  <p class="text-sm font-medium admin-subtext"><%= label %></p>
+  <p class="mt-1 text-2xl font-semibold admin-heading"><%= value %></p>
+  <p class="mt-1 text-xs admin-faint"><%= value_label %> · <%= total %> total</p>
 </div>

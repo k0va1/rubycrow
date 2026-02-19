@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between mb-6">
   <div>
-    <h1 class="text-2xl font-semibold text-zinc-950">Clicks</h1>
-    <p class="mt-1 text-sm text-zinc-500"><%= @clicks.size %> clicks on this page</p>
+    <h1 class="text-2xl font-semibold admin-heading">Clicks</h1>
+    <p class="mt-1 text-sm admin-subtext"><%= @clicks.size %> clicks on this page</p>
   </div>
 </div>
 
@@ -32,7 +32,7 @@
 
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
-  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
-    <p class="text-sm text-zinc-500">No clicks recorded yet</p>
+  <div class="admin-card py-12 text-center">
+    <p class="text-sm admin-subtext">No clicks recorded yet</p>
   </div>
 <% end %>

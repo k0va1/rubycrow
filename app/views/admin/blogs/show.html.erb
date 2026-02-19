@@ -1,12 +1,12 @@
 <div class="mb-2">
-  <%= link_to "← Blogs", admin_blogs_path, class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+  <%= link_to "← Blogs", admin_blogs_path, class: "text-sm admin-link-back" %>
 </div>
 
 <div class="flex items-center justify-between mb-6">
-  <h1 class="text-2xl font-semibold text-zinc-950"><%= @blog.name %></h1>
+  <h1 class="text-2xl font-semibold admin-heading"><%= @blog.name %></h1>
   <div class="flex gap-2">
     <%= lui.button(url: edit_admin_blog_path(@blog), style: :outline) { "Edit" } %>
-    <%= link_to "Delete", admin_blog_path(@blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+    <%= link_to "Delete", admin_blog_path(@blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
   </div>
 </div>
 
@@ -36,8 +36,8 @@
 
 <div class="mt-8">
   <div class="flex items-center justify-between mb-4">
-    <h2 class="text-lg font-semibold text-zinc-950">Recent Articles</h2>
-    <%= link_to "View all →", admin_articles_path(blog_id: @blog.id), class: "text-sm text-zinc-500 hover:text-zinc-700" %>
+    <h2 class="text-lg font-semibold admin-heading">Recent Articles</h2>
+    <%= link_to "View all →", admin_articles_path(blog_id: @blog.id), class: "text-sm admin-link-back" %>
   </div>
 
   <% if @recent_articles.any? %>
@@ -54,8 +54,8 @@
       <% table.with_action { |article| link_to "View", admin_article_path(article) } %>
     <% end %>
   <% else %>
-    <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-8 text-center">
-      <p class="text-sm text-zinc-500">No articles from this blog yet</p>
+    <div class="admin-card py-8 text-center">
+      <p class="text-sm admin-subtext">No articles from this blog yet</p>
     </div>
   <% end %>
 </div>

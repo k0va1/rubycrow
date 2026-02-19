@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between mb-6">
   <div>
-    <h1 class="text-2xl font-semibold text-zinc-950">Newsletter Issues</h1>
-    <p class="mt-1 text-sm text-zinc-500"><%= @newsletter_issues.size %> issues on this page</p>
+    <h1 class="text-2xl font-semibold admin-heading">Newsletter Issues</h1>
+    <p class="mt-1 text-sm admin-subtext"><%= @newsletter_issues.size %> issues on this page</p>
   </div>
   <%= lui.button(url: new_admin_newsletter_issue_path, icon: "plus") { "New Issue" } %>
 </div>
@@ -19,8 +19,8 @@
 
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
-  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
-    <p class="text-sm text-zinc-500 mb-4">No newsletter issues yet</p>
+  <div class="admin-card py-12 text-center">
+    <p class="text-sm admin-subtext mb-4">No newsletter issues yet</p>
     <%= lui.button(url: new_admin_newsletter_issue_path, icon: "plus") { "Create your first issue" } %>
   </div>
 <% end %>

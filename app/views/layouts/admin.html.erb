@@ -14,7 +14,7 @@
   <body>
     <%= lui.layout do |layout| %>
       <% layout.with_header do %>
-        <%= link_to admin_root_path, class: "flex items-center gap-2 text-zinc-950 font-semibold text-lg" do %>
+        <%= link_to admin_root_path, class: "flex items-center gap-2 font-semibold text-lg admin-heading" do %>
           RubyCrow Admin
         <% end %>
       <% end %>
@@ -34,12 +34,11 @@
       <% end %>
 
       <% layout.with_footer do %>
-        <div class="p-4 space-y-2" data-controller="admin-theme">
-          <button type="button" data-action="admin-theme#toggle" class="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-950 w-full">
+        <div class="p-4 flex items-center justify-between" data-controller="admin-theme">
+          <%= link_to "Sign Out", admin_session_path, data: { turbo_method: :delete }, class: "text-sm admin-link-secondary" %>
+          <button type="button" data-action="admin-theme#toggle" class="p-1.5 rounded-lg admin-toggle-btn cursor-pointer">
             <span data-admin-theme-target="icon"></span>
-            Toggle theme
           </button>
-          <%= link_to "Sign Out", admin_session_path, data: { turbo_method: :delete }, class: "flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-950" %>
         </div>
       <% end %>
 

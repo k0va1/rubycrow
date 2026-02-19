@@ -340,6 +340,59 @@
   box-shadow: 0 2px 12px rgba(155, 27, 48, 0.15);
 }
 
+/* ===== ADMIN THEME UTILITIES ===== */
+.admin-heading {
+  color: var(--lui-theme-foreground);
+}
+
+.admin-subtext {
+  color: var(--lui-theme-foreground-muted);
+}
+
+.admin-faint {
+  color: var(--lui-theme-foreground-faint);
+}
+
+.admin-link-back {
+  color: var(--lui-theme-foreground-muted);
+}
+
+.admin-link-back:hover {
+  color: var(--lui-theme-foreground);
+}
+
+.admin-link-secondary {
+  color: var(--lui-theme-foreground-secondary);
+}
+
+.admin-link-secondary:hover {
+  color: var(--lui-theme-foreground);
+}
+
+.admin-card {
+  border-radius: 0.5rem;
+  background: var(--lui-theme-surface-secondary);
+  border: 1px solid var(--lui-theme-border);
+}
+
+.admin-delete-btn {
+  color: var(--lui-theme-destructive-text);
+}
+
+.admin-delete-btn:hover {
+  background: color-mix(in oklch, var(--lui-theme-destructive) 8%, transparent);
+}
+
+.admin-toggle-btn {
+  color: var(--lui-theme-foreground-muted);
+  transition: color 0.15s, background 0.15s;
+}
+
+.admin-toggle-btn:hover {
+  color: var(--lui-theme-foreground);
+  background: var(--lui-theme-surface-hover);
+}
+
 .hero-spotlight {
   background:
     radial-gradient(ellipse 600px 400px at 50% 35%, rgba(155, 27, 48, 0.08) 0%, transparent 70%),

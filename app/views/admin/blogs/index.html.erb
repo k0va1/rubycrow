@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between mb-6">
   <div>
-    <h1 class="text-2xl font-semibold text-zinc-950">Blogs</h1>
-    <p class="mt-1 text-sm text-zinc-500"><%= @blogs.size %> blogs on this page</p>
+    <h1 class="text-2xl font-semibold admin-heading">Blogs</h1>
+    <p class="mt-1 text-sm admin-subtext"><%= @blogs.size %> blogs on this page</p>
   </div>
   <%= lui.button(url: new_admin_blog_path, icon: "plus") { "New Blog" } %>
 </div>
@@ -24,8 +24,8 @@
 
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
-  <div class="rounded-lg bg-zinc-50 ring-1 ring-zinc-950/5 py-12 text-center">
-    <p class="text-sm text-zinc-500 mb-4">No blogs yet</p>
+  <div class="admin-card py-12 text-center">
+    <p class="text-sm admin-subtext mb-4">No blogs yet</p>
     <%= lui.button(url: new_admin_blog_path, icon: "plus") { "Add your first blog" } %>
   </div>
 <% end %>
