@@ -4,11 +4,23 @@ module RssParseable
   FEED_TIMEOUT = 15
   CONTENT_MAX_LENGTH = 500
 
+  EXCLUDED_URL_PATTERNS = %w[
+    /terms /terms-and-conditions /terms-of-service /tos
+    /privacy /privacypolicy /privacy-policy
+    /cookie-policy /cookies
+    /disclaimer /legal /imprint
+    /about /contact
+  ].freeze
+
+  EXCLUDED_TITLE_PATTERNS = /\A\s*(terms|privacy|cookie|disclaimer|legal|imprint)\b/i
+
   def fetch_feed
     response = http_client.get(rss_url) { |req| req.options.timeout = FEED_TIMEOUT }
     feed = Feedjira.parse(response.body)
 
     records = feed.entries.each_with_object({}) do |entry, hash|
+      next if excluded_entry?(entry)
+
       url = normalize_url(entry.url)
       hash[url] = {
         blog_id: id,
@@ -55,6 +67,17 @@ module RssParseable
       f.response :follow_redirects
       f.adapter Faraday.default_adapter
     end
+  end
+
+  def excluded_entry?(entry)
+    title = entry.title&.strip
+    return true if title.blank?
+    return true if title.match?(EXCLUDED_TITLE_PATTERNS)
+
+    path = URI.parse(entry.url.to_s.strip).path.to_s.chomp("/").downcase
+    EXCLUDED_URL_PATTERNS.any? { |pattern| path == pattern || path.end_with?(pattern) }
+  rescue URI::InvalidURIError
+    false
   end
 
   def normalize_url(url)

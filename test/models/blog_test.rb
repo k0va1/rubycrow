@@ -132,6 +132,97 @@ class BlogTest < ActiveSupport::TestCase
     assert_not_nil blog.reload.last_synced_at
   end
 
+  test "sync_feed! excludes entries with blank titles" do
+    blog = blogs(:evil_martians)
+
+    rss_xml = <<~XML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0">
+        <channel>
+          <title>Evil Martians</title>
+          <item>
+            <title>  </title>
+            <link>https://evilmartians.com/chronicles/no-title</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+        </channel>
+      </rss>
+    XML
+
+    stub_request(:get, blog.rss_url).to_return(body: rss_xml)
+
+    assert_no_difference "blog.articles.count" do
+      blog.sync_feed!
+    end
+  end
+
+  test "sync_feed! excludes legal pages by URL" do
+    blog = blogs(:evil_martians)
+
+    rss_xml = <<~XML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0">
+        <channel>
+          <title>Test</title>
+          <item>
+            <title>Our Terms</title>
+            <link>https://example.com/terms/</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+          <item>
+            <title>Our Privacy</title>
+            <link>https://example.com/privacypolicy</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+          <item>
+            <title>Real Article</title>
+            <link>https://example.com/blog/real-article</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+        </channel>
+      </rss>
+    XML
+
+    stub_request(:get, blog.rss_url).to_return(body: rss_xml)
+
+    assert_difference "blog.articles.count", 1 do
+      blog.sync_feed!
+    end
+
+    assert_nil blog.articles.find_by(url: "https://example.com/terms")
+    assert_nil blog.articles.find_by(url: "https://example.com/privacypolicy")
+    assert_not_nil blog.articles.find_by(url: "https://example.com/blog/real-article")
+  end
+
+  test "sync_feed! excludes entries with legal titles" do
+    blog = blogs(:evil_martians)
+
+    rss_xml = <<~XML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0">
+        <channel>
+          <title>Test</title>
+          <item>
+            <title>Terms and Conditions</title>
+            <link>https://example.com/some-page</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+          <item>
+            <title>Privacy Policy</title>
+            <link>https://example.com/another-page</link>
+            <pubDate>#{1.hour.ago.rfc2822}</pubDate>
+          </item>
+        </channel>
+      </rss>
+    XML
+
+    stub_request(:get, blog.rss_url).to_return(body: rss_xml)
+
+    assert_no_difference "blog.articles.count" do
+      blog.sync_feed!
+    end
+  end
+
   test "sync_feed! handles network errors gracefully" do
     blog = blogs(:speedshop)
     stub_request(:get, blog.rss_url).to_raise(Faraday::ConnectionFailed)
