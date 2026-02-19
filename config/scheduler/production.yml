@@ -1,0 +1,8 @@
+sync_blog_registry:
+  every: "6h"
+  class: SyncBlogRegistryJob
+  queue: default
+parse_rss_feeds:
+  every: "2h"
+  class: ParseRssFeedsJob
+  queue: default
