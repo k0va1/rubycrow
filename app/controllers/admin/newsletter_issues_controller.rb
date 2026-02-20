@@ -1,6 +1,6 @@
 module Admin
   class NewsletterIssuesController < BaseController
-    before_action :set_newsletter_issue, only: [:show, :edit, :update, :destroy]
+    before_action :set_newsletter_issue, only: [:show, :edit, :update, :destroy, :preview, :publish]
 
     def index
       @pagy, @newsletter_issues = pagy(NewsletterIssue.order(created_at: :desc))
@@ -10,7 +10,8 @@ module Admin
     end
 
     def new
-      @newsletter_issue = NewsletterIssue.new
+      next_issue_number = (NewsletterIssue.maximum(:issue_number) || 0) + 1
+      @newsletter_issue = NewsletterIssue.new(issue_number: next_issue_number)
       NewsletterSection::DEFAULT_SECTIONS.each_with_index do |section, index|
         @newsletter_issue.newsletter_sections.build(
           title: section.humanize.titleize,
@@ -28,6 +29,23 @@ module Admin
       else
         render :new, status: :unprocessable_content
       end
+    end
+
+    def preview
+      subscriber = Subscriber.first || Subscriber.new(id: 0, email: "preview@example.com")
+      mail = NewsletterMailer.issue(newsletter_issue: @newsletter_issue, subscriber: subscriber)
+      html_part = mail.html_part.body.decoded
+      render html: html_part.html_safe, layout: false
+    end
+
+    def publish
+      if @newsletter_issue.sent_at.present?
+        redirect_to admin_newsletter_issue_path(@newsletter_issue), alert: "This issue has already been published."
+        return
+      end
+
+      SendNewsletterJob.perform_later(newsletter_issue_id: @newsletter_issue.id)
+      redirect_to admin_newsletter_issue_path(@newsletter_issue), notice: "Newsletter is being sent to all subscribers."
     end
 
     def edit

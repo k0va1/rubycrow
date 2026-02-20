@@ -176,6 +176,21 @@ class Admin::NewsletterIssuesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, shiny_objects.reload.position
   end
 
+  test "publish enqueues SendNewsletterJob" do
+    @unpublished = newsletter_issues(:issue_two)
+    assert_enqueued_with(job: SendNewsletterJob, args: [{newsletter_issue_id: @unpublished.id}]) do
+      post publish_admin_newsletter_issue_path(@unpublished)
+    end
+    assert_redirected_to admin_newsletter_issue_path(@unpublished)
+    assert_equal "Newsletter is being sent to all subscribers.", flash[:notice]
+  end
+
+  test "publish redirects with alert if already published" do
+    post publish_admin_newsletter_issue_path(@newsletter_issue)
+    assert_redirected_to admin_newsletter_issue_path(@newsletter_issue)
+    assert_equal "This issue has already been published.", flash[:alert]
+  end
+
   test "destroy" do
     assert_difference("NewsletterIssue.count", -1) do
       delete admin_newsletter_issue_path(@newsletter_issue)

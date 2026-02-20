@@ -18,7 +18,12 @@ Rails.application.routes.draw do
 
     resources :blogs
     resources :articles
-    resources :newsletter_issues
+    resources :newsletter_issues do
+      member do
+        get :preview
+        post :publish
+      end
+    end
     resources :article_searches, only: [:index]
     resources :subscribers
     resources :tracked_links

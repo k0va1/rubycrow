@@ -5,7 +5,12 @@
 <div class="mb-6 flex items-center justify-between">
   <h1 class="admin-heading text-2xl font-semibold">Issue #<%= @newsletter_issue.issue_number %></h1>
 
-  <div class="flex gap-2">
+  <div class="flex items-center gap-2">
+    <% if @newsletter_issue.sent_at.present? %>
+      <%= lui.badge(status: :success) { "Published" } %>
+    <% else %>
+      <%= lui.button(url: publish_admin_newsletter_issue_path(@newsletter_issue), data: { turbo_method: :post, turbo_confirm: "This will send the newsletter to all active subscribers. Are you sure?" }) { "Publish" } %>
+    <% end %>
     <%= lui.button(url: edit_admin_newsletter_issue_path(@newsletter_issue), style: :outline) { "Edit" } %>
     <%= link_to "Delete", admin_newsletter_issue_path(@newsletter_issue), data: { turbo_method: :delete, turbo_confirm: "Delete this issue?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
   </div>
@@ -52,3 +57,8 @@
     <% end %>
   </div>
 <% end %>
+
+<h2 class="admin-heading mt-8 mb-4 text-xl font-semibold">Email Preview</h2>
+<div class="rounded-lg border overflow-hidden" style="border-color: var(--lui-theme-border);">
+  <iframe src="<%= preview_admin_newsletter_issue_path(@newsletter_issue) %>" class="w-full" style="height: 800px; border: none; background: #0a0a0a;"></iframe>
+</div>
