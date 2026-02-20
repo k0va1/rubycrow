@@ -11,6 +11,7 @@
     <% else %>
       <%= lui.button(url: publish_admin_newsletter_issue_path(@newsletter_issue), data: { turbo_method: :post, turbo_confirm: "This will send the newsletter to all active subscribers. Are you sure?" }) { "Publish" } %>
     <% end %>
+
     <%= lui.button(url: edit_admin_newsletter_issue_path(@newsletter_issue), style: :outline) { "Edit" } %>
     <%= link_to "Delete", admin_newsletter_issue_path(@newsletter_issue), data: { turbo_method: :delete, turbo_confirm: "Delete this issue?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
   </div>
@@ -32,26 +33,32 @@
 
 <% if @newsletter_issue.newsletter_sections.any? %>
   <h2 class="admin-heading mt-8 mb-4 text-xl font-semibold">Sections</h2>
-
   <div class="space-y-4">
     <% @newsletter_issue.newsletter_sections.each do |section| %>
-      <div class="rounded-lg border p-4" style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);">
-        <h3 class="font-semibold admin-heading mb-2"><%= section.title %></h3>
+      <div
+        class="rounded-lg border p-4"
+        style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);"
+      >
+        <h3 class="admin-heading mb-2 font-semibold"><%= section.title %></h3>
 
         <% if section.newsletter_items.any? %>
           <ul class="space-y-2">
             <% section.newsletter_items.each do |item| %>
               <li class="rounded border p-3" style="border-color: var(--lui-theme-border);">
-                <div class="font-medium admin-heading"><%= link_to item.title, item.url, target: "_blank", class: "admin-link-secondary" %></div>
+                <div class="admin-heading font-medium">
+                  <%= link_to item.title, item.url, target: "_blank", class: "admin-link-secondary" %>
+                </div>
+
                 <% if item.description.present? %>
-                  <p class="text-sm admin-subtext mt-1"><%= item.description %></p>
+                  <p class="admin-subtext mt-1 text-sm"><%= item.description %></p>
                 <% end %>
-                <p class="text-xs admin-faint mt-1"><%= item.url %></p>
+
+                <p class="admin-faint mt-1 text-xs"><%= item.url %></p>
               </li>
             <% end %>
           </ul>
         <% else %>
-          <p class="text-sm admin-faint">No items in this section.</p>
+          <p class="admin-faint text-sm">No items in this section.</p>
         <% end %>
       </div>
     <% end %>
@@ -59,6 +66,11 @@
 <% end %>
 
 <h2 class="admin-heading mt-8 mb-4 text-xl font-semibold">Email Preview</h2>
-<div class="rounded-lg border overflow-hidden" style="border-color: var(--lui-theme-border);">
-  <iframe src="<%= preview_admin_newsletter_issue_path(@newsletter_issue) %>" class="w-full" style="height: 800px; border: none; background: #0a0a0a;"></iframe>
+
+<div class="overflow-hidden rounded-lg border" style="border-color: var(--lui-theme-border);">
+  <iframe
+    src="<%= preview_admin_newsletter_issue_path(@newsletter_issue) %>"
+    class="w-full"
+    style="height: 800px; border: none; background: #0a0a0a;"
+  ></iframe>
 </div>

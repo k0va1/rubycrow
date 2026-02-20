@@ -22,7 +22,9 @@
 
   <% list.with_item(label: "Linked To") do %>
     <% if @tracked_link.trackable.present? %>
-      <%= @tracked_link.trackable_type %>: <%= @tracked_link.trackable.try(:title) || @tracked_link.trackable_id %>
+      <%= @tracked_link.trackable_type %>
+      :
+      <%= @tracked_link.trackable.try(:title) || @tracked_link.trackable_id %>
     <% else %>
       —
     <% end %>

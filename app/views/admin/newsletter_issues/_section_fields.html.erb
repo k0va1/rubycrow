@@ -1,12 +1,15 @@
 <%# locals: (section_form:) -%>
 <% section_id = section_form.object&.id || section_form.options[:child_index] %>
-<div data-nested-form-wrapper class="rounded-lg border p-4 space-y-4" style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);">
+
+<div
+  data-nested-form-wrapper
+  class="space-y-4 rounded-lg border p-4"
+  style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);"
+>
   <div class="flex items-center gap-2">
-    <span data-sortable-handle class="cursor-grab text-lg admin-faint">☰</span>
-    <div class="flex-1">
-      <%= lui.input(name: :title, form: section_form, label: "Section Title") %>
-    </div>
-    <button type="button" data-action="nested-form#remove" class="text-sm admin-delete-btn">✕</button>
+    <span data-sortable-handle class="admin-faint cursor-grab text-lg">☰</span>
+    <div class="flex-1"><%= lui.input(name: :title, form: section_form, label: "Section Title") %></div>
+    <button type="button" data-action="nested-form#remove" class="admin-delete-btn text-sm">✕</button>
   </div>
 
   <%= section_form.hidden_field :id %>
@@ -14,9 +17,9 @@
   <%= section_form.hidden_field :_destroy, value: "0" %>
 
   <div data-controller="nested-form">
-    <div class="flex items-center justify-between mb-2">
-      <h4 class="text-sm font-medium admin-subtext">Items</h4>
-      <button type="button" data-action="nested-form#add" class="text-sm admin-link-secondary">+ Add Item</button>
+    <div class="mb-2 flex items-center justify-between">
+      <h4 class="admin-subtext text-sm font-medium">Items</h4>
+      <button type="button" data-action="nested-form#add" class="admin-link-secondary text-sm">+ Add Item</button>
     </div>
 
     <div data-nested-form-target="container" data-controller="sortable" class="space-y-2">
