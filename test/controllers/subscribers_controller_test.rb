@@ -1,6 +1,29 @@
 require "test_helper"
 
 class SubscribersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    SubscribersController.cache_store.clear
+  end
+
+  test "rate limits excessive subscribe requests" do
+    6.times do |i|
+      post subscribers_path, params: {email: "user#{i}@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
+    end
+
+    assert_response :too_many_requests
+    assert_includes response.body, "Too many attempts"
+    assert_includes response.body, 'target="subscribe-form-hero"'
+  end
+
+  test "rate limit defaults form_id when not provided" do
+    6.times do |i|
+      post subscribers_path, params: {email: "user#{i}@example.com"}, as: :turbo_stream
+    end
+
+    assert_response :too_many_requests
+    assert_includes response.body, 'target="subscribe-form"'
+  end
+
   test "creates subscriber with valid email" do
     assert_difference "Subscriber.count", 1 do
       post subscribers_path, params: {email: "test@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
