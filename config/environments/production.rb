@@ -4,7 +4,7 @@ Rails.application.configure do
   # Replace the default in-process memory cache store with a durable alternative.
   config.cache_store = :redis_cache_store, {url: Rails.application.credentials.redis_url}
 
-  config.app_host = "<domain_name>"
+  config.app_host = "rubycrow.dev"
 
   config.app_origin = "https://#{config.app_host}"
   # Settings specified here will take precedence over those in config/application.rb.
