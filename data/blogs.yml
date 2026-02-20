@@ -1,5 +1,11 @@
 # Personal Blogs
-#
+
+- name: "Alex Koval"
+  url: "https://k0va1.dev"
+  rss_url: "https://k0va1.dev/rss"
+  tags:
+    - personal
+
 - name: "Alex Barret"
   url: "https://alexbarret.com/"
   rss_url: "https://alexbarret.com/feed.xml"
