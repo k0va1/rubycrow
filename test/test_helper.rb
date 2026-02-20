@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
 
   parallelize(workers: :number_of_processors)
 
+  parallelize_setup do |worker|
+    Rails.cache.options[:namespace] = "test-#{worker}"
+  end
+
   setup do
     ActiveJob::Base.queue_adapter = :test
     clear_uniqueness_locks

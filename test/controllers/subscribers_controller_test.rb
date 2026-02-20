@@ -2,7 +2,7 @@ require "test_helper"
 
 class SubscribersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    SubscribersController.cache_store.clear
+    Rails.cache.clear
   end
 
   test "rate limits excessive subscribe requests" do
