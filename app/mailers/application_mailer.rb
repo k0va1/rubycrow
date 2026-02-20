@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "newsletter@rubycrow.dev"
+  default from: "newsletter@mail.rubycrow.dev"
   layout "mailer"
 end

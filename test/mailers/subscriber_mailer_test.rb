@@ -5,7 +5,7 @@ class SubscriberMailerTest < ActiveSupport::TestCase
     subscriber = subscribers(:inactive)
     email = SubscriberMailer.confirmation(subscriber: subscriber)
 
-    assert_equal ["newsletter@rubycrow.dev"], email.from
+    assert_equal ["newsletter@mail.rubycrow.dev"], email.from
     assert_equal [subscriber.email], email.to
     assert_equal "Confirm your RubyCrow subscription", email.subject
   end
