@@ -9,7 +9,7 @@
 
 <% if @tracked_links.any? %>
   <%= lui.table(data: @tracked_links) do |table| %>
-    <% table.with_column("Token") { |tl| link_to tl.token, admin_tracked_link_path(tl) } %>
+    <% table.with_column("Tracked URL") { |tl| link_to truncate(tl.tracked_url, length: 40), admin_tracked_link_path(tl) } %>
     <% table.with_column("Destination") { |tl| truncate(tl.destination_url, length: 40) } %>
     <% table.with_column("Linked To") { |tl| tl.trackable.present? ? "#{tl.trackable_type}: #{tl.trackable.try(:title) || tl.trackable_id}" : "—" } %>
     <% table.with_column("Clicks") { |tl| tl.total_clicks } %>
