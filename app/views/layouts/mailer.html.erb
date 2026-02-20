@@ -113,7 +113,7 @@
                 </p>
 
                 <a
-                  href="https://github.com/k0va1/rubycrow"
+                  href="<%= LINKS.github_blogs_registry %>"
                   style="display: inline-block; padding: 12px 28px; background-color: #CC342D; color: #ffffff; font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 6px; letter-spacing: 0.5px;"
                 >
                   Submit Your Blog on GitHub
@@ -141,7 +141,7 @@
                       </p>
 
                       <a
-                        href="https://rubycrow.dev?ref=share"
+                        href="<%= Rails.configuration.app_origin %>?ref=share"
                         style="display: inline-block; padding: 10px 24px; border: 1px solid #CC342D; color: #CC342D; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 6px;"
                       >
                         Share RubyCrow
@@ -162,22 +162,22 @@
               <td style="padding: 24px; text-align: center;">
                 <p class="footer-text" style="margin: 0 0 8px 0; font-size: 13px; color: #555;">
                   You're receiving this because you joined the flock at
-                  <a href="https://rubycrow.dev" style="color: #888;">rubycrow.dev</a>
+                  <a href="<%= Rails.configuration.app_origin %>" style="color: #888;">rubycrow.dev</a>
                 </p>
 
                 <p class="footer-text" style="margin: 0 0 16px 0; font-size: 13px; color: #555;">
                   <a href="<%= unsubscribe_url(signed_id: @subscriber.signed_unsubscribe_id) %>" style="color: #666; text-decoration: underline;">Unsubscribe</a>
                   &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-                  <a href="https://rubycrow.dev/archive" style="color: #666; text-decoration: underline;">Past Issues</a>
+                  <a href="<%= Rails.configuration.app_origin %>/archive" style="color: #666; text-decoration: underline;">Past Issues</a>
                   &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-                  <a href="https://x.com/rubycrow" style="color: #666; text-decoration: underline;">Twitter/X</a>
+                  <a href="<%= LINKS.twitter_rubycrow %>" style="color: #666; text-decoration: underline;">Twitter/X</a>
                   &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-                  <a href="https://github.com/k0va1/rubycrow" style="color: #666; text-decoration: underline;">GitHub</a>
+                  <a href="<%= LINKS.github_repo %>" style="color: #666; text-decoration: underline;">GitHub</a>
                 </p>
 
                 <p class="footer-text" style="margin: 0; font-size: 12px; color: #444;">
                   Built with ❤️ by
-                  <a href="https://x.com/k0va1_" style="color: #666; text-decoration: underline;">Alex</a>
+                  <a href="<%= LINKS.twitter_author %>" style="color: #666; text-decoration: underline;">Alex</a>
                   &nbsp;&middot;&nbsp; RubyCrow &copy; <%= Date.current.year %>
                 </p>
               </td>

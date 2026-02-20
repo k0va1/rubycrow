@@ -1,0 +1,6 @@
+shared:
+  github_repo: "https://github.com/k0va1/rubycrow"
+  github_blogs_registry: "https://github.com/k0va1/rubycrow/blob/master/data/blogs.yml"
+  twitter_author: "https://x.com/k0va1_"
+  twitter_rubycrow: "https://x.com/rubycrow"
+
