@@ -55,6 +55,127 @@ class Admin::NewsletterIssuesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
   end
 
+  test "create with nested sections and items" do
+    assert_difference ["NewsletterIssue.count", "NewsletterSection.count", "NewsletterItem.count"] do
+      post admin_newsletter_issues_path, params: {newsletter_issue: {
+        issue_number: 100,
+        subject: "Nested Test",
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "Test Section",
+            position: 0,
+            newsletter_items_attributes: {
+              "0" => {title: "Item One", url: "https://example.com/one", position: 0}
+            }
+          }
+        }
+      }}
+    end
+    issue = NewsletterIssue.last
+    assert_redirected_to admin_newsletter_issue_path(issue)
+    assert_equal 1, issue.newsletter_sections.count
+    assert_equal 1, issue.newsletter_sections.first.newsletter_items.count
+  end
+
+  test "create with nested item including article_id" do
+    article = articles(:rails_performance)
+    assert_difference ["NewsletterIssue.count", "NewsletterItem.count"] do
+      post admin_newsletter_issues_path, params: {newsletter_issue: {
+        issue_number: 101,
+        subject: "With Article",
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "Test Section",
+            position: 0,
+            newsletter_items_attributes: {
+              "0" => {title: article.title, url: article.url, position: 0, article_id: article.id}
+            }
+          }
+        }
+      }}
+    end
+    item = NewsletterIssue.last.newsletter_sections.first.newsletter_items.first
+    assert_equal article.id, item.article_id
+  end
+
+  test "create with nested items auto-generates tracked links" do
+    assert_difference ["NewsletterIssue.count", "TrackedLink.count"] do
+      post admin_newsletter_issues_path, params: {newsletter_issue: {
+        issue_number: 200,
+        subject: "Tracked Links Test",
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "Shiny Objects",
+            position: 0,
+            newsletter_items_attributes: {
+              "0" => {title: "Item One", url: "https://example.com/one", position: 0}
+            }
+          }
+        }
+      }}
+    end
+    issue = NewsletterIssue.last
+    link = issue.tracked_links.first
+    assert_equal "Item One", link.trackable.title
+    assert_includes link.destination_url, "utm_source=rubycrow"
+  end
+
+  test "update with new items generates additional tracked links" do
+    assert_difference "TrackedLink.count", 1 do
+      patch admin_newsletter_issue_path(@newsletter_issue), params: {newsletter_issue: {
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "New Section",
+            position: 5,
+            newsletter_items_attributes: {
+              "0" => {title: "New Item", url: "https://example.com/new", position: 0}
+            }
+          }
+        }
+      }}
+    end
+    assert_redirected_to admin_newsletter_issue_path(@newsletter_issue)
+  end
+
+  test "update adds new section" do
+    assert_difference "NewsletterSection.count" do
+      patch admin_newsletter_issue_path(@newsletter_issue), params: {newsletter_issue: {
+        newsletter_sections_attributes: {
+          "0" => {title: "Brand New Section", position: 5}
+        }
+      }}
+    end
+    assert_redirected_to admin_newsletter_issue_path(@newsletter_issue)
+  end
+
+  test "update destroys section" do
+    section = newsletter_sections(:crows_pick)
+    assert_difference "NewsletterSection.count", -1 do
+      patch admin_newsletter_issue_path(@newsletter_issue), params: {newsletter_issue: {
+        newsletter_sections_attributes: {
+          "0" => {id: section.id, _destroy: "1"}
+        }
+      }}
+    end
+    assert_redirected_to admin_newsletter_issue_path(@newsletter_issue)
+  end
+
+  test "update reorders sections" do
+    crows_pick = newsletter_sections(:crows_pick)
+    shiny_objects = newsletter_sections(:shiny_objects)
+
+    patch admin_newsletter_issue_path(@newsletter_issue), params: {newsletter_issue: {
+      newsletter_sections_attributes: {
+        "0" => {id: crows_pick.id, position: 1},
+        "1" => {id: shiny_objects.id, position: 0}
+      }
+    }}
+
+    assert_redirected_to admin_newsletter_issue_path(@newsletter_issue)
+    assert_equal 1, crows_pick.reload.position
+    assert_equal 0, shiny_objects.reload.position
+  end
+
   test "destroy" do
     assert_difference("NewsletterIssue.count", -1) do
       delete admin_newsletter_issue_path(@newsletter_issue)

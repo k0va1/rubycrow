@@ -23,3 +23,12 @@ application.register("admin-theme", AdminThemeController)
 
 import AutoSubmitController from "./auto_submit_controller"
 application.register("auto-submit", AutoSubmitController)
+
+import NestedFormController from "./nested_form_controller"
+application.register("nested-form", NestedFormController)
+
+import SortableController from "./sortable_controller"
+application.register("sortable", SortableController)
+
+import ArticleAutofillController from "./article_autofill_controller"
+application.register("article-autofill", ArticleAutofillController)

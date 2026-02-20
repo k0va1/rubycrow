@@ -18,11 +18,17 @@ class RecordClickJob < ApplicationJob
     )
 
     TrackedLink.update_counters(tracked_link_id, total_clicks: 1)
-    NewsletterIssue.update_counters(tracked_link.newsletter_issue_id, total_clicks: 1)
+
+    newsletter_issue = tracked_link.newsletter_issue
+    if newsletter_issue
+      NewsletterIssue.update_counters(newsletter_issue.id, total_clicks: 1)
+    end
 
     if is_unique
       TrackedLink.update_counters(tracked_link_id, unique_clicks: 1)
-      NewsletterIssue.update_counters(tracked_link.newsletter_issue_id, total_unique_clicks: 1)
+      if newsletter_issue
+        NewsletterIssue.update_counters(newsletter_issue.id, total_unique_clicks: 1)
+      end
     end
   end
 

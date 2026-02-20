@@ -31,7 +31,7 @@
 #
 class Article < ApplicationRecord
   belongs_to :blog
-  has_many :tracked_links, dependent: :destroy
+  has_many :newsletter_items, dependent: :nullify
 
   default_scope { order(Arel.sql("published_at DESC NULLS LAST")) }
 
@@ -41,4 +41,5 @@ class Article < ApplicationRecord
   scope :recent, ->(limit = 15) { limit(limit) }
   scope :unprocessed, -> { where(processed: false) }
   scope :featured, -> { where.not(featured_in_issue: nil) }
+  scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{sanitize_sql_like(query)}%") }
 end

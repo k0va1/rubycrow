@@ -34,7 +34,7 @@ class Admin::TrackedLinksControllerTest < ActionDispatch::IntegrationTest
 
   test "create with valid params" do
     assert_difference("TrackedLink.count") do
-      post admin_tracked_links_path, params: {tracked_link: {destination_url: "https://example.com/new", newsletter_issue_id: newsletter_issues(:issue_one).id}}
+      post admin_tracked_links_path, params: {tracked_link: {destination_url: "https://example.com/new"}}
     end
     assert_redirected_to admin_tracked_link_path(TrackedLink.last)
   end

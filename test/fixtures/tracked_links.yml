@@ -2,46 +2,31 @@
 #
 # Table name: tracked_links
 #
-#  id                     :bigint           not null, primary key
-#  destination_url        :string           not null
-#  position_in_newsletter :integer
-#  section                :string
-#  token                  :string           not null
-#  total_clicks           :integer          default(0)
-#  unique_clicks          :integer          default(0)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  article_id             :bigint
-#  newsletter_issue_id    :bigint           not null
+#  id              :bigint           not null, primary key
+#  destination_url :string           not null
+#  token           :string           not null
+#  total_clicks    :integer          default(0)
+#  trackable_type  :string
+#  unique_clicks   :integer          default(0)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  trackable_id    :bigint
 #
 # Indexes
 #
-#  index_tracked_links_on_article_id           (article_id)
-#  index_tracked_links_on_issue_and_url        (newsletter_issue_id,destination_url)
-#  index_tracked_links_on_newsletter_issue_id  (newsletter_issue_id)
-#  index_tracked_links_on_token                (token) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (article_id => articles.id)
-#  fk_rails_...  (newsletter_issue_id => newsletter_issues.id)
+#  index_tracked_links_on_token                            (token) UNIQUE
+#  index_tracked_links_on_trackable_type_and_trackable_id  (trackable_type,trackable_id)
 #
 link_one:
   token: "abc123token"
-  newsletter_issue: issue_one
-  article: older_article
+  trackable: rails_update (NewsletterItem)
   destination_url: "https://www.speedshop.co/2024/12/01/memory.html?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
-  position_in_newsletter: 1
-  section: "shiny_objects"
   total_clicks: 3
   unique_clicks: 2
 
 link_two:
   token: "def456token"
-  newsletter_issue: issue_one
-  article: martians_article
+  trackable: ruby_gem (NewsletterItem)
   destination_url: "https://evilmartians.com/chronicles/viewcomponent?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
-  position_in_newsletter: 2
-  section: "shiny_objects"
   total_clicks: 2
   unique_clicks: 1

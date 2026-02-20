@@ -18,8 +18,12 @@
 #  index_newsletter_issues_on_sent_at       (sent_at)
 #
 class NewsletterIssue < ApplicationRecord
-  has_many :tracked_links, dependent: :destroy
+  has_many :newsletter_sections, -> { order(:position) }, dependent: :destroy
+  has_many :newsletter_items, through: :newsletter_sections
+  has_many :tracked_links, through: :newsletter_items
   has_many :clicks, through: :tracked_links
+
+  accepts_nested_attributes_for :newsletter_sections, allow_destroy: true, reject_if: :all_blank
 
   validates :issue_number, presence: true, uniqueness: true
   validates :subject, presence: true
@@ -33,32 +37,13 @@ class NewsletterIssue < ApplicationRecord
   end
 
   def create_tracked_links!
-    articles = Article.where(featured_in_issue: issue_number)
-    articles.each_with_index do |article, index|
-      section = determine_section(article)
-      url = append_utm_params(article.url)
+    newsletter_sections.includes(:newsletter_items).find_each do |section|
+      section.newsletter_items.each do |item|
+        next if item.tracked_link.present?
 
-      tracked_links.find_or_create_by!(article: article) do |link|
-        link.destination_url = url
-        link.position_in_newsletter = index + 1
-        link.section = section
+        url = TrackedLink.append_utm_params(item.url)
+        item.create_tracked_link!(destination_url: url)
       end
     end
-  end
-
-  private
-
-  def append_utm_params(url)
-    uri = URI.parse(url)
-    params = URI.decode_www_form(uri.query || "")
-    params << ["utm_source", "rubycrow"]
-    params << ["utm_medium", "email"]
-    params << ["utm_campaign", "issue_#{issue_number}"]
-    uri.query = URI.encode_www_form(params)
-    uri.to_s
-  end
-
-  def determine_section(article)
-    "shiny_objects"
   end
 end

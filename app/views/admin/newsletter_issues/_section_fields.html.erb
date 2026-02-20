@@ -1,0 +1,34 @@
+<%# locals: (section_form:) -%>
+<% section_id = section_form.object&.id || section_form.options[:child_index] %>
+<div data-nested-form-wrapper class="rounded-lg border p-4 space-y-4" style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);">
+  <div class="flex items-center gap-2">
+    <span data-sortable-handle class="cursor-grab text-lg admin-faint">☰</span>
+    <div class="flex-1">
+      <%= lui.input(name: :title, form: section_form, label: "Section Title") %>
+    </div>
+    <button type="button" data-action="nested-form#remove" class="text-sm admin-delete-btn">✕</button>
+  </div>
+
+  <%= section_form.hidden_field :id %>
+  <%= section_form.hidden_field :position %>
+  <%= section_form.hidden_field :_destroy, value: "0" %>
+
+  <div data-controller="nested-form">
+    <div class="flex items-center justify-between mb-2">
+      <h4 class="text-sm font-medium admin-subtext">Items</h4>
+      <button type="button" data-action="nested-form#add" class="text-sm admin-link-secondary">+ Add Item</button>
+    </div>
+
+    <div data-nested-form-target="container" data-controller="sortable" class="space-y-2">
+      <%= section_form.fields_for :newsletter_items do |item_form| %>
+        <%= render "item_fields", item_form: item_form %>
+      <% end %>
+    </div>
+
+    <template data-nested-form-target="template">
+      <%= section_form.fields_for :newsletter_items, NewsletterItem.new, child_index: "NEW_RECORD" do |item_form| %>
+        <%= render "item_fields", item_form: item_form %>
+      <% end %>
+    </template>
+  </div>
+</div>

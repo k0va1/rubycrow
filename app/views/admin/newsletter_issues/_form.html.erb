@@ -13,13 +13,34 @@
   </div>
 <% end %>
 
-<%= form_with model: [:admin, newsletter_issue], class: "space-y-4 max-w-2xl" do |form| %>
-  <%= lui.input(name: :issue_number, form: form, type: :number, label: "Issue Number") %>
-  <%= lui.input(name: :subject, form: form, label: "Subject") %>
-  <%= lui.input(name: :sent_at, form: form, type: :datetime_local, label: "Sent At") %>
-  <%= lui.input(name: :subscriber_count, form: form, type: :number, label: "Subscriber Count") %>
-  <%= lui.input(name: :total_clicks, form: form, type: :number, label: "Total Clicks") %>
-  <%= lui.input(name: :total_unique_clicks, form: form, type: :number, label: "Total Unique Clicks") %>
+<%= form_with model: [:admin, newsletter_issue], class: "space-y-6" do |form| %>
+  <div class="space-y-4 max-w-2xl">
+    <%= lui.input(name: :issue_number, form: form, type: :number, label: "Issue Number") %>
+    <%= lui.input(name: :subject, form: form, label: "Subject") %>
+    <%= lui.input(name: :sent_at, form: form, type: :datetime_local, label: "Sent At") %>
+    <%= lui.input(name: :subscriber_count, form: form, type: :number, label: "Subscriber Count") %>
+    <%= lui.input(name: :total_clicks, form: form, type: :number, label: "Total Clicks") %>
+    <%= lui.input(name: :total_unique_clicks, form: form, type: :number, label: "Total Unique Clicks") %>
+  </div>
+
+  <div data-controller="nested-form">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold admin-heading">Sections</h3>
+      <button type="button" data-action="nested-form#add" class="text-sm admin-link-secondary">+ Add Section</button>
+    </div>
+
+    <div data-nested-form-target="container" data-controller="sortable" class="space-y-4">
+      <%= form.fields_for :newsletter_sections do |section_form| %>
+        <%= render "section_fields", section_form: section_form %>
+      <% end %>
+    </div>
+
+    <template data-nested-form-target="template">
+      <%= form.fields_for :newsletter_sections, NewsletterSection.new, child_index: "NEW_RECORD" do |section_form| %>
+        <%= render "section_fields", section_form: section_form %>
+      <% end %>
+    </template>
+  </div>
 
   <div><%= lui.button(type: :submit) { newsletter_issue.persisted? ? "Update Issue" : "Create Issue" } %></div>
 <% end %>

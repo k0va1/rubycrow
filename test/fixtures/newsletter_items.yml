@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: newsletter_items
+#
+#  id                    :bigint           not null, primary key
+#  description           :text
+#  position              :integer          default(0), not null
+#  title                 :string           not null
+#  url                   :string           not null
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  article_id            :bigint
+#  newsletter_section_id :bigint           not null
+#
+# Indexes
+#
+#  index_newsletter_items_on_article_id                          (article_id)
+#  index_newsletter_items_on_newsletter_section_id               (newsletter_section_id)
+#  index_newsletter_items_on_newsletter_section_id_and_position  (newsletter_section_id,position)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (newsletter_section_id => newsletter_sections.id)
+#
+rails_update:
+  newsletter_section: crows_pick
+  title: "Rails 8.1 Released"
+  description: "Major release with async queries"
+  url: "https://example.com/rails-8-1"
+  position: 0
+
+ruby_gem:
+  newsletter_section: shiny_objects
+  title: "New Ruby Gem"
+  description: "A useful new gem"
+  url: "https://example.com/new-gem"
+  position: 0

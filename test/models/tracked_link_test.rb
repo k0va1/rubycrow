@@ -2,10 +2,7 @@ require "test_helper"
 
 class TrackedLinkTest < ActiveSupport::TestCase
   test "auto-generates token on create" do
-    link = TrackedLink.new(
-      newsletter_issue: newsletter_issues(:issue_one),
-      destination_url: "https://example.com"
-    )
+    link = TrackedLink.new(destination_url: "https://example.com")
     link.valid?
     assert link.token.present?
   end
@@ -13,7 +10,6 @@ class TrackedLinkTest < ActiveSupport::TestCase
   test "does not overwrite existing token" do
     link = TrackedLink.new(
       token: "custom_token",
-      newsletter_issue: newsletter_issues(:issue_one),
       destination_url: "https://example.com"
     )
     link.valid?
@@ -24,7 +20,6 @@ class TrackedLinkTest < ActiveSupport::TestCase
     existing = tracked_links(:link_one)
     link = TrackedLink.new(
       token: existing.token,
-      newsletter_issue: newsletter_issues(:issue_one),
       destination_url: "https://example.com"
     )
     assert_not link.valid?
@@ -32,29 +27,24 @@ class TrackedLinkTest < ActiveSupport::TestCase
   end
 
   test "validates presence of destination_url" do
-    link = TrackedLink.new(newsletter_issue: newsletter_issues(:issue_one))
+    link = TrackedLink.new
     link.valid?
     assert_includes link.errors[:destination_url], "can't be blank"
   end
 
-  test "validates section inclusion" do
-    link = TrackedLink.new(
-      newsletter_issue: newsletter_issues(:issue_one),
-      destination_url: "https://example.com",
-      section: "invalid_section"
-    )
-    assert_not link.valid?
-    assert_includes link.errors[:section], "is not included in the list"
+  test "belongs to trackable (polymorphic)" do
+    link = tracked_links(:link_one)
+    assert_equal newsletter_items(:rails_update), link.trackable
   end
 
-  test "allows blank section" do
-    link = TrackedLink.new(
-      newsletter_issue: newsletter_issues(:issue_one),
-      destination_url: "https://example.com",
-      section: nil
-    )
-    link.valid?
-    assert_not_includes link.errors.attribute_names, :section
+  test "newsletter_issue traverses through trackable chain" do
+    link = tracked_links(:link_one)
+    assert_equal link.trackable.newsletter_section.newsletter_issue, link.newsletter_issue
+  end
+
+  test "newsletter_issue returns nil when trackable is nil" do
+    link = TrackedLink.new(destination_url: "https://example.com")
+    assert_nil link.newsletter_issue
   end
 
   test "tracked_url builds correct URL" do

@@ -11,8 +11,7 @@
   <%= lui.table(data: @tracked_links) do |table| %>
     <% table.with_column("Token") { |tl| link_to tl.token, admin_tracked_link_path(tl) } %>
     <% table.with_column("Destination") { |tl| truncate(tl.destination_url, length: 40) } %>
-    <% table.with_column("Issue") { |tl| link_to "##{tl.newsletter_issue.issue_number}", admin_newsletter_issue_path(tl.newsletter_issue) } %>
-    <% table.with_column("Section") { |tl| tl.section || "—" } %>
+    <% table.with_column("Linked To") { |tl| tl.trackable.present? ? "#{tl.trackable_type}: #{tl.trackable.try(:title) || tl.trackable_id}" : "—" } %>
     <% table.with_column("Clicks") { |tl| tl.total_clicks } %>
     <% table.with_action { |tl| link_to "Edit", edit_admin_tracked_link_path(tl) } %>
     <% table.with_action { |tl| link_to "Delete", admin_tracked_link_path(tl), data: { turbo_method: :delete, turbo_confirm: "Delete this tracked link?" } } %>

@@ -24,3 +24,31 @@
     <%= link_to "View tracked links", admin_tracked_links_path(newsletter_issue_id: @newsletter_issue.id) %>
   <% end %>
 <% end %>
+
+<% if @newsletter_issue.newsletter_sections.any? %>
+  <h2 class="admin-heading mt-8 mb-4 text-xl font-semibold">Sections</h2>
+
+  <div class="space-y-4">
+    <% @newsletter_issue.newsletter_sections.each do |section| %>
+      <div class="rounded-lg border p-4" style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);">
+        <h3 class="font-semibold admin-heading mb-2"><%= section.title %></h3>
+
+        <% if section.newsletter_items.any? %>
+          <ul class="space-y-2">
+            <% section.newsletter_items.each do |item| %>
+              <li class="rounded border p-3" style="border-color: var(--lui-theme-border);">
+                <div class="font-medium admin-heading"><%= link_to item.title, item.url, target: "_blank", class: "admin-link-secondary" %></div>
+                <% if item.description.present? %>
+                  <p class="text-sm admin-subtext mt-1"><%= item.description %></p>
+                <% end %>
+                <p class="text-xs admin-faint mt-1"><%= item.url %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-sm admin-faint">No items in this section.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

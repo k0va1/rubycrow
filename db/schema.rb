@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_19_114246) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_20_161707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -80,6 +80,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_19_114246) do
     t.index ["sent_at"], name: "index_newsletter_issues_on_sent_at"
   end
 
+  create_table "newsletter_items", force: :cascade do |t|
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.bigint "newsletter_section_id", null: false
+    t.integer "position", default: 0, null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.index ["article_id"], name: "index_newsletter_items_on_article_id"
+    t.index ["newsletter_section_id", "position"], name: "index_newsletter_items_on_newsletter_section_id_and_position"
+    t.index ["newsletter_section_id"], name: "index_newsletter_items_on_newsletter_section_id"
+  end
+
+  create_table "newsletter_sections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "newsletter_issue_id", null: false
+    t.integer "position", default: 0, null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["newsletter_issue_id", "position"], name: "index_newsletter_sections_on_newsletter_issue_id_and_position"
+    t.index ["newsletter_issue_id"], name: "index_newsletter_sections_on_newsletter_issue_id"
+  end
+
   create_table "subscribers", force: :cascade do |t|
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
@@ -91,25 +115,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_19_114246) do
   end
 
   create_table "tracked_links", force: :cascade do |t|
-    t.bigint "article_id"
     t.datetime "created_at", null: false
     t.string "destination_url", null: false
-    t.bigint "newsletter_issue_id", null: false
-    t.integer "position_in_newsletter"
-    t.string "section"
     t.string "token", null: false
     t.integer "total_clicks", default: 0
+    t.bigint "trackable_id"
+    t.string "trackable_type"
     t.integer "unique_clicks", default: 0
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_tracked_links_on_article_id"
-    t.index ["newsletter_issue_id", "destination_url"], name: "index_tracked_links_on_issue_and_url"
-    t.index ["newsletter_issue_id"], name: "index_tracked_links_on_newsletter_issue_id"
     t.index ["token"], name: "index_tracked_links_on_token", unique: true
+    t.index ["trackable_type", "trackable_id"], name: "index_tracked_links_on_trackable_type_and_trackable_id"
   end
 
   add_foreign_key "articles", "blogs"
   add_foreign_key "clicks", "subscribers"
   add_foreign_key "clicks", "tracked_links"
-  add_foreign_key "tracked_links", "articles"
-  add_foreign_key "tracked_links", "newsletter_issues"
+  add_foreign_key "newsletter_items", "newsletter_sections"
+  add_foreign_key "newsletter_sections", "newsletter_issues"
 end

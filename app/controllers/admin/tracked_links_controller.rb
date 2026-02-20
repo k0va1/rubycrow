@@ -3,8 +3,11 @@ module Admin
     before_action :set_tracked_link, only: [:show, :edit, :update, :destroy]
 
     def index
-      scope = TrackedLink.includes(:newsletter_issue, :article).order(created_at: :desc)
-      scope = scope.where(newsletter_issue_id: params[:newsletter_issue_id]) if params[:newsletter_issue_id].present?
+      scope = if params[:newsletter_issue_id].present?
+        NewsletterIssue.find(params[:newsletter_issue_id]).tracked_links.order(created_at: :desc)
+      else
+        TrackedLink.order(created_at: :desc)
+      end
       @pagy, @tracked_links = pagy(scope)
     end
 
@@ -48,7 +51,7 @@ module Admin
     end
 
     def tracked_link_params
-      params.require(:tracked_link).permit(:destination_url, :newsletter_issue_id, :article_id, :section, :position_in_newsletter)
+      params.require(:tracked_link).permit(:destination_url)
     end
   end
 end

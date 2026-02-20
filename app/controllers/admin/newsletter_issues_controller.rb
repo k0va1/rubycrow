@@ -11,12 +11,19 @@ module Admin
 
     def new
       @newsletter_issue = NewsletterIssue.new
+      NewsletterSection::DEFAULT_SECTIONS.each_with_index do |section, index|
+        @newsletter_issue.newsletter_sections.build(
+          title: section.humanize.titleize,
+          position: index
+        )
+      end
     end
 
     def create
       @newsletter_issue = NewsletterIssue.new(newsletter_issue_params)
 
       if @newsletter_issue.save
+        @newsletter_issue.create_tracked_links!
         redirect_to admin_newsletter_issue_path(@newsletter_issue), notice: "Newsletter issue created."
       else
         render :new, status: :unprocessable_content
@@ -28,6 +35,7 @@ module Admin
 
     def update
       if @newsletter_issue.update(newsletter_issue_params)
+        @newsletter_issue.create_tracked_links!
         redirect_to admin_newsletter_issue_path(@newsletter_issue), notice: "Newsletter issue updated."
       else
         render :edit, status: :unprocessable_content
@@ -46,7 +54,13 @@ module Admin
     end
 
     def newsletter_issue_params
-      params.require(:newsletter_issue).permit(:issue_number, :subject, :sent_at, :subscriber_count, :total_clicks, :total_unique_clicks)
+      params.require(:newsletter_issue).permit(
+        :issue_number, :subject, :sent_at, :subscriber_count, :total_clicks, :total_unique_clicks,
+        newsletter_sections_attributes: [
+          :id, :title, :position, :_destroy,
+          newsletter_items_attributes: [:id, :title, :description, :url, :position, :article_id, :_destroy]
+        ]
+      )
     end
   end
 end

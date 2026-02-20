@@ -15,10 +15,6 @@
 
 <%= form_with model: [:admin, tracked_link], class: "space-y-4 max-w-2xl" do |form| %>
   <%= lui.input(name: :destination_url, form: form, type: :url, label: "Destination URL") %>
-  <%= lui.select(name: :newsletter_issue_id, form: form, label: "Newsletter Issue", options_for_select: NewsletterIssue.order(issue_number: :desc).map { |i| ["##{i.issue_number} — #{i.subject}", i.id] }) %>
-  <%= lui.select(name: :article_id, form: form, label: "Article (optional)", options_for_select: [["None", ""]] + Article.order(published_at: :desc).map { |a| [truncate(a.title, length: 60), a.id] }) %>
-  <%= lui.select(name: :section, form: form, label: "Section", options_for_select: [["None", ""]] + TrackedLink::SECTIONS.map { |s| [s.titleize, s] }) %>
-  <%= lui.input(name: :position_in_newsletter, form: form, type: :number, label: "Position in Newsletter") %>
 
   <div>
     <%= lui.button(type: :submit) { tracked_link.persisted? ? "Update Tracked Link" : "Create Tracked Link" } %>

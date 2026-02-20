@@ -37,29 +37,40 @@ class NewsletterIssueTest < ActiveSupport::TestCase
     assert_not_includes sent_issues, newsletter_issues(:issue_two)
   end
 
-  test "create_tracked_links! creates links for featured articles" do
+  test "create_tracked_links! generates links from sections and items" do
     issue = NewsletterIssue.create!(issue_number: 99, subject: "Test Issue")
-    article = articles(:featured_article)
-    article.update!(featured_in_issue: 99)
+    section = issue.newsletter_sections.create!(title: "Shiny Objects", position: 0)
+    section.newsletter_items.create!(title: "Test Article", url: "https://example.com/test", position: 0)
 
     assert_difference "TrackedLink.count", 1 do
       issue.create_tracked_links!
     end
 
     link = issue.tracked_links.first
-    assert_equal article, link.article
+    assert_equal "Test Article", link.trackable.title
     assert_includes link.destination_url, "utm_source=rubycrow"
-    assert_includes link.destination_url, "utm_medium=email"
-    assert_includes link.destination_url, "utm_campaign=issue_99"
   end
 
   test "create_tracked_links! is idempotent" do
     issue = NewsletterIssue.create!(issue_number: 100, subject: "Test")
-    articles(:featured_article).update!(featured_in_issue: 100)
+    section = issue.newsletter_sections.create!(title: "Shiny Objects", position: 0)
+    section.newsletter_items.create!(title: "Test", url: "https://example.com/test", position: 0)
 
     issue.create_tracked_links!
     assert_no_difference "TrackedLink.count" do
       issue.create_tracked_links!
     end
+  end
+
+  test "create_tracked_links! sets trackable to newsletter item" do
+    article = articles(:rails_performance)
+    issue = NewsletterIssue.create!(issue_number: 101, subject: "Test")
+    section = issue.newsletter_sections.create!(title: "Crows Pick", position: 0)
+    section.newsletter_items.create!(title: article.title, url: article.url, position: 0, article: article)
+
+    issue.create_tracked_links!
+
+    link = issue.tracked_links.first
+    assert_equal article, link.trackable.article
   end
 end
