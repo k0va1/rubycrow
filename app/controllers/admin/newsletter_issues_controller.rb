@@ -37,7 +37,7 @@ module Admin
       html = mail.html_part.body.decoded
 
       mail.attachments.each do |attachment|
-        next unless attachment.content_id.present?
+        next if attachment.content_id.blank?
 
         cid = attachment.content_id.delete("<>")
         data_uri = "data:#{attachment.mime_type};base64,#{Base64.strict_encode64(attachment.body.decoded)}"
