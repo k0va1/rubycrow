@@ -1,5 +1,5 @@
 Sidekiq.configure_server do |config|
-  config.redis = {url: Rails.application.credentials.redis_url}
+  config.redis = {url: Rails.application.credentials.redis_url, reconnect_attempts: 10}
 
   config.on(:startup) do
     schedule_file = Rails.root.join("config/scheduler/#{Rails.env}.yml")
@@ -12,5 +12,5 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = {url: Rails.application.credentials.redis_url}
+  config.redis = {url: Rails.application.credentials.redis_url, reconnect_attempts: 3}
 end

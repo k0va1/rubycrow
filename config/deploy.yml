@@ -28,7 +28,7 @@ servers:
     hosts:
       - "49.13.224.98"
     options:
-      memory: 512M
+      memory: 2048M
     cmd: bundle exec sidekiq -C config/sidekiq.yml
 
 env:
