@@ -14,19 +14,15 @@
 <% end %>
 
 <%= form_with model: [:admin, newsletter_issue], class: "space-y-6" do |form| %>
-  <div class="space-y-4 max-w-2xl">
+  <div class="max-w-2xl space-y-4">
     <%= lui.input(name: :issue_number, form: form, type: :number, label: "Issue Number") %>
-    <%= lui.input(name: :subject, form: form, label: "Subject") %>
-    <%= lui.input(name: :sent_at, form: form, type: :datetime_local, label: "Sent At") %>
-    <%= lui.input(name: :subscriber_count, form: form, type: :number, label: "Subscriber Count") %>
-    <%= lui.input(name: :total_clicks, form: form, type: :number, label: "Total Clicks") %>
-    <%= lui.input(name: :total_unique_clicks, form: form, type: :number, label: "Total Unique Clicks") %>
+    <%= lui.textarea(name: :subject, form: form, label: "Subject") %>
   </div>
 
   <div data-controller="nested-form">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-semibold admin-heading">Sections</h3>
-      <button type="button" data-action="nested-form#add" class="text-sm admin-link-secondary">+ Add Section</button>
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="admin-heading text-lg font-semibold">Sections</h3>
+      <button type="button" data-action="nested-form#add" class="admin-link-secondary text-sm">+ Add Section</button>
     </div>
 
     <div data-nested-form-target="container" data-controller="sortable" class="space-y-4">
