@@ -21,6 +21,7 @@ Bundler.require(*Rails.groups)
 module Rubycrow
   class Application < Rails::Application
     config.active_job.queue_adapter = :sidekiq
+    config.active_job.enqueue_after_transaction_commit = :default
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.1
 

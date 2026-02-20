@@ -4,6 +4,7 @@ class SubscribersController < ApplicationController
     @form_id = params[:form_id] || "subscribe-form"
 
     if @subscriber.save
+      SubscriberMailer.confirmation(subscriber: @subscriber).deliver_later
       respond_to do |format|
         format.turbo_stream
       end

@@ -28,4 +28,8 @@ class Subscriber < ApplicationRecord
   def signed_unsubscribe_id
     signed_id(purpose: :unsubscribe)
   end
+
+  def signed_confirmation_id
+    signed_id(purpose: :confirmation, expires_in: 24.hours)
+  end
 end

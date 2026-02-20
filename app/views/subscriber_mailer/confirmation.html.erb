@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="color-scheme" content="dark">
+    <meta name="supported-color-schemes" content="dark">
+    <style>
+      body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+      table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+      body { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #0a0a0a; }
+      :root { color-scheme: dark; supported-color-schemes: dark; }
+      a { color: #CC342D; text-decoration: none; }
+      @media screen and (max-width: 600px) {
+        .wrapper { width: 100% !important; padding: 0 16px !important; }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0a0a0a;">
+      <tr>
+        <td align="center" style="padding: 0;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="600" class="wrapper" style="max-width: 600px; width: 100%; margin: 0 auto;">
+            <tr>
+              <td style="padding: 40px 24px 20px 24px; text-align: center;">
+                <p style="margin: 0; font-size: 13px; color: #666; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">
+                  RubyCrow
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 0 24px;">
+                <div style="height: 1px; background: linear-gradient(to right, transparent, #CC342D, #4a3f6b, transparent);"></div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 40px 24px; text-align: center;">
+                <h1 style="margin: 0 0 16px 0; font-size: 28px; color: #f0f0f0; font-weight: 700;">
+                  Welcome to the flock!
+                </h1>
+
+                <p style="margin: 0 0 32px 0; font-size: 16px; color: #999; line-height: 1.6;">
+                  You're one click away from getting a curated weekly digest of the best Ruby &amp; Rails content.
+                </p>
+
+                <a href="<%= confirm_subscription_url(signed_id: @subscriber.signed_confirmation_id) %>"
+                   style="display: inline-block; padding: 14px 32px; background-color: #CC342D; color: #ffffff; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 6px; letter-spacing: 0.5px;">
+                  Confirm my subscription
+                </a>
+
+                <p style="margin: 24px 0 0 0; font-size: 13px; color: #555; line-height: 1.5;">
+                  This link expires in 24 hours. If you didn't sign up, you can safely ignore this email.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 0 24px;">
+                <div style="height: 1px; background: linear-gradient(to right, transparent, #CC342D, #4a3f6b, transparent);"></div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding: 24px; text-align: center;">
+                <p style="margin: 0; font-size: 12px; color: #444;">
+                  RubyCrow &copy; <%= Date.current.year %>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

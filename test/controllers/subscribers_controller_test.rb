@@ -15,6 +15,20 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
     assert_not subscriber.confirmed
   end
 
+  test "enqueues confirmation email on successful signup" do
+    assert_enqueued_emails 1 do
+      post subscribers_path, params: {email: "new@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
+    end
+  end
+
+  test "does not enqueue confirmation email on failed signup" do
+    Subscriber.create!(email: "dupe@example.com")
+
+    assert_no_enqueued_emails do
+      post subscribers_path, params: {email: "dupe@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
+    end
+  end
+
   test "returns success turbo stream replacing the correct form" do
     post subscribers_path, params: {email: "test@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
 
