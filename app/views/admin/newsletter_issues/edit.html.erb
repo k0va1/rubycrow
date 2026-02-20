@@ -1,6 +1,7 @@
 <div class="mb-6">
   <%= link_to "← Issue ##{@newsletter_issue.issue_number}", admin_newsletter_issue_path(@newsletter_issue), class: "text-sm admin-link-back" %>
-  <h1 class="mt-2 text-2xl font-semibold admin-heading">Edit Newsletter Issue</h1>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">Edit Newsletter Issue</h1>
 </div>
 
 <%= render "form", newsletter_issue: @newsletter_issue %>

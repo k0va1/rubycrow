@@ -1,18 +1,19 @@
 <div class="mb-8">
-  <h1 class="text-2xl font-semibold admin-heading">Dashboard</h1>
-  <p class="mt-1 text-sm admin-subtext">Overview of your newsletter</p>
+  <h1 class="admin-heading text-2xl font-semibold">Dashboard</h1>
+  <p class="admin-subtext mt-1 text-sm">Overview of your newsletter</p>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
   <%= render "admin/dashboard/stat_card", label: "Subscribers", value: @active_subscribers, value_label: "active", total: @total_subscribers %>
   <%= render "admin/dashboard/stat_card", label: "Blogs", value: @active_blogs, value_label: "active", total: @total_blogs %>
   <%= render "admin/dashboard/stat_card", label: "Articles", value: @unprocessed_articles, value_label: "unprocessed", total: @total_articles %>
   <%= render "admin/dashboard/stat_card", label: "Issues", value: @sent_issues, value_label: "sent", total: @total_issues %>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
   <div>
-    <h2 class="text-lg font-semibold admin-heading mb-4">Recent Issues</h2>
+    <h2 class="admin-heading mb-4 text-lg font-semibold">Recent Issues</h2>
+
     <% if @recent_issues.any? %>
       <%= lui.table(data: @recent_issues) do |table| %>
         <% table.with_column("Issue #") { |issue| link_to "##{issue.issue_number}", admin_newsletter_issue_path(issue) } %>
@@ -22,13 +23,14 @@
       <% end %>
     <% else %>
       <div class="admin-card py-8 text-center">
-        <p class="text-sm admin-subtext">No issues yet</p>
+        <p class="admin-subtext text-sm">No issues yet</p>
       </div>
     <% end %>
   </div>
 
   <div>
-    <h2 class="text-lg font-semibold admin-heading mb-4">Recent Articles</h2>
+    <h2 class="admin-heading mb-4 text-lg font-semibold">Recent Articles</h2>
+
     <% if @recent_articles.any? %>
       <%= lui.table(data: @recent_articles) do |table| %>
         <% table.with_column("Title") { |article| link_to truncate(article.title, length: 35), admin_article_path(article) } %>
@@ -38,7 +40,7 @@
       <% end %>
     <% else %>
       <div class="admin-card py-8 text-center">
-        <p class="text-sm admin-subtext">No articles yet</p>
+        <p class="admin-subtext text-sm">No articles yet</p>
       </div>
     <% end %>
   </div>

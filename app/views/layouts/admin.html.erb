@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <title>RubyCrow Admin</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-prefetch" content="true">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -11,6 +14,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
   </head>
+
   <body>
     <%= lui.layout do |layout| %>
       <% layout.with_header do %>
@@ -34,24 +38,25 @@
       <% end %>
 
       <% layout.with_footer do %>
-        <div class="p-4 flex items-center justify-between" data-controller="admin-theme">
+        <div class="flex items-center justify-between p-4" data-controller="admin-theme">
           <%= link_to "Sign Out", admin_session_path, data: { turbo_method: :delete }, class: "text-sm admin-link-secondary" %>
-          <button type="button" data-action="admin-theme#toggle" class="p-1.5 rounded-lg admin-toggle-btn cursor-pointer">
+
+          <button
+            type="button"
+            data-action="admin-theme#toggle"
+            class="admin-toggle-btn cursor-pointer rounded-lg p-1.5"
+          >
             <span data-admin-theme-target="icon"></span>
           </button>
         </div>
       <% end %>
 
       <% if flash[:notice] %>
-        <div class="mb-4">
-          <%= lui.alert(type: :success) { flash[:notice] } %>
-        </div>
+        <div class="mb-4"><%= lui.alert(type: :success) { flash[:notice] } %></div>
       <% end %>
 
       <% if flash[:alert] %>
-        <div class="mb-4">
-          <%= lui.alert(type: :error) { flash[:alert] } %>
-        </div>
+        <div class="mb-4"><%= lui.alert(type: :error) { flash[:alert] } %></div>
       <% end %>
 
       <%= yield %>

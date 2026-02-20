@@ -1,10 +1,11 @@
-<div class="flex items-center justify-between mb-6">
+<div class="mb-6 flex items-center justify-between">
   <div>
-    <h1 class="text-2xl font-semibold admin-heading">Blogs</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @blogs.length %> blogs on this page</p>
+    <h1 class="admin-heading text-2xl font-semibold">Blogs</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @blogs.length %> blogs on this page</p>
   </div>
+
   <div class="flex items-center gap-3">
-<div data-controller="auto-submit">
+    <div data-controller="auto-submit">
       <%= lui.select(
         name: :period,
         label: false,
@@ -15,6 +16,7 @@
         select_data: { action: "change->auto-submit#submit" }
       ) %>
     </div>
+
     <%= lui.button(url: new_admin_blog_path, icon: "plus") { "New Blog" } %>
   </div>
 </div>
@@ -23,6 +25,7 @@
   <%= lui.table(data: @blogs) do |table| %>
     <% table.with_column("Name") { |blog| link_to blog.name, admin_blog_path(blog) } %>
     <% table.with_column("URL") { |blog| link_to truncate(blog.url, length: 40), blog.url, target: "_blank", rel: "noopener noreferrer" } %>
+
     <% table.with_column("Active") do |blog| %>
       <% if blog.active? %>
         <%= lui.badge(status: :success) { "Active" } %>
@@ -30,15 +33,15 @@
         <%= lui.badge(status: :error) { "Inactive" } %>
       <% end %>
     <% end %>
+
     <% table.with_column("Last Synced") { |blog| blog.last_synced_at&.strftime("%b %d, %Y %H:%M") || "Never" } %>
     <% table.with_action { |blog| link_to "Edit", edit_admin_blog_path(blog) } %>
     <% table.with_action { |blog| link_to "Delete", admin_blog_path(blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" } } %>
   <% end %>
-
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
   <div class="admin-card py-12 text-center">
-    <p class="text-sm admin-subtext mb-4">No blogs yet</p>
+    <p class="admin-subtext mb-4 text-sm">No blogs yet</p>
     <%= lui.button(url: new_admin_blog_path, icon: "plus") { "Add your first blog" } %>
   </div>
 <% end %>

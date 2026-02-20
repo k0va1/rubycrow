@@ -1,8 +1,9 @@
-<div class="flex items-center justify-between mb-6">
+<div class="mb-6 flex items-center justify-between">
   <div>
-    <h1 class="text-2xl font-semibold admin-heading">Articles</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @articles.length %> articles on this page</p>
+    <h1 class="admin-heading text-2xl font-semibold">Articles</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @articles.length %> articles on this page</p>
   </div>
+
   <div class="flex items-center gap-3">
     <div data-controller="auto-submit">
       <%= lui.select(
@@ -15,6 +16,7 @@
         select_data: { action: "change->auto-submit#submit" }
       ) %>
     </div>
+
     <%= lui.button(url: new_admin_article_path, icon: "plus") { "New Article" } %>
   </div>
 </div>
@@ -24,6 +26,7 @@
     <% table.with_column("Title") { |article| link_to truncate(article.title, length: 50), admin_article_path(article) } %>
     <% table.with_column("Blog") { |article| link_to article.blog.name, admin_blog_path(article.blog) } %>
     <% table.with_column("Published At") { |article| article.published_at&.strftime("%b %d, %Y") || "—" } %>
+
     <% table.with_column("Processed") do |article| %>
       <% if article.processed? %>
         <%= lui.badge(status: :success) { "Yes" } %>
@@ -31,14 +34,14 @@
         <%= lui.badge(status: :warning) { "No" } %>
       <% end %>
     <% end %>
+
     <% table.with_action { |article| link_to "Edit", edit_admin_article_path(article) } %>
     <% table.with_action { |article| link_to "Delete", admin_article_path(article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" } } %>
   <% end %>
-
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
   <div class="admin-card py-12 text-center">
-    <p class="text-sm admin-subtext mb-4">No articles yet</p>
+    <p class="admin-subtext mb-4 text-sm">No articles yet</p>
     <%= lui.button(url: new_admin_article_path, icon: "plus") { "Add your first article" } %>
   </div>
 <% end %>

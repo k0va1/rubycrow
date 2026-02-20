@@ -1,8 +1,9 @@
-<div class="flex items-center justify-between mb-6">
+<div class="mb-6 flex items-center justify-between">
   <div>
-    <h1 class="text-2xl font-semibold admin-heading">Tracked Links</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @tracked_links.size %> links on this page</p>
+    <h1 class="admin-heading text-2xl font-semibold">Tracked Links</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @tracked_links.size %> links on this page</p>
   </div>
+
   <%= lui.button(url: new_admin_tracked_link_path, icon: "plus") { "New Tracked Link" } %>
 </div>
 
@@ -16,11 +17,10 @@
     <% table.with_action { |tl| link_to "Edit", edit_admin_tracked_link_path(tl) } %>
     <% table.with_action { |tl| link_to "Delete", admin_tracked_link_path(tl), data: { turbo_method: :delete, turbo_confirm: "Delete this tracked link?" } } %>
   <% end %>
-
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
   <div class="admin-card py-12 text-center">
-    <p class="text-sm admin-subtext mb-4">No tracked links yet</p>
+    <p class="admin-subtext mb-4 text-sm">No tracked links yet</p>
     <%= lui.button(url: new_admin_tracked_link_path, icon: "plus") { "Add your first tracked link" } %>
   </div>
 <% end %>

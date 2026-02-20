@@ -1,9 +1,8 @@
-<div class="mb-2">
-  <%= link_to "← Blogs", admin_blogs_path, class: "text-sm admin-link-back" %>
-</div>
+<div class="mb-2"><%= link_to "← Blogs", admin_blogs_path, class: "text-sm admin-link-back" %></div>
 
-<div class="flex items-center justify-between mb-6">
-  <h1 class="text-2xl font-semibold admin-heading"><%= @blog.name %></h1>
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="admin-heading text-2xl font-semibold"><%= @blog.name %></h1>
+
   <div class="flex gap-2">
     <%= lui.button(url: edit_admin_blog_path(@blog), style: :outline) { "Edit" } %>
     <%= link_to "Delete", admin_blog_path(@blog), data: { turbo_method: :delete, turbo_confirm: "Delete this blog?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
@@ -12,14 +11,18 @@
 
 <%= lui.description_list do |list| %>
   <% list.with_item(label: "Name", value: @blog.name) %>
+
   <% list.with_item(label: "URL") do %>
     <%= link_to @blog.url, @blog.url, target: "_blank", rel: "noopener noreferrer" %>
   <% end %>
+
   <% list.with_item(label: "RSS URL") do %>
     <%= link_to @blog.rss_url, @blog.rss_url, target: "_blank", rel: "noopener noreferrer" %>
   <% end %>
+
   <% list.with_item(label: "Description", value: @blog.description || "—") %>
   <% list.with_item(label: "Twitter", value: @blog.twitter || "—") %>
+
   <% list.with_item(label: "Active") do %>
     <% if @blog.active? %>
       <%= lui.badge(status: :success) { "Active" } %>
@@ -27,16 +30,18 @@
       <%= lui.badge(status: :error) { "Inactive" } %>
     <% end %>
   <% end %>
+
   <% list.with_item(label: "Tags", value: @blog.tags&.join(", ") || "—") %>
   <% list.with_item(label: "Last Synced", value: @blog.last_synced_at&.strftime("%b %d, %Y %H:%M") || "Never") %>
+
   <% list.with_item(label: "Articles") do %>
     <%= link_to "#{@blog.articles.count} articles", admin_articles_path(blog_id: @blog.id) %>
   <% end %>
 <% end %>
 
 <div class="mt-8">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="text-lg font-semibold admin-heading">Recent Articles</h2>
+  <div class="mb-4 flex items-center justify-between">
+    <h2 class="admin-heading text-lg font-semibold">Recent Articles</h2>
     <%= link_to "View all →", admin_articles_path(blog_id: @blog.id), class: "text-sm admin-link-back" %>
   </div>
 
@@ -44,6 +49,7 @@
     <%= lui.table(data: @recent_articles) do |table| %>
       <% table.with_column("Title") { |article| link_to truncate(article.title, length: 60), admin_article_path(article) } %>
       <% table.with_column("Published At") { |article| article.published_at&.strftime("%b %d, %Y") || "—" } %>
+
       <% table.with_column("Processed") do |article| %>
         <% if article.processed? %>
           <%= lui.badge(status: :success) { "Yes" } %>
@@ -51,11 +57,12 @@
           <%= lui.badge(status: :warning) { "No" } %>
         <% end %>
       <% end %>
+
       <% table.with_action { |article| link_to "View", admin_article_path(article) } %>
     <% end %>
   <% else %>
     <div class="admin-card py-8 text-center">
-      <p class="text-sm admin-subtext">No articles from this blog yet</p>
+      <p class="admin-subtext text-sm">No articles from this blog yet</p>
     </div>
   <% end %>
 </div>

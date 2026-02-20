@@ -1,14 +1,16 @@
-<div class="flex items-center justify-between mb-6">
+<div class="mb-6 flex items-center justify-between">
   <div>
-    <h1 class="text-2xl font-semibold admin-heading">Subscribers</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @subscribers.size %> subscribers on this page</p>
+    <h1 class="admin-heading text-2xl font-semibold">Subscribers</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @subscribers.size %> subscribers on this page</p>
   </div>
+
   <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "New Subscriber" } %>
 </div>
 
 <% if @subscribers.any? %>
   <%= lui.table(data: @subscribers) do |table| %>
     <% table.with_column("Email") { |sub| link_to sub.email, admin_subscriber_path(sub) } %>
+
     <% table.with_column("Status") do |sub| %>
       <% if sub.unsubscribed_at.present? %>
         <%= lui.badge(status: :error) { "Unsubscribed" } %>
@@ -18,15 +20,15 @@
         <%= lui.badge(status: :warning) { "Unconfirmed" } %>
       <% end %>
     <% end %>
+
     <% table.with_column("Subscribed At") { |sub| sub.subscribed_at&.strftime("%b %d, %Y") || "—" } %>
     <% table.with_action { |sub| link_to "Edit", edit_admin_subscriber_path(sub) } %>
     <% table.with_action { |sub| link_to "Delete", admin_subscriber_path(sub), data: { turbo_method: :delete, turbo_confirm: "Delete this subscriber?" } } %>
   <% end %>
-
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
   <div class="admin-card py-12 text-center">
-    <p class="text-sm admin-subtext mb-4">No subscribers yet</p>
+    <p class="admin-subtext mb-4 text-sm">No subscribers yet</p>
     <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "Add your first subscriber" } %>
   </div>
 <% end %>

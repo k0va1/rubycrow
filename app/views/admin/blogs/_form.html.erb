@@ -2,8 +2,9 @@
 <% if blog.errors.any? %>
   <div class="mb-4">
     <%= lui.alert(type: :error) do %>
-      <%= pluralize(blog.errors.count, "error") %> prevented this blog from being saved:
-      <ul class="mt-2 list-disc list-inside text-sm">
+      <%= pluralize(blog.errors.count, "error") %>
+      prevented this blog from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
         <% blog.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -20,7 +21,6 @@
   <%= lui.input(name: :twitter, form: form, label: "Twitter") %>
   <%= lui.switch(name: :active, form: form, label: "Active", enabled: blog.active?) %>
   <%= lui.input(name: :tags_string, form: form, label: "Tags", value: blog.tags&.join(", "), description: "Comma-separated") %>
-  <div>
-    <%= lui.button(type: :submit) { blog.persisted? ? "Update Blog" : "Create Blog" } %>
-  </div>
+
+  <div><%= lui.button(type: :submit) { blog.persisted? ? "Update Blog" : "Create Blog" } %></div>
 <% end %>

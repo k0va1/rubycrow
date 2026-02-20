@@ -1,6 +1,7 @@
 <div class="mb-6">
   <%= link_to "← #{truncate(@article.title, length: 40)}", admin_article_path(@article), class: "text-sm admin-link-back" %>
-  <h1 class="mt-2 text-2xl font-semibold admin-heading">Edit Article</h1>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">Edit Article</h1>
 </div>
 
 <%= render "form", article: @article %>

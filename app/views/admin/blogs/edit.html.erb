@@ -1,6 +1,7 @@
 <div class="mb-6">
   <%= link_to "← #{@blog.name}", admin_blog_path(@blog), class: "text-sm admin-link-back" %>
-  <h1 class="mt-2 text-2xl font-semibold admin-heading">Edit Blog</h1>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">Edit Blog</h1>
 </div>
 
 <%= render "form", blog: @blog %>

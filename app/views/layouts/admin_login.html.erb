@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <title>RubyCrow Admin — Sign In</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,31 +12,36 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "lightning_ui_kit", "data-turbo-track": "reload" %>
   </head>
-  <body class="min-h-screen flex items-center justify-center" style="background: var(--lui-theme-surface-secondary)">
+
+  <body class="flex min-h-screen items-center justify-center" style="background: var(--lui-theme-surface-secondary)">
     <div class="w-full max-w-sm px-4" data-controller="admin-theme">
-      <div class="text-center mb-8">
+      <div class="mb-8 text-center">
         <h1 class="text-3xl font-bold tracking-tight" style="color: var(--lui-theme-foreground)">RubyCrow</h1>
         <p class="mt-1 text-sm" style="color: var(--lui-theme-foreground-muted)">Newsletter administration</p>
       </div>
 
-      <div class="rounded-xl shadow-sm p-8" style="background: var(--lui-theme-surface); border: 1px solid var(--lui-theme-border)">
+      <div
+        class="rounded-xl p-8 shadow-sm"
+        style="background: var(--lui-theme-surface); border: 1px solid var(--lui-theme-border)"
+      >
         <% if flash[:notice] %>
-          <div class="mb-4">
-            <%= lui.alert(type: :success) { flash[:notice] } %>
-          </div>
+          <div class="mb-4"><%= lui.alert(type: :success) { flash[:notice] } %></div>
         <% end %>
 
         <% if flash[:alert] %>
-          <div class="mb-4">
-            <%= lui.alert(type: :error) { flash[:alert] } %>
-          </div>
+          <div class="mb-4"><%= lui.alert(type: :error) { flash[:alert] } %></div>
         <% end %>
 
         <%= yield %>
       </div>
 
       <div class="mt-6 text-center">
-        <button type="button" data-action="admin-theme#toggle" class="inline-flex items-center gap-1.5 text-sm cursor-pointer" style="color: var(--lui-theme-foreground-muted)">
+        <button
+          type="button"
+          data-action="admin-theme#toggle"
+          class="inline-flex cursor-pointer items-center gap-1.5 text-sm"
+          style="color: var(--lui-theme-foreground-muted)"
+        >
           <span data-admin-theme-target="icon"></span>
           Toggle theme
         </button>

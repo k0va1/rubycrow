@@ -2,8 +2,9 @@
 <% if tracked_link.errors.any? %>
   <div class="mb-4">
     <%= lui.alert(type: :error) do %>
-      <%= pluralize(tracked_link.errors.count, "error") %> prevented this tracked link from being saved:
-      <ul class="mt-2 list-disc list-inside text-sm">
+      <%= pluralize(tracked_link.errors.count, "error") %>
+      prevented this tracked link from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
         <% tracked_link.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -18,6 +19,7 @@
   <%= lui.select(name: :article_id, form: form, label: "Article (optional)", options_for_select: [["None", ""]] + Article.order(published_at: :desc).map { |a| [truncate(a.title, length: 60), a.id] }) %>
   <%= lui.select(name: :section, form: form, label: "Section", options_for_select: [["None", ""]] + TrackedLink::SECTIONS.map { |s| [s.titleize, s] }) %>
   <%= lui.input(name: :position_in_newsletter, form: form, type: :number, label: "Position in Newsletter") %>
+
   <div>
     <%= lui.button(type: :submit) { tracked_link.persisted? ? "Update Tracked Link" : "Create Tracked Link" } %>
   </div>

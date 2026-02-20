@@ -2,8 +2,9 @@
 <% if newsletter_issue.errors.any? %>
   <div class="mb-4">
     <%= lui.alert(type: :error) do %>
-      <%= pluralize(newsletter_issue.errors.count, "error") %> prevented this issue from being saved:
-      <ul class="mt-2 list-disc list-inside text-sm">
+      <%= pluralize(newsletter_issue.errors.count, "error") %>
+      prevented this issue from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
         <% newsletter_issue.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -19,7 +20,6 @@
   <%= lui.input(name: :subscriber_count, form: form, type: :number, label: "Subscriber Count") %>
   <%= lui.input(name: :total_clicks, form: form, type: :number, label: "Total Clicks") %>
   <%= lui.input(name: :total_unique_clicks, form: form, type: :number, label: "Total Unique Clicks") %>
-  <div>
-    <%= lui.button(type: :submit) { newsletter_issue.persisted? ? "Update Issue" : "Create Issue" } %>
-  </div>
+
+  <div><%= lui.button(type: :submit) { newsletter_issue.persisted? ? "Update Issue" : "Create Issue" } %></div>
 <% end %>

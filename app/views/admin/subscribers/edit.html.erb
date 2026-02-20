@@ -1,6 +1,7 @@
 <div class="mb-6">
   <%= link_to "← #{@subscriber.email}", admin_subscriber_path(@subscriber), class: "text-sm admin-link-back" %>
-  <h1 class="mt-2 text-2xl font-semibold admin-heading">Edit Subscriber</h1>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">Edit Subscriber</h1>
 </div>
 
 <%= render "form", subscriber: @subscriber %>

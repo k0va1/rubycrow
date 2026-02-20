@@ -1,7 +1,7 @@
-<div class="flex items-center justify-between mb-6">
+<div class="mb-6 flex items-center justify-between">
   <div>
-    <h1 class="text-2xl font-semibold admin-heading">Clicks</h1>
-    <p class="mt-1 text-sm admin-subtext"><%= @clicks.size %> clicks on this page</p>
+    <h1 class="admin-heading text-2xl font-semibold">Clicks</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @clicks.size %> clicks on this page</p>
   </div>
 </div>
 
@@ -9,6 +9,7 @@
   <%= lui.table(data: @clicks) do |table| %>
     <% table.with_column("Clicked At") { |click| click.clicked_at.strftime("%b %d, %Y %H:%M") } %>
     <% table.with_column("Destination") { |click| link_to truncate(click.tracked_link.destination_url, length: 40), click.tracked_link.destination_url, target: "_blank", rel: "noopener noreferrer" } %>
+
     <% table.with_column("Subscriber") do |click| %>
       <% if click.subscriber %>
         <%= link_to click.subscriber.email, admin_subscriber_path(click.subscriber) %>
@@ -16,9 +17,11 @@
         Anonymous
       <% end %>
     <% end %>
+
     <% table.with_column("Device") do |click| %>
       <%= lui.badge { click.device_type || "—" } %>
     <% end %>
+
     <% table.with_column("Unique") do |click| %>
       <% if click.unique_click? %>
         <%= lui.badge(status: :success) { "Yes" } %>
@@ -26,13 +29,13 @@
         <%= lui.badge { "No" } %>
       <% end %>
     <% end %>
+
     <% table.with_action { |click| link_to "View", admin_click_path(click) } %>
     <% table.with_action { |click| link_to "Delete", admin_click_path(click), data: { turbo_method: :delete, turbo_confirm: "Delete this click?" } } %>
   <% end %>
-
   <%= render "admin/shared/pagination", pagy: @pagy %>
 <% else %>
   <div class="admin-card py-12 text-center">
-    <p class="text-sm admin-subtext">No clicks recorded yet</p>
+    <p class="admin-subtext text-sm">No clicks recorded yet</p>
   </div>
 <% end %>

@@ -2,8 +2,9 @@
 <% if article.errors.any? %>
   <div class="mb-4">
     <%= lui.alert(type: :error) do %>
-      <%= pluralize(article.errors.count, "error") %> prevented this article from being saved:
-      <ul class="mt-2 list-disc list-inside text-sm">
+      <%= pluralize(article.errors.count, "error") %>
+      prevented this article from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
         <% article.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -21,7 +22,6 @@
   <%= lui.input(name: :published_at, form: form, type: :datetime_local, label: "Published At") %>
   <%= lui.switch(name: :processed, form: form, label: "Processed", enabled: article.processed?) %>
   <%= lui.input(name: :featured_in_issue, form: form, type: :number, label: "Featured in Issue") %>
-  <div>
-    <%= lui.button(type: :submit) { article.persisted? ? "Update Article" : "Create Article" } %>
-  </div>
+
+  <div><%= lui.button(type: :submit) { article.persisted? ? "Update Article" : "Create Article" } %></div>
 <% end %>

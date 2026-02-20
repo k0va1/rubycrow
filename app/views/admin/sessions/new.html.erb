@@ -1,7 +1,6 @@
 <%= form_with url: admin_session_path, method: :post, class: "space-y-4" do |form| %>
   <%= lui.input(name: :email, type: :email, label: "Email", placeholder: "admin@example.com") %>
   <%= lui.input(name: :password, type: :password, label: "Password") %>
-  <div>
-    <%= lui.button(type: :submit) { "Sign In" } %>
-  </div>
+
+  <div><%= lui.button(type: :submit) { "Sign In" } %></div>
 <% end %>
