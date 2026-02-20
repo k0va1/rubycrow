@@ -276,12 +276,6 @@
   tags:
     - personal
 
-- name: "Martin Fowler"
-  url: "https://martinfowler.com/tags/ruby.html"
-  rss_url: "https://martinfowler.com/feed.atom"
-  tags:
-    - personal
-
 - name: "Matheus Richard"
   url: "https://www.matheusrich.com/"
   rss_url: "https://www.matheusrich.com/feed"
