@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/kodehealth/activejob-uniqueness.git
+  revision: 548d8a49e72335af066810f9d7e1f51eebac8558
+  branch: main
+  specs:
+    activejob-uniqueness (0.4.0)
+      activejob (>= 4.2, < 8.2)
+      activesupport (>= 4.2, < 8.2)
+      redlock (>= 2.0, < 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -298,6 +308,8 @@ GEM
       redis-client (>= 0.22.0)
     redis-client (0.26.4)
       connection_pool
+    redlock (2.1.0)
+      redis-client (>= 0.14.1, < 1.0.0)
     regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -428,6 +440,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  activejob-uniqueness!
   amazing_print
   annotaterb
   bootsnap
@@ -474,6 +487,7 @@ CHECKSUMS
   actiontext (8.1.2) sha256=0bf57da22a9c19d970779c3ce24a56be31b51c7640f2763ec64aa72e358d2d2d
   actionview (8.1.2) sha256=80455b2588911c9b72cec22d240edacb7c150e800ef2234821269b2b2c3e2e5b
   activejob (8.1.2) sha256=908dab3713b101859536375819f4156b07bdf4c232cc645e7538adb9e302f825
+  activejob-uniqueness (0.4.0)
   activemodel (8.1.2) sha256=e21358c11ce68aed3f9838b7e464977bc007b4446c6e4059781e1d5c03bcf33e
   activerecord (8.1.2) sha256=acfbe0cadfcc50fa208011fe6f4eb01cae682ebae0ef57145ba45380c74bcc44
   activestorage (8.1.2) sha256=8a63a48c3999caeee26a59441f813f94681fc35cc41aba7ce1f836add04fba76
@@ -580,6 +594,7 @@ CHECKSUMS
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
   redis (5.4.1) sha256=b5e675b57ad22b15c9bcc765d5ac26f60b675408af916d31527af9bd5a81faae
   redis-client (0.26.4) sha256=3ad70beff5da2653e02dfeae996e7d8d7147a558da12b16b2282ad345e4c7120
+  redlock (2.1.0) sha256=3345271631b459c66e640854dde339cf1be3f6fcfab36ff63d8ff70feac73bac
   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4
   reline (0.6.3) sha256=1198b04973565b36ec0f11542ab3f5cfeeec34823f4e54cebde90968092b1835
   resend (1.0.0) sha256=b64defd50a1967e8a6ef346b94dab4f1dd76628b36be556866e45db648d60a07
