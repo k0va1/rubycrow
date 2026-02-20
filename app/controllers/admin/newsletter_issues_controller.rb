@@ -34,8 +34,17 @@ module Admin
     def preview
       subscriber = Subscriber.first || Subscriber.new(id: 0, email: "preview@example.com")
       mail = NewsletterMailer.issue(newsletter_issue: @newsletter_issue, subscriber: subscriber)
-      html_part = mail.html_part.body.decoded
-      render html: html_part.html_safe, layout: false
+      html = mail.html_part.body.decoded
+
+      mail.attachments.each do |attachment|
+        next unless attachment.content_id.present?
+
+        cid = attachment.content_id.delete("<>")
+        data_uri = "data:#{attachment.mime_type};base64,#{Base64.strict_encode64(attachment.body.decoded)}"
+        html.gsub!("cid:#{cid}", data_uri)
+      end
+
+      render html: html.html_safe, layout: false
     end
 
     def publish
