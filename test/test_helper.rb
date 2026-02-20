@@ -29,7 +29,7 @@ class ActiveSupport::TestCase
   end
 
   def clear_uniqueness_locks
-    redis_url = Rails.application.credentials.dig(:redis_url)
+    redis_url = ENV["REDIS_URL"] || Rails.application.credentials.redis_url
     return unless redis_url
 
     redis = Redis.new(url: redis_url)
