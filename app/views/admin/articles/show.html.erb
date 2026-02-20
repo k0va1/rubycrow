@@ -13,7 +13,7 @@
   <% list.with_item(label: "Title", value: @article.title) %>
 
   <% list.with_item(label: "URL") do %>
-    <%= link_to @article.url, @article.url, target: "_blank", rel: "noopener noreferrer" %>
+    <%= link_to @article.url, safe_external_url(@article.url), target: "_blank", rel: "noopener noreferrer" %>
   <% end %>
 
   <% list.with_item(label: "Blog") do %>

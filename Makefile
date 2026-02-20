@@ -24,10 +24,12 @@ test:
 lint:
 	bundle exec rake standard
 	herb-format --check
+	bin/brakeman --no-pager
 
 lint-fix:
 	bundle exec rake standard:fix
 	herb-format
+	bin/brakeman --no-pager
 
 db-reset:
 	bundle exec rails db:drop

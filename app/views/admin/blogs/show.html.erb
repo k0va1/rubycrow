@@ -13,11 +13,11 @@
   <% list.with_item(label: "Name", value: @blog.name) %>
 
   <% list.with_item(label: "URL") do %>
-    <%= link_to @blog.url, @blog.url, target: "_blank", rel: "noopener noreferrer" %>
+    <%= link_to @blog.url, safe_external_url(@blog.url), target: "_blank", rel: "noopener noreferrer" %>
   <% end %>
 
   <% list.with_item(label: "RSS URL") do %>
-    <%= link_to @blog.rss_url, @blog.rss_url, target: "_blank", rel: "noopener noreferrer" %>
+    <%= link_to @blog.rss_url, safe_external_url(@blog.rss_url), target: "_blank", rel: "noopener noreferrer" %>
   <% end %>
 
   <% list.with_item(label: "Description", value: @blog.description || "—") %>
