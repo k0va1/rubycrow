@@ -473,6 +473,7 @@ DEPENDENCIES
   sidekiq-scheduler
   simplecov
   standard
+  standard-performance
   standard-rails
   stimulus-rails
   strong_migrations

@@ -33,6 +33,7 @@ group :development, :test do
   gem "debug"
   gem "standard"
   gem "standard-rails"
+  gem "standard-performance"
 end
 
 group :development do
