@@ -42,6 +42,9 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_emails 1 do
       post subscribers_path, params: {email: "new@example.com", form_id: "subscribe-form-hero"}, as: :turbo_stream
     end
+
+    enqueued_job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
+    assert_equal "critical", enqueued_job[:queue]
   end
 
   test "does not enqueue confirmation email on failed signup" do
