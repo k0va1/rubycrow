@@ -19,13 +19,17 @@
     >
 
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="<%= Rails.configuration.app_origin %>">
+    <meta property="og:image" content="<%= image_url("rubycrow-og.webp") %>">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RubyCrow — A Curated Ruby & Rails Newsletter">
 
     <meta
       name="twitter:description"
       content="Hand-picked Ruby & Rails articles, gems, and community highlights. Weekly."
     >
+
+    <meta name="twitter:image" content="<%= image_url("rubycrow-og.webp") %>">
 
     <link rel="icon" type="image/png" href="/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
