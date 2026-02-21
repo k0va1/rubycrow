@@ -1,7 +1,9 @@
 require "sidekiq/resend_rate_limiter"
 
+REDIS_URL = ENV.fetch("REDIS_URL") { Rails.application.credentials.redis_url }
+
 Sidekiq.configure_server do |config|
-  config.redis = {url: Rails.application.credentials.redis_url, reconnect_attempts: 10}
+  config.redis = {url: REDIS_URL, reconnect_attempts: 10}
 
   config.server_middleware do |chain|
     chain.add Sidekiq::ResendRateLimiter
@@ -18,5 +20,5 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = {url: Rails.application.credentials.redis_url, reconnect_attempts: 3}
+  config.redis = {url: REDIS_URL, reconnect_attempts: 3}
 end
