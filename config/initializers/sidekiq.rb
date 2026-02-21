@@ -1,5 +1,11 @@
+require "sidekiq/resend_rate_limiter"
+
 Sidekiq.configure_server do |config|
   config.redis = {url: Rails.application.credentials.redis_url, reconnect_attempts: 10}
+
+  config.server_middleware do |chain|
+    chain.add Sidekiq::ResendRateLimiter
+  end
 
   config.on(:startup) do
     schedule_file = Rails.root.join("config/scheduler/#{Rails.env}.yml")
