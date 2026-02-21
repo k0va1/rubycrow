@@ -31,4 +31,19 @@ class NewsletterItem < ApplicationRecord
   validates :url, presence: true
 
   default_scope { order(:position) }
+
+  def first_flight?
+    return false unless article&.blog_id
+
+    blog_id = article.blog_id
+    current_issue = newsletter_section.newsletter_issue
+
+    !NewsletterItem
+      .joins(newsletter_section: :newsletter_issue)
+      .joins(:article)
+      .where(articles: {blog_id: blog_id})
+      .where(newsletter_issues: {sent_at: ...current_issue.created_at})
+      .where.not(newsletter_sections: {newsletter_issue_id: current_issue.id})
+      .exists?
+  end
 end

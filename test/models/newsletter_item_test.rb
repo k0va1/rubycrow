@@ -58,4 +58,32 @@ class NewsletterItemTest < ActiveSupport::TestCase
     assert item.valid?
     assert_equal article, item.article
   end
+
+  test "first_flight? returns false when item has no article" do
+    item = newsletter_items(:ruby_gem)
+    assert_not item.first_flight?
+  end
+
+  test "first_flight? returns true when blog has not appeared in any previously sent issue" do
+    item = newsletter_items(:issue_two_martians)
+    assert item.first_flight?
+  end
+
+  test "first_flight? returns false when blog appeared in a previously sent issue" do
+    item = newsletter_items(:issue_two_speedshop)
+    assert_not item.first_flight?
+  end
+
+  test "first_flight? returns true when blog only appears in same unsent issue" do
+    section = newsletter_sections(:issue_two_picks)
+    article = articles(:martians_article)
+    another_item = NewsletterItem.create!(
+      newsletter_section: section,
+      article: article,
+      title: "Another Martians Post",
+      url: "https://example.com/another-martians",
+      position: 2
+    )
+    assert another_item.first_flight?
+  end
 end

@@ -24,6 +24,7 @@
 #
 rails_update:
   newsletter_section: crows_pick
+  article: rails_performance
   title: "Rails 8.1 Released"
   description: "Major release with async queries"
   url: "https://example.com/rails-8-1"
@@ -35,3 +36,19 @@ ruby_gem:
   description: "A useful new gem"
   url: "https://example.com/new-gem"
   position: 0
+
+issue_two_speedshop:
+  newsletter_section: issue_two_picks
+  article: older_article
+  title: "Ruby Memory Management"
+  description: "Understanding Ruby memory"
+  url: "https://example.com/memory"
+  position: 0
+
+issue_two_martians:
+  newsletter_section: issue_two_picks
+  article: martians_article
+  title: "ViewComponent Best Practices"
+  description: "How to use ViewComponent effectively"
+  url: "https://example.com/viewcomponent"
+  position: 1

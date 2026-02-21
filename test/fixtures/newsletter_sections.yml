@@ -27,3 +27,8 @@ shiny_objects:
   newsletter_issue: issue_one
   title: "Shiny Objects"
   position: 1
+
+issue_two_picks:
+  newsletter_issue: issue_two
+  title: "Crows Pick"
+  position: 0

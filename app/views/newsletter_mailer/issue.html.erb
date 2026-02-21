@@ -63,6 +63,9 @@
                   <% if item.article&.blog %>
                     by
                     <span style="color: #999;"><%= item.article.blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                      <span style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;">&#x1F195; First Flight</span>
+                    <% end %>
                   <% end %>
                 </p>
 
@@ -112,6 +115,9 @@
                   <% if item.article&.blog %>
                     by
                     <span style="color: #999;"><%= item.article.blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                      <span style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;">&#x1F195; First Flight</span>
+                    <% end %>
                   <% end %>
                 </p>
 
@@ -165,6 +171,9 @@
                   <% if item.article&.blog %>
                     by
                     <span style="color: #999;"><%= item.article.blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                      <span style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;">&#x1F195; First Flight</span>
+                    <% end %>
                   <% end %>
                 </p>
 
@@ -206,7 +215,12 @@
                 </a>
 
                 <% if item.article&.blog %>
-                  <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;"><%= item.article.blog.name %></p>
+                  <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;">
+                    <%= item.article.blog.name %>
+                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                      <span style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;">&#x1F195; First Flight</span>
+                    <% end %>
+                  </p>
                 <% end %>
               </td>
             </tr>
