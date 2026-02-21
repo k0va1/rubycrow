@@ -15,7 +15,10 @@ module RssParseable
   EXCLUDED_TITLE_PATTERNS = /\A\s*(terms|privacy|cookie|disclaimer|legal|imprint)\b/i
 
   def fetch_feed
-    response = http_client.get(rss_url) { |req| req.options.timeout = FEED_TIMEOUT }
+    response = http_client.get(rss_url) do |req|
+      req.options.timeout = FEED_TIMEOUT
+      req.options.open_timeout = FEED_TIMEOUT
+    end
     feed = Feedjira.parse(response.body)
 
     records = feed.entries.each_with_object({}) do |entry, hash|
