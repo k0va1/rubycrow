@@ -15,6 +15,9 @@ module Admin
       @period = params[:period]
       scope = scope.where("published_at >= ?", PERIOD_FILTERS[@period].ago) if PERIOD_FILTERS.key?(@period)
 
+      @search = params[:search]
+      scope = scope.search_by_title(@search) if @search.present?
+
       @pagy, @articles = pagy(scope)
     end
 

@@ -55,6 +55,18 @@ class Admin::SubscribersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
   end
 
+  test "index with search by email" do
+    get admin_subscribers_path(search: "dev@")
+    assert_response :success
+    assert_includes response.body, "dev@example.com"
+    assert_not_includes response.body, "rubyist@example.com"
+  end
+
+  test "index with search no results" do
+    get admin_subscribers_path(search: "nonexistent")
+    assert_response :success
+  end
+
   test "destroy" do
     subscriber_without_clicks = subscribers(:inactive)
     assert_difference("Subscriber.count", -1) do

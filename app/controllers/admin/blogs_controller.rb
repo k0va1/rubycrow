@@ -20,6 +20,12 @@ module Admin
         blogs = blogs.having("MAX(articles.published_at) >= ?", PERIOD_FILTERS[@period].ago)
       end
 
+      @search = params[:search]
+      if @search.present?
+        term = "%#{Blog.sanitize_sql_like(@search)}%"
+        blogs = blogs.where("blogs.name ILIKE :term OR blogs.url ILIKE :term", term: term)
+      end
+
       @pagy, @blogs = pagy(blogs)
     end
 

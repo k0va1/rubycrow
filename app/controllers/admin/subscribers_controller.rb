@@ -3,7 +3,15 @@ module Admin
     before_action :set_subscriber, only: [:show, :edit, :update, :destroy]
 
     def index
-      @pagy, @subscribers = pagy(Subscriber.order(created_at: :desc))
+      scope = Subscriber.order(created_at: :desc)
+
+      @search = params[:search]
+      if @search.present?
+        term = "%#{Subscriber.sanitize_sql_like(@search)}%"
+        scope = scope.where("email ILIKE ?", term)
+      end
+
+      @pagy, @subscribers = pagy(scope)
     end
 
     def show

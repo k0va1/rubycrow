@@ -60,6 +60,18 @@ class Admin::ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
   end
 
+  test "index with search by title" do
+    get admin_articles_path(search: "Rails")
+    assert_response :success
+    assert_includes response.body, "How to Make Your Rails App Fast"
+    assert_not_includes response.body, "ViewComponent Best Practices"
+  end
+
+  test "index with search no results" do
+    get admin_articles_path(search: "nonexistent")
+    assert_response :success
+  end
+
   test "destroy" do
     assert_difference("Article.count", -1) do
       delete admin_article_path(@article)

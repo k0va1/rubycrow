@@ -62,6 +62,25 @@ class Admin::BlogsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_blogs_path
   end
 
+  test "index with search by name" do
+    get admin_blogs_path(search: "Nate")
+    assert_response :success
+    assert_includes response.body, "Nate Berkopec"
+    assert_not_includes response.body, "Evil Martians"
+  end
+
+  test "index with search by URL" do
+    get admin_blogs_path(search: "speedshop")
+    assert_response :success
+    assert_includes response.body, "Nate Berkopec"
+    assert_not_includes response.body, "Evil Martians"
+  end
+
+  test "index with search no results" do
+    get admin_blogs_path(search: "nonexistent")
+    assert_response :success
+  end
+
   test "create with tags string" do
     post admin_blogs_path, params: {blog: {name: "Tagged Blog", url: "https://tagged.com", rss_url: "https://tagged.com/feed", tags_string: "ruby, rails, web"}}
     blog = Blog.last

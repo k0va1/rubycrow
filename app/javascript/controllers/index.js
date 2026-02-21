@@ -32,3 +32,6 @@ application.register("sortable", SortableController)
 
 import ArticleAutofillController from "./article_autofill_controller"
 application.register("article-autofill", ArticleAutofillController)
+
+import SearchFormController from "./search_form_controller"
+application.register("search-form", SearchFormController)

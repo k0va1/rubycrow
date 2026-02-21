@@ -57,6 +57,61 @@ class BlogTest < ActiveSupport::TestCase
     end
   end
 
+  test "new? returns true when imported_at is recent" do
+    blog = blogs(:evil_martians)
+    assert blog.new?
+  end
+
+  test "new? returns false when imported_at is old" do
+    blog = blogs(:speedshop)
+    assert_not blog.new?
+  end
+
+  test "new? returns false when imported_at is nil" do
+    blog = blogs(:inactive_blog)
+    assert_nil blog.imported_at
+    assert_not blog.new?
+  end
+
+  test "sync_from_registry! sets imported_at for new blogs" do
+    registry_yaml = <<~YAML
+      - name: "Brand New Blog"
+        url: "https://brandnew.example.com"
+        rss_url: "https://brandnew.example.com/feed.xml"
+        description: "A brand new blog"
+        tags:
+          - ruby
+    YAML
+
+    stub_request(:get, Blog::REGISTRY_URL).to_return(body: registry_yaml)
+
+    Click.delete_all
+    TrackedLink.delete_all
+    Article.delete_all
+    Blog.delete_all
+
+    Blog.sync_from_registry!
+
+    blog = Blog.last
+    assert_not_nil blog.imported_at
+  end
+
+  test "sync_from_registry! does not overwrite imported_at for existing blogs" do
+    original_imported_at = blogs(:speedshop).imported_at
+
+    registry_yaml = <<~YAML
+      - name: "Nate Berkopec"
+        url: "https://www.speedshop.co"
+        rss_url: "https://www.speedshop.co/feed.xml"
+        description: "Updated description"
+    YAML
+
+    stub_request(:get, Blog::REGISTRY_URL).to_return(body: registry_yaml)
+    Blog.sync_from_registry!
+
+    assert_equal original_imported_at, blogs(:speedshop).reload.imported_at
+  end
+
   test "sync_from_registry! creates blogs from YAML" do
     registry_yaml = <<~YAML
       - name: "New Blog"

@@ -5,6 +5,19 @@
   </div>
 
   <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by name or URL...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
     <div data-controller="auto-submit">
       <%= lui.select(
         name: :period,
@@ -23,7 +36,12 @@
 
 <% if @blogs.any? %>
   <%= lui.table(data: @blogs) do |table| %>
-    <% table.with_column("Name") { |blog| link_to blog.name, admin_blog_path(blog) } %>
+    <% table.with_column("Name") do |blog| %>
+      <%= link_to blog.name, admin_blog_path(blog) %>
+      <% if blog.new? %>
+        <%= lui.badge(status: :info) { "New" } %>
+      <% end %>
+    <% end %>
     <% table.with_column("URL") { |blog| link_to truncate(blog.url, length: 40), blog.url, target: "_blank", rel: "noopener noreferrer" } %>
 
     <% table.with_column("Active") do |blog| %>

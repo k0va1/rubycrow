@@ -4,7 +4,22 @@
     <p class="admin-subtext mt-1 text-sm"><%= @subscribers.size %> subscribers on this page</p>
   </div>
 
-  <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "New Subscriber" } %>
+  <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by email...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
+    <%= lui.button(url: new_admin_subscriber_path, icon: "plus") { "New Subscriber" } %>
+  </div>
 </div>
 
 <% if @subscribers.any? %>

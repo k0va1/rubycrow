@@ -5,6 +5,19 @@
   </div>
 
   <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by title...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
     <div data-controller="auto-submit">
       <%= lui.select(
         name: :period,

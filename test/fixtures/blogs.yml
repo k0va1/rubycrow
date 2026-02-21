@@ -5,6 +5,7 @@
 #  id             :bigint           not null, primary key
 #  active         :boolean          default(TRUE), not null
 #  description    :text
+#  imported_at    :datetime
 #  last_synced_at :datetime
 #  name           :string           not null
 #  rss_url        :string           not null
@@ -30,6 +31,7 @@ speedshop:
     - rails
   twitter: "nateberkopec"
   active: true
+  imported_at: <%= 2.weeks.ago.to_fs(:db) %>
 
 evil_martians:
   name: "Evil Martians"
@@ -41,6 +43,7 @@ evil_martians:
     - ruby
   twitter: "eaborai"
   active: true
+  imported_at: <%= 1.day.ago.to_fs(:db) %>
 
 inactive_blog:
   name: "Old Blog"

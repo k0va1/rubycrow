@@ -5,6 +5,7 @@
 #  id             :bigint           not null, primary key
 #  active         :boolean          default(TRUE), not null
 #  description    :text
+#  imported_at    :datetime
 #  last_synced_at :datetime
 #  name           :string           not null
 #  rss_url        :string           not null
@@ -33,6 +34,10 @@ class Blog < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  def new?
+    imported_at.present? && imported_at >= 1.week.ago
+  end
+
   def self.sync_from_registry!
     response = Faraday.get(REGISTRY_URL)
     entries = YAML.safe_load(response.body, permitted_classes: [Symbol])
@@ -40,6 +45,7 @@ class Blog < ApplicationRecord
 
     entries.each do |entry|
       blog = find_or_initialize_by(url: entry["url"])
+      blog.imported_at = Time.current if blog.new_record?
       blog.assign_attributes(
         name: entry["name"],
         rss_url: entry["rss_url"],
