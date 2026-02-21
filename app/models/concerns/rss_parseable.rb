@@ -2,7 +2,6 @@ module RssParseable
   extend ActiveSupport::Concern
 
   FEED_TIMEOUT = 15
-  CONTENT_MAX_LENGTH = 500
 
   EXCLUDED_URL_PATTERNS = %w[
     /terms /terms-and-conditions /terms-of-service /tos
@@ -31,7 +30,6 @@ module RssParseable
         title: entry.title&.strip,
         published_at: entry.published,
         summary: sanitize_text(entry.summary),
-        content_snippet: sanitize_text(entry.content),
         tags: extract_tags(entry)
       }
     end.values
@@ -55,7 +53,7 @@ module RssParseable
       Article.upsert_all(
         records,
         unique_by: :index_articles_on_blog_id_and_url,
-        update_only: %i[title published_at summary content_snippet tags]
+        update_only: %i[title published_at summary tags]
       )
     end
 
@@ -107,7 +105,6 @@ module RssParseable
   def sanitize_text(text)
     return nil if text.blank?
 
-    stripped = ActionController::Base.helpers.strip_tags(text).squish
-    stripped.truncate(CONTENT_MAX_LENGTH)
+    ActionController::Base.helpers.strip_tags(text).squish
   end
 end

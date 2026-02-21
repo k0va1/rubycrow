@@ -3,7 +3,6 @@
 # Table name: articles
 #
 #  id                :bigint           not null, primary key
-#  content_snippet   :text
 #  featured_in_issue :integer
 #  processed         :boolean          default(FALSE)
 #  published_at      :datetime
@@ -30,6 +29,7 @@
 #  fk_rails_...  (blog_id => blogs.id)
 #
 class Article < ApplicationRecord
+  self.ignored_columns += ["content_snippet"]
   belongs_to :blog
   has_many :newsletter_items, dependent: :nullify
 

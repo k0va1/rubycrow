@@ -61,7 +61,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:title, :url, :blog_id, :content_snippet, :summary, :published_at, :processed, :featured_in_issue)
+      params.require(:article).permit(:title, :url, :blog_id, :summary, :published_at, :processed, :featured_in_issue)
     end
   end
 end

@@ -3,7 +3,6 @@
 # Table name: articles
 #
 #  id                :bigint           not null, primary key
-#  content_snippet   :text
 #  featured_in_issue :integer
 #  processed         :boolean          default(FALSE)
 #  published_at      :datetime

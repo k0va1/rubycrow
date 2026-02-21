@@ -17,7 +17,6 @@
   <%= lui.input(name: :title, form: form, label: "Title") %>
   <%= lui.input(name: :url, form: form, type: :url, label: "URL") %>
   <%= lui.select(name: :blog_id, form: form, label: "Blog", options_for_select: Blog.order(:name).pluck(:name, :id)) %>
-  <%= lui.textarea(name: :content_snippet, form: form, label: "Content Snippet", rows: 3) %>
   <%= lui.textarea(name: :summary, form: form, label: "Summary", rows: 3) %>
   <%= lui.input(name: :published_at, form: form, type: :datetime_local, label: "Published At") %>
   <%= lui.switch(name: :processed, form: form, label: "Processed", enabled: article.processed?) %>
