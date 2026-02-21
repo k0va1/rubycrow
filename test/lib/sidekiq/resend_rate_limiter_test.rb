@@ -34,14 +34,14 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
     payload = real_mailer_payload(subscriber)
 
     with_clean_window do
-      2.times { @limiter.call(nil, payload, "critical") { } }
+      2.times { @limiter.call(nil, payload, "critical") {} }
 
       slept = false
       @limiter.stub(:sleep, ->(_) {
         slept = true
         flush_current_key
       }) do
-        @limiter.call(nil, payload, "critical") { }
+        @limiter.call(nil, payload, "critical") {}
       end
 
       assert slept
@@ -56,10 +56,10 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
     flush_current_key
 
     2.times do
-      @limiter.call(nil, payload, "critical") { delivery_times << Time.now }
+      @limiter.call(nil, payload, "critical") { delivery_times << Time.current }
     end
 
-    @limiter.call(nil, payload, "critical") { delivery_times << Time.now }
+    @limiter.call(nil, payload, "critical") { delivery_times << Time.current }
 
     assert_equal 3, delivery_times.size
     gap = delivery_times.last - delivery_times.first
@@ -71,11 +71,11 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
     payload = real_mailer_payload(subscriber)
 
     with_clean_window do
-      2.times { @limiter.call(nil, payload, "critical") { } }
+      2.times { @limiter.call(nil, payload, "critical") {} }
 
       slept = false
       @limiter.stub(:sleep, ->(_) { slept = true }) do
-        @limiter.call(nil, {"wrapped" => "ParseRssFeedJob", "args" => []}, "default") { }
+        @limiter.call(nil, {"wrapped" => "ParseRssFeedJob", "args" => []}, "default") {}
       end
 
       refute slept
@@ -87,10 +87,10 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
     payload = real_mailer_payload(subscriber)
 
     with_clean_window do |key|
-      @limiter.call(nil, payload, "critical") { }
+      @limiter.call(nil, payload, "critical") {}
       assert_equal 1, Sidekiq.redis { |conn| conn.call("GET", key).to_i }
 
-      @limiter.call(nil, payload, "critical") { }
+      @limiter.call(nil, payload, "critical") {}
       assert_equal 2, Sidekiq.redis { |conn| conn.call("GET", key).to_i }
     end
   end
@@ -99,7 +99,7 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
     subscriber = subscribers(:inactive)
 
     with_clean_window do |key|
-      @limiter.call(nil, real_mailer_payload(subscriber), "critical") { }
+      @limiter.call(nil, real_mailer_payload(subscriber), "critical") {}
 
       ttl = Sidekiq.redis { |conn| conn.call("TTL", key) }
       assert_equal 1, ttl
@@ -116,7 +116,7 @@ class Sidekiq::ResendRateLimiterTest < ActiveSupport::TestCase
   end
 
   def with_clean_window
-    travel_to Time.at(Time.now.to_i + rand(1_000_000)) do
+    travel_to Time.zone.at(Time.now.to_i + rand(1_000_000)) do
       key = "resend:ratelimit:#{Time.now.to_i}"
       Sidekiq.redis { |conn| conn.call("DEL", key) }
       yield key
