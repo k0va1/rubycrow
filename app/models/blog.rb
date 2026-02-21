@@ -51,6 +51,7 @@ class Blog < ApplicationRecord
         rss_url: entry["rss_url"],
         description: entry["description"],
         tags: entry["tags"] || [],
+        twitter: entry["twitter"]&.delete_prefix("@"),
         active: true
       )
       blog.save!
