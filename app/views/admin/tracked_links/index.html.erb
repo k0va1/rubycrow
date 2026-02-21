@@ -1,7 +1,7 @@
 <div class="mb-6 flex items-center justify-between">
   <div>
     <h1 class="admin-heading text-2xl font-semibold">Tracked Links</h1>
-    <p class="admin-subtext mt-1 text-sm"><%= @tracked_links.size %> links on this page</p>
+    <p class="admin-subtext mt-1 text-sm"><%= @pagy.count %> links total</p>
   </div>
 
   <%= lui.button(url: new_admin_tracked_link_path, icon: "plus") { "New Tracked Link" } %>

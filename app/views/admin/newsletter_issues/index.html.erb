@@ -1,7 +1,7 @@
 <div class="mb-6 flex items-center justify-between">
   <div>
     <h1 class="admin-heading text-2xl font-semibold">Newsletter Issues</h1>
-    <p class="admin-subtext mt-1 text-sm"><%= @newsletter_issues.size %> issues on this page</p>
+    <p class="admin-subtext mt-1 text-sm"><%= @pagy.count %> issues total</p>
   </div>
 
   <%= lui.button(url: new_admin_newsletter_issue_path, icon: "plus") { "New Issue" } %>
