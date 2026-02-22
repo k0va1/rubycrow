@@ -1,0 +1,7 @@
+<div class="mb-6">
+  <%= link_to "← GitHub Repos", admin_github_repos_path, class: "text-sm admin-link-back" %>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">New GitHub Repo</h1>
+</div>
+
+<%= render "form", github_repo: @github_repo %>

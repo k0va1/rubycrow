@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_22_110355) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_22_122912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_22_110355) do
     t.index ["tracked_link_id"], name: "index_clicks_on_tracked_link_id"
   end
 
+  create_table "github_repos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.integer "featured_in_issue"
+    t.datetime "first_seen_at"
+    t.integer "forks", default: 0
+    t.string "full_name", null: false
+    t.string "language"
+    t.datetime "last_synced_at"
+    t.string "name", null: false
+    t.string "owner_avatar_url"
+    t.string "owner_name"
+    t.boolean "processed", default: false
+    t.datetime "repo_created_at"
+    t.datetime "repo_pushed_at"
+    t.integer "stars", default: 0
+    t.text "topics", default: [], array: true
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.index ["featured_in_issue"], name: "index_github_repos_on_featured_in_issue"
+    t.index ["full_name"], name: "index_github_repos_on_full_name", unique: true
+    t.index ["processed"], name: "index_github_repos_on_processed"
+    t.index ["repo_pushed_at"], name: "index_github_repos_on_repo_pushed_at"
+    t.index ["stars"], name: "index_github_repos_on_stars"
+  end
+
   create_table "newsletter_issues", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "issue_number", null: false
@@ -103,6 +129,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_22_110355) do
     t.datetime "updated_at", null: false
     t.index ["newsletter_issue_id", "position"], name: "index_newsletter_sections_on_newsletter_issue_id_and_position"
     t.index ["newsletter_issue_id"], name: "index_newsletter_sections_on_newsletter_issue_id"
+  end
+
+  create_table "reddit_posts", force: :cascade do |t|
+    t.string "author"
+    t.datetime "created_at", null: false
+    t.string "external_url"
+    t.integer "featured_in_issue"
+    t.datetime "first_seen_at"
+    t.datetime "last_synced_at"
+    t.integer "num_comments", default: 0
+    t.datetime "posted_at"
+    t.boolean "processed", default: false
+    t.string "reddit_id", null: false
+    t.integer "score", default: 0
+    t.string "subreddit", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.index ["featured_in_issue"], name: "index_reddit_posts_on_featured_in_issue"
+    t.index ["posted_at"], name: "index_reddit_posts_on_posted_at"
+    t.index ["processed"], name: "index_reddit_posts_on_processed"
+    t.index ["reddit_id"], name: "index_reddit_posts_on_reddit_id", unique: true
+    t.index ["score"], name: "index_reddit_posts_on_score"
+    t.index ["subreddit"], name: "index_reddit_posts_on_subreddit"
   end
 
   create_table "ruby_gems", force: :cascade do |t|

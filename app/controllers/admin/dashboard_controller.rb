@@ -10,6 +10,10 @@ module Admin
       @total_issues = NewsletterIssue.count
       @sent_issues = NewsletterIssue.sent.count
       @total_clicks = Click.count
+      @total_github_repos = GithubRepo.count
+      @unprocessed_github_repos = GithubRepo.unprocessed.count
+      @total_reddit_posts = RedditPost.count
+      @unprocessed_reddit_posts = RedditPost.unprocessed.count
       @recent_issues = NewsletterIssue.order(created_at: :desc).limit(5)
       @recent_articles = Article.includes(:blog).order(published_at: :desc).limit(5)
     end

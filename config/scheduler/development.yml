@@ -6,3 +6,11 @@ sync_ruby_gems:
   every: "4h"
   class: SyncRubyGemsJob
   queue: default
+sync_github_repos:
+  every: "6h"
+  class: SyncGithubReposJob
+  queue: default
+sync_reddit_posts:
+  every: "4h"
+  class: SyncRedditPostsJob
+  queue: default

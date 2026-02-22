@@ -20,21 +20,21 @@ export default class extends Controller {
         const oldVal = descriptor.get.call(this)
         descriptor.set.call(this, val)
         if (val && val !== oldVal) {
-          controller.gemSelected(val)
+          controller.itemSelected(val)
         }
       }
     })
   }
 
-  async gemSelected(gemId) {
-    const url = `${this.urlValue}?id=${encodeURIComponent(gemId)}`
+  async itemSelected(itemId) {
+    const url = `${this.urlValue}?id=${encodeURIComponent(itemId)}`
     const response = await fetch(url, {
       headers: { "Accept": "application/json" }
     })
 
     if (!response.ok) return
 
-    const gem = await response.json()
+    const data = await response.json()
 
     const wrapper = this.element.closest("[data-nested-form-wrapper]")
     if (!wrapper) return
@@ -43,8 +43,8 @@ export default class extends Controller {
     const urlInput = wrapper.querySelector('input[name$="[url]"]')
     const descInput = wrapper.querySelector('textarea[name$="[description]"]')
 
-    if (titleInput) titleInput.value = gem.name
-    if (urlInput) urlInput.value = gem.project_url
-    if (descInput) descInput.value = gem.info || ""
+    if (titleInput) titleInput.value = data.title
+    if (urlInput) urlInput.value = data.url
+    if (descInput) descInput.value = data.description || ""
   }
 }

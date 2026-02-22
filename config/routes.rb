@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :blogs
     resources :articles
     resources :ruby_gems
+    resources :github_repos
+    resources :reddit_posts
     resources :newsletter_issues do
       member do
         get :preview
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
     end
     resources :article_searches, only: [:index]
     resources :gem_searches, only: [:index]
+    resources :github_repo_searches, only: [:index]
+    resources :reddit_post_searches, only: [:index]
     resources :subscribers
     resources :tracked_links
     resources :clicks, only: [:index, :show, :destroy]

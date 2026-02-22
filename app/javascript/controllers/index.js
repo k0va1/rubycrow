@@ -30,11 +30,11 @@ application.register("nested-form", NestedFormController)
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 
-import ArticleAutofillController from "./article_autofill_controller"
-application.register("article-autofill", ArticleAutofillController)
-
 import SearchFormController from "./search_form_controller"
 application.register("search-form", SearchFormController)
 
-import GemAutofillController from "./gem_autofill_controller"
-application.register("gem-autofill", GemAutofillController)
+import LinkableSelectorController from "./linkable_selector_controller"
+application.register("linkable-selector", LinkableSelectorController)
+
+import LinkableAutofillController from "./linkable_autofill_controller"
+application.register("linkable-autofill", LinkableAutofillController)

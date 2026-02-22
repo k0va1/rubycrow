@@ -85,7 +85,7 @@ module Admin
         :issue_number, :subject, :sent_at, :subscriber_count, :total_clicks, :total_unique_clicks,
         newsletter_sections_attributes: [
           :id, :title, :position, :_destroy,
-          newsletter_items_attributes: [:id, :title, :description, :url, :position, :article_id, :ruby_gem_id, :linkable_type, :linkable_id, :_destroy]
+          newsletter_items_attributes: [:id, :title, :description, :url, :position, :linkable_type, :linkable_id, :_destroy]
         ]
       )
     end

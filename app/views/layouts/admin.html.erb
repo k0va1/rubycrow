@@ -26,14 +26,16 @@
       <% end %>
 
       <% layout.with_section(title: "Navigation") do |section| %>
-        <% section.with_link(title: "Dashboard", url: admin_root_path, icon: "home", current: current_page?(admin_root_path)) %>
-        <% section.with_link(title: "Blogs", url: admin_blogs_path, icon: "rss", current: request.path.start_with?("/admin/blogs")) %>
-        <% section.with_link(title: "Articles", url: admin_articles_path, icon: "document-text", current: request.path.start_with?("/admin/articles")) %>
-        <% section.with_link(title: "Gems", url: admin_ruby_gems_path, icon: "cube", current: request.path.start_with?("/admin/ruby_gems")) %>
-        <% section.with_link(title: "Newsletter Issues", url: admin_newsletter_issues_path, icon: "envelope", current: request.path.start_with?("/admin/newsletter_issues")) %>
-        <% section.with_link(title: "Subscribers", url: admin_subscribers_path, icon: "users", current: request.path.start_with?("/admin/subscribers")) %>
-        <% section.with_link(title: "Tracked Links", url: admin_tracked_links_path, icon: "link", current: request.path.start_with?("/admin/tracked_links")) %>
-        <% section.with_link(title: "Clicks", url: admin_clicks_path, icon: "cursor-arrow-rays", current: request.path.start_with?("/admin/clicks")) %>
+        <% section.with_link(title: "Dashboard", url: admin_root_path, icon: "home", current: current_page?(admin_root_path), animate_icon: true) %>
+        <% section.with_link(title: "Blogs", url: admin_blogs_path, icon: "rss", current: request.path.start_with?("/admin/blogs"), animate_icon: true) %>
+        <% section.with_link(title: "Articles", url: admin_articles_path, icon: "document-text", current: request.path.start_with?("/admin/articles"), animate_icon: true) %>
+        <% section.with_link(title: "Gems", url: admin_ruby_gems_path, icon: "cube", current: request.path.start_with?("/admin/ruby_gems"), animate_icon: true) %>
+        <% section.with_link(title: "GitHub Repos", url: admin_github_repos_path, icon: "code-bracket", current: request.path.start_with?("/admin/github_repos"), animate_icon: true) %>
+        <% section.with_link(title: "Reddit Posts", url: admin_reddit_posts_path, icon: "chat-bubble-left-right", current: request.path.start_with?("/admin/reddit_posts"), animate_icon: true) %>
+        <% section.with_link(title: "Newsletter Issues", url: admin_newsletter_issues_path, icon: "envelope", current: request.path.start_with?("/admin/newsletter_issues"), animate_icon: true) %>
+        <% section.with_link(title: "Subscribers", url: admin_subscribers_path, icon: "users", current: request.path.start_with?("/admin/subscribers"), animate_icon: true) %>
+        <% section.with_link(title: "Tracked Links", url: admin_tracked_links_path, icon: "link", current: request.path.start_with?("/admin/tracked_links"), animate_icon: true) %>
+        <% section.with_link(title: "Clicks", url: admin_clicks_path, icon: "cursor-arrow-rays", current: request.path.start_with?("/admin/clicks"), animate_icon: true) %>
       <% end %>
 
       <% layout.with_section(title: "Tools") do |section| %>

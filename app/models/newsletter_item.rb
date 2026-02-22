@@ -31,6 +31,8 @@ class NewsletterItem < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
 
+  before_validation :clear_blank_linkable
+
   default_scope { order(:position) }
 
   def article
@@ -66,6 +68,51 @@ class NewsletterItem < ApplicationRecord
       self.linkable = nil
     end
   end
+
+  def github_repo
+    linkable if linkable_type == "GithubRepo"
+  end
+
+  def github_repo_id
+    linkable_id if linkable_type == "GithubRepo"
+  end
+
+  def github_repo_id=(id)
+    if id.present?
+      self.linkable_type = "GithubRepo"
+      self.linkable_id = id
+    elsif linkable_type == "GithubRepo"
+      self.linkable = nil
+    end
+  end
+
+  def reddit_post
+    linkable if linkable_type == "RedditPost"
+  end
+
+  def reddit_post_id
+    linkable_id if linkable_type == "RedditPost"
+  end
+
+  def reddit_post_id=(id)
+    if id.present?
+      self.linkable_type = "RedditPost"
+      self.linkable_id = id
+    elsif linkable_type == "RedditPost"
+      self.linkable = nil
+    end
+  end
+
+  private
+
+  def clear_blank_linkable
+    if linkable_type.blank? || linkable_id.blank?
+      self.linkable_type = nil
+      self.linkable_id = nil
+    end
+  end
+
+  public
 
   def first_flight?
     return false unless article&.blog_id

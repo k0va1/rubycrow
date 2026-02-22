@@ -1,0 +1,58 @@
+rails_repo:
+  full_name: "rails/rails"
+  name: "rails"
+  description: "Ruby on Rails"
+  url: "https://github.com/rails/rails"
+  stars: 56000
+  forks: 21000
+  language: "Ruby"
+  owner_name: "rails"
+  owner_avatar_url: "https://avatars.githubusercontent.com/u/4223"
+  topics:
+    - ruby
+    - rails
+    - web
+  processed: false
+  first_seen_at: <%= 2.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.hour.ago.to_fs(:db) %>
+  repo_created_at: <%= 10.years.ago.to_fs(:db) %>
+  repo_pushed_at: <%= 1.day.ago.to_fs(:db) %>
+
+sidekiq_repo:
+  full_name: "sidekiq/sidekiq"
+  name: "sidekiq"
+  description: "Simple, efficient background processing for Ruby"
+  url: "https://github.com/sidekiq/sidekiq"
+  stars: 13000
+  forks: 2400
+  language: "Ruby"
+  owner_name: "sidekiq"
+  owner_avatar_url: "https://avatars.githubusercontent.com/u/124505"
+  topics:
+    - ruby
+    - sidekiq
+  processed: false
+  first_seen_at: <%= 3.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 2.hours.ago.to_fs(:db) %>
+  repo_created_at: <%= 8.years.ago.to_fs(:db) %>
+  repo_pushed_at: <%= 2.days.ago.to_fs(:db) %>
+
+featured_repo:
+  full_name: "ruby/ruby"
+  name: "ruby"
+  description: "The Ruby Programming Language"
+  url: "https://github.com/ruby/ruby"
+  stars: 22000
+  forks: 5300
+  language: "Ruby"
+  owner_name: "ruby"
+  owner_avatar_url: "https://avatars.githubusercontent.com/u/210414"
+  topics:
+    - ruby
+    - programming-language
+  processed: true
+  featured_in_issue: 1
+  first_seen_at: <%= 5.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.day.ago.to_fs(:db) %>
+  repo_created_at: <%= 15.years.ago.to_fs(:db) %>
+  repo_pushed_at: <%= 3.days.ago.to_fs(:db) %>

@@ -1,0 +1,42 @@
+ruby_post:
+  reddit_id: "abc123"
+  title: "What's new in Ruby 4.0?"
+  url: "https://www.reddit.com/r/ruby/comments/abc123/whats_new_in_ruby_40/"
+  external_url:
+  score: 0
+  author: "rubyist"
+  subreddit: "ruby"
+  num_comments: 0
+  processed: false
+  first_seen_at: <%= 1.day.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.hour.ago.to_fs(:db) %>
+  posted_at: <%= 1.day.ago.to_fs(:db) %>
+
+rails_post:
+  reddit_id: "def456"
+  title: "Rails 8.1 released with new features"
+  url: "https://www.reddit.com/r/rails/comments/def456/rails_81_released/"
+  external_url: "https://rubyonrails.org/2025/01/01/rails-8-1-released"
+  score: 0
+  author: "railsdev"
+  subreddit: "rails"
+  num_comments: 0
+  processed: false
+  first_seen_at: <%= 2.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 2.hours.ago.to_fs(:db) %>
+  posted_at: <%= 2.days.ago.to_fs(:db) %>
+
+featured_post:
+  reddit_id: "ghi789"
+  title: "Best Ruby gems for 2025"
+  url: "https://www.reddit.com/r/ruby/comments/ghi789/best_ruby_gems/"
+  external_url:
+  score: 0
+  author: "gemhunter"
+  subreddit: "ruby"
+  num_comments: 0
+  processed: true
+  featured_in_issue: 1
+  first_seen_at: <%= 5.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.day.ago.to_fs(:db) %>
+  posted_at: <%= 5.days.ago.to_fs(:db) %>

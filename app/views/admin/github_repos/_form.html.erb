@@ -1,0 +1,32 @@
+<%# locals: (github_repo:) -%>
+<% if github_repo.errors.any? %>
+  <div class="mb-4">
+    <%= lui.alert(type: :error) do %>
+      <%= pluralize(github_repo.errors.count, "error") %>
+      prevented this repo from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
+        <% github_repo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, github_repo], class: "space-y-4 max-w-2xl" do |form| %>
+  <%= lui.input(name: :full_name, form: form, label: "Full Name") %>
+  <%= lui.input(name: :name, form: form, label: "Name") %>
+  <%= lui.textarea(name: :description, form: form, label: "Description", rows: 3) %>
+  <%= lui.input(name: :url, form: form, type: :url, label: "URL") %>
+  <%= lui.input(name: :stars, form: form, type: :number, label: "Stars") %>
+  <%= lui.input(name: :forks, form: form, type: :number, label: "Forks") %>
+  <%= lui.input(name: :language, form: form, label: "Language") %>
+  <%= lui.input(name: :owner_name, form: form, label: "Owner Name") %>
+  <%= lui.input(name: :owner_avatar_url, form: form, type: :url, label: "Owner Avatar URL") %>
+  <%= lui.input(name: :repo_created_at, form: form, type: :datetime_local, label: "Repo Created At") %>
+  <%= lui.input(name: :repo_pushed_at, form: form, type: :datetime_local, label: "Repo Pushed At") %>
+  <%= lui.switch(name: :processed, form: form, label: "Processed", enabled: github_repo.processed?) %>
+  <%= lui.input(name: :featured_in_issue, form: form, type: :number, label: "Featured in Issue") %>
+
+  <div><%= lui.button(type: :submit) { github_repo.persisted? ? "Update Repo" : "Create Repo" } %></div>
+<% end %>
