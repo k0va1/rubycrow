@@ -4,17 +4,18 @@
 #
 #  id                    :bigint           not null, primary key
 #  description           :text
+#  linkable_type         :string
 #  position              :integer          default(0), not null
 #  title                 :string           not null
 #  url                   :string           not null
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  article_id            :bigint
+#  linkable_id           :bigint
 #  newsletter_section_id :bigint           not null
 #
 # Indexes
 #
-#  index_newsletter_items_on_article_id                          (article_id)
+#  index_newsletter_items_on_linkable_type_and_linkable_id       (linkable_type,linkable_id)
 #  index_newsletter_items_on_newsletter_section_id               (newsletter_section_id)
 #  index_newsletter_items_on_newsletter_section_id_and_position  (newsletter_section_id,position)
 #
@@ -24,7 +25,7 @@
 #
 rails_update:
   newsletter_section: crows_pick
-  article: rails_performance
+  linkable: rails_performance (Article)
   title: "Rails 8.1 Released"
   description: "Major release with async queries"
   url: "https://example.com/rails-8-1"
@@ -32,14 +33,15 @@ rails_update:
 
 ruby_gem:
   newsletter_section: shiny_objects
-  title: "New Ruby Gem"
-  description: "A useful new gem"
-  url: "https://example.com/new-gem"
+  linkable: rack_updated (RubyGem)
+  title: "Rack 3.1.0"
+  description: "Rack provides a minimal interface between web servers and Ruby frameworks"
+  url: "https://rubygems.org/gems/rack"
   position: 0
 
 issue_two_speedshop:
   newsletter_section: issue_two_picks
-  article: older_article
+  linkable: older_article (Article)
   title: "Ruby Memory Management"
   description: "Understanding Ruby memory"
   url: "https://example.com/memory"
@@ -47,7 +49,7 @@ issue_two_speedshop:
 
 issue_two_martians:
   newsletter_section: issue_two_picks
-  article: martians_article
+  linkable: martians_article (Article)
   title: "ViewComponent Best Practices"
   description: "How to use ViewComponent effectively"
   url: "https://example.com/viewcomponent"

@@ -2,3 +2,7 @@ sync_blog_registry:
   every: "6h"
   class: SyncBlogRegistryJob
   queue: default
+sync_ruby_gems:
+  every: "4h"
+  class: SyncRubyGemsJob
+  queue: default

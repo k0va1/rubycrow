@@ -1,0 +1,82 @@
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="admin-heading text-2xl font-semibold">Gems</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @pagy.count %> gems total</p>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by name...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
+    <div data-controller="auto-submit">
+      <%= lui.select(
+        name: :activity_type,
+        label: false,
+        options_for_select: options_for_select(
+          [["All types", ""], ["New", "new"], ["Updated", "updated"]],
+          params[:activity_type]
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+
+    <div data-controller="auto-submit">
+      <%= lui.select(
+        name: :period,
+        label: false,
+        options_for_select: options_for_select(
+          [["All time", ""], ["Last week", "last_week"], ["Last 2 weeks", "last_2_weeks"], ["Last month", "last_month"]],
+          @period
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+
+    <%= lui.button(url: new_admin_ruby_gem_path, icon: "plus") { "New Gem" } %>
+  </div>
+</div>
+
+<% if @ruby_gems.any? %>
+  <%= lui.table(data: @ruby_gems) do |table| %>
+    <% table.with_column("Name") { |gem| link_to gem.name, admin_ruby_gem_path(gem) } %>
+    <% table.with_column("Version") { |gem| gem.version } %>
+
+    <% table.with_column("Type") do |gem| %>
+      <% if gem.activity_type == "new" %>
+        <%= lui.badge(status: :info) { "New" } %>
+      <% else %>
+        <%= lui.badge { "Updated" } %>
+      <% end %>
+    <% end %>
+
+    <% table.with_column("Downloads") { |gem| number_with_delimiter(gem.downloads) } %>
+    <% table.with_column("Published") { |gem| gem.version_created_at&.strftime("%b %d, %Y") || "—" } %>
+
+    <% table.with_column("Processed") do |gem| %>
+      <% if gem.processed? %>
+        <%= lui.badge(status: :success) { "Yes" } %>
+      <% else %>
+        <%= lui.badge(status: :warning) { "No" } %>
+      <% end %>
+    <% end %>
+
+    <% table.with_action { |gem| link_to "Edit", edit_admin_ruby_gem_path(gem) } %>
+    <% table.with_action { |gem| link_to "Delete", admin_ruby_gem_path(gem), data: { turbo_method: :delete, turbo_confirm: "Delete this gem?" } } %>
+  <% end %>
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="admin-card py-12 text-center">
+    <p class="admin-subtext mb-4 text-sm">No gems yet</p>
+    <%= lui.button(url: new_admin_ruby_gem_path, icon: "plus") { "Add your first gem" } %>
+  </div>
+<% end %>

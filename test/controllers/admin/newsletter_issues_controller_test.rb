@@ -96,6 +96,29 @@ class Admin::NewsletterIssuesControllerTest < ActionDispatch::IntegrationTest
     end
     item = NewsletterIssue.last.newsletter_sections.first.newsletter_items.first
     assert_equal article.id, item.article_id
+    assert_equal "Article", item.linkable_type
+  end
+
+  test "create with nested item including ruby_gem_id" do
+    gem = ruby_gems(:rack_updated)
+    assert_difference ["NewsletterIssue.count", "NewsletterItem.count"] do
+      post admin_newsletter_issues_path, params: {newsletter_issue: {
+        issue_number: 102,
+        subject: "With Gem",
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "Test Section",
+            position: 0,
+            newsletter_items_attributes: {
+              "0" => {title: gem.name, url: gem.project_url, position: 0, ruby_gem_id: gem.id}
+            }
+          }
+        }
+      }}
+    end
+    item = NewsletterIssue.last.newsletter_sections.first.newsletter_items.first
+    assert_equal gem.id, item.ruby_gem_id
+    assert_equal "RubyGem", item.linkable_type
   end
 
   test "create with nested items auto-generates tracked links" do

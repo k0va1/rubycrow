@@ -1,0 +1,31 @@
+<%# locals: (ruby_gem:) -%>
+<% if ruby_gem.errors.any? %>
+  <div class="mb-4">
+    <%= lui.alert(type: :error) do %>
+      <%= pluralize(ruby_gem.errors.count, "error") %>
+      prevented this gem from being saved:
+      <ul class="mt-2 list-inside list-disc text-sm">
+        <% ruby_gem.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, ruby_gem], class: "space-y-4 max-w-2xl" do |form| %>
+  <%= lui.input(name: :name, form: form, label: "Name") %>
+  <%= lui.input(name: :version, form: form, label: "Version") %>
+  <%= lui.input(name: :authors, form: form, label: "Authors") %>
+  <%= lui.textarea(name: :info, form: form, label: "Info", rows: 3) %>
+  <%= lui.select(name: :activity_type, form: form, label: "Activity Type", options_for_select: [["New", "new"], ["Updated", "updated"]], include_blank: false) %>
+  <%= lui.input(name: :downloads, form: form, type: :number, label: "Downloads") %>
+  <%= lui.input(name: :project_url, form: form, type: :url, label: "RubyGems URL") %>
+  <%= lui.input(name: :homepage_url, form: form, type: :url, label: "Homepage URL") %>
+  <%= lui.input(name: :source_code_url, form: form, type: :url, label: "Source Code URL") %>
+  <%= lui.input(name: :version_created_at, form: form, type: :datetime_local, label: "Version Published At") %>
+  <%= lui.switch(name: :processed, form: form, label: "Processed", enabled: ruby_gem.processed?) %>
+  <%= lui.input(name: :featured_in_issue, form: form, type: :number, label: "Featured in Issue") %>
+
+  <div><%= lui.button(type: :submit) { ruby_gem.persisted? ? "Update Gem" : "Create Gem" } %></div>
+<% end %>

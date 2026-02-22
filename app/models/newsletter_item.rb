@@ -4,17 +4,18 @@
 #
 #  id                    :bigint           not null, primary key
 #  description           :text
+#  linkable_type         :string
 #  position              :integer          default(0), not null
 #  title                 :string           not null
 #  url                   :string           not null
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  article_id            :bigint
+#  linkable_id           :bigint
 #  newsletter_section_id :bigint           not null
 #
 # Indexes
 #
-#  index_newsletter_items_on_article_id                          (article_id)
+#  index_newsletter_items_on_linkable_type_and_linkable_id       (linkable_type,linkable_id)
 #  index_newsletter_items_on_newsletter_section_id               (newsletter_section_id)
 #  index_newsletter_items_on_newsletter_section_id_and_position  (newsletter_section_id,position)
 #
@@ -24,13 +25,47 @@
 #
 class NewsletterItem < ApplicationRecord
   belongs_to :newsletter_section
-  belongs_to :article, optional: true
+  belongs_to :linkable, polymorphic: true, optional: true
   has_one :tracked_link, as: :trackable, dependent: :destroy
 
   validates :title, presence: true
   validates :url, presence: true
 
   default_scope { order(:position) }
+
+  def article
+    linkable if linkable_type == "Article"
+  end
+
+  def article_id
+    linkable_id if linkable_type == "Article"
+  end
+
+  def article_id=(id)
+    if id.present?
+      self.linkable_type = "Article"
+      self.linkable_id = id
+    elsif linkable_type == "Article"
+      self.linkable = nil
+    end
+  end
+
+  def ruby_gem
+    linkable if linkable_type == "RubyGem"
+  end
+
+  def ruby_gem_id
+    linkable_id if linkable_type == "RubyGem"
+  end
+
+  def ruby_gem_id=(id)
+    if id.present?
+      self.linkable_type = "RubyGem"
+      self.linkable_id = id
+    elsif linkable_type == "RubyGem"
+      self.linkable = nil
+    end
+  end
 
   def first_flight?
     return false unless article&.blog_id
@@ -40,10 +75,10 @@ class NewsletterItem < ApplicationRecord
 
     !NewsletterItem
       .joins(newsletter_section: :newsletter_issue)
-      .joins(:article)
-      .where(articles: {blog_id: blog_id})
+      .where(linkable_type: "Article")
       .where(newsletter_issues: {sent_at: ...current_issue.created_at})
       .where.not(newsletter_sections: {newsletter_issue_id: current_issue.id})
+      .where(linkable_id: Article.where(blog_id: blog_id).select(:id))
       .exists?
   end
 end

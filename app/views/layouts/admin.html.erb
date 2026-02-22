@@ -29,6 +29,7 @@
         <% section.with_link(title: "Dashboard", url: admin_root_path, icon: "home", current: current_page?(admin_root_path)) %>
         <% section.with_link(title: "Blogs", url: admin_blogs_path, icon: "rss", current: request.path.start_with?("/admin/blogs")) %>
         <% section.with_link(title: "Articles", url: admin_articles_path, icon: "document-text", current: request.path.start_with?("/admin/articles")) %>
+        <% section.with_link(title: "Gems", url: admin_ruby_gems_path, icon: "cube", current: request.path.start_with?("/admin/ruby_gems")) %>
         <% section.with_link(title: "Newsletter Issues", url: admin_newsletter_issues_path, icon: "envelope", current: request.path.start_with?("/admin/newsletter_issues")) %>
         <% section.with_link(title: "Subscribers", url: admin_subscribers_path, icon: "users", current: request.path.start_with?("/admin/subscribers")) %>
         <% section.with_link(title: "Tracked Links", url: admin_tracked_links_path, icon: "link", current: request.path.start_with?("/admin/tracked_links")) %>

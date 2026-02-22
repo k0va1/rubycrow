@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_21_184321) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_22_110355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -81,15 +81,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_184321) do
   end
 
   create_table "newsletter_items", force: :cascade do |t|
-    t.bigint "article_id"
     t.datetime "created_at", null: false
     t.text "description"
+    t.bigint "linkable_id"
+    t.string "linkable_type"
     t.bigint "newsletter_section_id", null: false
     t.integer "position", default: 0, null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.string "url", null: false
-    t.index ["article_id"], name: "index_newsletter_items_on_article_id"
+    t.index ["linkable_type", "linkable_id"], name: "index_newsletter_items_on_linkable_type_and_linkable_id"
     t.index ["newsletter_section_id", "position"], name: "index_newsletter_items_on_newsletter_section_id_and_position"
     t.index ["newsletter_section_id"], name: "index_newsletter_items_on_newsletter_section_id"
   end
@@ -102,6 +103,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_21_184321) do
     t.datetime "updated_at", null: false
     t.index ["newsletter_issue_id", "position"], name: "index_newsletter_sections_on_newsletter_issue_id_and_position"
     t.index ["newsletter_issue_id"], name: "index_newsletter_sections_on_newsletter_issue_id"
+  end
+
+  create_table "ruby_gems", force: :cascade do |t|
+    t.string "activity_type", null: false
+    t.string "authors"
+    t.datetime "created_at", null: false
+    t.integer "downloads", default: 0
+    t.integer "featured_in_issue"
+    t.datetime "first_seen_at"
+    t.string "homepage_url"
+    t.text "info"
+    t.datetime "last_synced_at"
+    t.text "licenses", default: [], array: true
+    t.string "name", null: false
+    t.boolean "processed", default: false
+    t.string "project_url", null: false
+    t.string "source_code_url"
+    t.datetime "updated_at", null: false
+    t.string "version", null: false
+    t.datetime "version_created_at"
+    t.index ["activity_type"], name: "index_ruby_gems_on_activity_type"
+    t.index ["downloads"], name: "index_ruby_gems_on_downloads"
+    t.index ["featured_in_issue"], name: "index_ruby_gems_on_featured_in_issue"
+    t.index ["name"], name: "index_ruby_gems_on_name", unique: true
+    t.index ["processed"], name: "index_ruby_gems_on_processed"
+    t.index ["version_created_at"], name: "index_ruby_gems_on_version_created_at"
   end
 
   create_table "subscribers", force: :cascade do |t|

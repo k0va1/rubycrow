@@ -35,3 +35,6 @@ application.register("article-autofill", ArticleAutofillController)
 
 import SearchFormController from "./search_form_controller"
 application.register("search-form", SearchFormController)
+
+import GemAutofillController from "./gem_autofill_controller"
+application.register("gem-autofill", GemAutofillController)

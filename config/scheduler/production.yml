@@ -6,3 +6,7 @@ parse_rss_feeds:
   every: "2h"
   class: ParseRssFeedsJob
   queue: default
+sync_ruby_gems:
+  every: "4h"
+  class: SyncRubyGemsJob
+  queue: default

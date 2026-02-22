@@ -35,28 +35,81 @@ class NewsletterItemTest < ActiveSupport::TestCase
     assert item.valid?
   end
 
-  test "article_id is optional" do
+  test "linkable is optional" do
     item = NewsletterItem.new(
       newsletter_section: newsletter_sections(:crows_pick),
-      title: "No Article",
+      title: "No Linkable",
       url: "https://example.com/test",
       position: 0
     )
     assert item.valid?
+    assert_nil item.linkable
+  end
+
+  test "linkable can be an article" do
+    article = articles(:rails_performance)
+    item = newsletter_items(:rails_update)
+    assert_equal "Article", item.linkable_type
+    assert_equal article, item.linkable
+    assert_equal article, item.article
+  end
+
+  test "linkable can be a ruby gem" do
+    gem = ruby_gems(:rack_updated)
+    item = newsletter_items(:ruby_gem)
+    assert_equal "RubyGem", item.linkable_type
+    assert_equal gem, item.linkable
+    assert_equal gem, item.ruby_gem
+  end
+
+  test "article returns nil when linkable is a ruby gem" do
+    item = newsletter_items(:ruby_gem)
+    assert_nil item.article
     assert_nil item.article_id
   end
 
-  test "belongs_to article when set" do
+  test "ruby_gem returns nil when linkable is an article" do
+    item = newsletter_items(:rails_update)
+    assert_nil item.ruby_gem
+    assert_nil item.ruby_gem_id
+  end
+
+  test "article_id= sets linkable to article" do
     article = articles(:rails_performance)
     item = NewsletterItem.new(
       newsletter_section: newsletter_sections(:crows_pick),
-      title: article.title,
-      url: article.url,
-      position: 0,
-      article: article
+      title: "Test",
+      url: "https://example.com"
     )
-    assert item.valid?
-    assert_equal article, item.article
+    item.article_id = article.id
+    assert_equal "Article", item.linkable_type
+    assert_equal article.id, item.linkable_id
+  end
+
+  test "ruby_gem_id= sets linkable to ruby gem" do
+    gem = ruby_gems(:rack_updated)
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com"
+    )
+    item.ruby_gem_id = gem.id
+    assert_equal "RubyGem", item.linkable_type
+    assert_equal gem.id, item.linkable_id
+  end
+
+  test "article_id= with blank clears article linkable" do
+    item = newsletter_items(:rails_update)
+    item.article_id = ""
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "ruby_gem_id= with blank clears gem linkable" do
+    item = newsletter_items(:ruby_gem)
+    item.ruby_gem_id = ""
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
   end
 
   test "first_flight? returns false when item has no article" do
@@ -79,7 +132,7 @@ class NewsletterItemTest < ActiveSupport::TestCase
     article = articles(:martians_article)
     another_item = NewsletterItem.create!(
       newsletter_section: section,
-      article: article,
+      linkable: article,
       title: "Another Martians Post",
       url: "https://example.com/another-martians",
       position: 2

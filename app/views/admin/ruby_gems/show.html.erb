@@ -1,0 +1,73 @@
+<div class="mb-2"><%= link_to "← Gems", admin_ruby_gems_path, class: "text-sm admin-link-back" %></div>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="admin-heading text-2xl font-semibold"><%= @ruby_gem.name %></h1>
+
+  <div class="flex gap-2">
+    <%= lui.button(url: edit_admin_ruby_gem_path(@ruby_gem), style: :outline) { "Edit" } %>
+    <%= link_to "Delete", admin_ruby_gem_path(@ruby_gem), data: { turbo_method: :delete, turbo_confirm: "Delete this gem?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
+  </div>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Name", value: @ruby_gem.name) %>
+  <% list.with_item(label: "Version", value: @ruby_gem.version) %>
+  <% list.with_item(label: "Authors", value: @ruby_gem.authors || "—") %>
+  <% list.with_item(label: "Info", value: @ruby_gem.info || "—") %>
+
+  <% list.with_item(label: "Activity Type") do %>
+    <% if @ruby_gem.activity_type == "new" %>
+      <%= lui.badge(status: :info) { "New" } %>
+    <% else %>
+      <%= lui.badge { "Updated" } %>
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Downloads", value: number_with_delimiter(@ruby_gem.downloads)) %>
+
+  <% list.with_item(label: "RubyGems URL") do %>
+    <%= link_to @ruby_gem.project_url, safe_external_url(@ruby_gem.project_url), target: "_blank", rel: "noopener noreferrer" %>
+  <% end %>
+
+  <% list.with_item(label: "Homepage") do %>
+    <% if @ruby_gem.homepage_url.present? %>
+      <%= link_to @ruby_gem.homepage_url, safe_external_url(@ruby_gem.homepage_url), target: "_blank", rel: "noopener noreferrer" %>
+    <% else %>
+      —
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Source Code") do %>
+    <% if @ruby_gem.source_code_url.present? %>
+      <%= link_to @ruby_gem.source_code_url, safe_external_url(@ruby_gem.source_code_url), target: "_blank", rel: "noopener noreferrer" %>
+    <% else %>
+      —
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Licenses") do %>
+    <% if @ruby_gem.licenses.any? %>
+      <div class="flex flex-wrap gap-1.5">
+        <% @ruby_gem.licenses.each do |license| %>
+          <%= lui.badge { license } %>
+        <% end %>
+      </div>
+    <% else %>
+      —
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Version Published", value: @ruby_gem.version_created_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+
+  <% list.with_item(label: "Processed") do %>
+    <% if @ruby_gem.processed? %>
+      <%= lui.badge(status: :success) { "Yes" } %>
+    <% else %>
+      <%= lui.badge(status: :warning) { "No" } %>
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Featured in Issue", value: @ruby_gem.featured_in_issue || "—") %>
+  <% list.with_item(label: "First Seen", value: @ruby_gem.first_seen_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Last Synced", value: @ruby_gem.last_synced_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+<% end %>

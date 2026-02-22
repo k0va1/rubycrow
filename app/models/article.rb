@@ -31,7 +31,7 @@
 class Article < ApplicationRecord
   self.ignored_columns += ["content_snippet"]
   belongs_to :blog
-  has_many :newsletter_items, dependent: :nullify
+  has_many :newsletter_items, as: :linkable, dependent: :nullify
 
   default_scope { order(Arel.sql("published_at DESC NULLS LAST")) }
 

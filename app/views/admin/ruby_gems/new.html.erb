@@ -1,0 +1,7 @@
+<div class="mb-6">
+  <%= link_to "← Gems", admin_ruby_gems_path, class: "text-sm admin-link-back" %>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">New Gem</h1>
+</div>
+
+<%= render "form", ruby_gem: @ruby_gem %>
