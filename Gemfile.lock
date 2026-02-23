@@ -172,7 +172,7 @@ GEM
       railties (>= 6.0.0)
     json (2.18.1)
     language_server-protocol (3.17.0.5)
-    lightning_ui_kit (0.3.3)
+    lightning_ui_kit (0.3.4)
       heroicons
       rails (>= 8.0.0)
       tailwind_merge
@@ -390,7 +390,7 @@ GEM
     stringio (3.2.0)
     strong_migrations (2.5.2)
       activerecord (>= 7.1)
-    tailwind_merge (1.3.3)
+    tailwind_merge (1.4.0)
       sin_lru_redux (~> 2.5)
     thor (1.5.0)
     timeout (0.6.0)
@@ -537,7 +537,7 @@ CHECKSUMS
   jsbundling-rails (1.3.1) sha256=0fa03f6d051c694cbf55a022d8be53399879f2c4cf38b2968f86379c62b1c2ca
   json (2.18.1) sha256=fe112755501b8d0466b5ada6cf50c8c3f41e897fa128ac5d263ec09eedc9f986
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
-  lightning_ui_kit (0.3.3) sha256=c52bdad3219c05f3f40719591cd01da85ddd5518a0150a908df337ca0008e9a8
+  lightning_ui_kit (0.3.4) sha256=8f912c29a4b4c9b47102705aa118ed0a1daff848214e1cca7306e7e8fd1ac18a
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   loofah (2.25.0) sha256=df5ed7ac3bac6a4ec802df3877ee5cc86d027299f8952e6243b3dac446b060e6
@@ -627,7 +627,7 @@ CHECKSUMS
   stimulus-rails (1.3.4) sha256=765676ffa1f33af64ce026d26b48e8ffb2e0b94e0f50e9119e11d6107d67cb06
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
   strong_migrations (2.5.2) sha256=06faff4782b24c8a0a4b1a5a1613d809339ff26c5ac135fde75a932a5c9b454e
-  tailwind_merge (1.3.3) sha256=9073fa69add5e9266609dee759bee333cdfa7bc0704fc577812e50c70b62291b
+  tailwind_merge (1.4.0) sha256=58009e3f4410dcb7ea6156e15b875e405f0e428f961cda5ee19359fe037933da
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   timeout (0.6.0) sha256=6d722ad619f96ee383a0c557ec6eb8c4ecb08af3af62098a0be5057bf00de1af
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
