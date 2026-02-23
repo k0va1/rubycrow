@@ -60,6 +60,20 @@ class NewsletterItemTest < ActiveSupport::TestCase
     assert_equal gem, item.linkable
   end
 
+  test "linkable can be a github repo" do
+    repo = github_repos(:rails_repo)
+    item = newsletter_items(:github_repo)
+    assert_equal "GithubRepo", item.linkable_type
+    assert_equal repo, item.linkable
+  end
+
+  test "linkable can be a reddit post" do
+    post = reddit_posts(:ruby_post)
+    item = newsletter_items(:reddit_post)
+    assert_equal "RedditPost", item.linkable_type
+    assert_equal post, item.linkable
+  end
+
   test "clear_blank_linkable nils both fields when linkable_type is blank" do
     item = NewsletterItem.new(
       newsletter_section: newsletter_sections(:crows_pick),

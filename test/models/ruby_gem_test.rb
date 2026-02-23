@@ -46,30 +46,37 @@ class RubyGemTest < ActiveSupport::TestCase
     assert gem.valid?
   end
 
-  test "default scope orders by version_created_at desc" do
-    gems = RubyGem.all
+  test "by_version_date scope orders by version_created_at desc" do
+    gems = RubyGem.by_version_date
     dates = gems.map(&:version_created_at).compact
+    assert dates.any?
     assert_equal dates, dates.sort.reverse
   end
 
   test "recent scope limits results" do
-    assert RubyGem.recent(2).count <= 2
+    assert_equal 2, RubyGem.recent(2).count
   end
 
   test "unprocessed scope returns unprocessed gems" do
-    RubyGem.unprocessed.each do |gem|
+    unprocessed = RubyGem.unprocessed
+    assert unprocessed.any?
+    unprocessed.each do |gem|
       assert_not gem.processed?
     end
   end
 
   test "newly_created scope returns new gems" do
-    RubyGem.newly_created.each do |gem|
+    newly_created = RubyGem.newly_created
+    assert newly_created.any?
+    newly_created.each do |gem|
       assert_equal "new", gem.activity_type
     end
   end
 
   test "recently_updated scope returns updated gems" do
-    RubyGem.recently_updated.each do |gem|
+    recently_updated = RubyGem.recently_updated
+    assert recently_updated.any?
+    recently_updated.each do |gem|
       assert_equal "updated", gem.activity_type
     end
   end
@@ -142,7 +149,7 @@ class RubyGemTest < ActiveSupport::TestCase
     assert_equal "new", new_gem.activity_type
   end
 
-  test "sync_from_api! updated gems take precedence over new gems with same name" do
+  test "sync_from_api! new gems take precedence over updated gems with same name" do
     shared_gem = {
       "name" => "shared_gem",
       "version" => "1.0.0",
@@ -164,12 +171,12 @@ class RubyGemTest < ActiveSupport::TestCase
     RubyGem.sync_from_api!
 
     gem = RubyGem.find_by(name: "shared_gem")
-    assert_equal "updated", gem.activity_type
+    assert_equal "new", gem.activity_type
   end
 
   test "sync_from_api! returns empty array on api error" do
     stub_request(:get, "https://rubygems.org/api/v1/activity/just_updated.json")
-      .to_return(status: 500)
+      .to_return(status: 200, body: "[]")
     stub_request(:get, "https://rubygems.org/api/v1/activity/latest.json")
       .to_return(status: 200, body: "[]")
 

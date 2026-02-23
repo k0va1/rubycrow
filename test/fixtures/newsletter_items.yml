@@ -39,6 +39,22 @@ ruby_gem:
   url: "https://rubygems.org/gems/rack"
   position: 0
 
+github_repo:
+  newsletter_section: shiny_objects
+  linkable: rails_repo (GithubRepo)
+  title: "rails/rails"
+  description: "Ruby on Rails"
+  url: "https://github.com/rails/rails"
+  position: 1
+
+reddit_post:
+  newsletter_section: shiny_objects
+  linkable: ruby_post (RedditPost)
+  title: "What's new in Ruby 4.0?"
+  description: "Discussion about Ruby 4.0 features"
+  url: "https://www.reddit.com/r/ruby/comments/abc123/whats_new_in_ruby_40/"
+  position: 2
+
 issue_two_speedshop:
   newsletter_section: issue_two_picks
   linkable: older_article (Article)

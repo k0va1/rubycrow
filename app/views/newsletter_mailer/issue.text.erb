@@ -8,8 +8,9 @@ RubyCrow - Issue #<%= @newsletter_issue.issue_number %>
 <%= "-" * 20 %>
 <% items.each do |item| %>
 <%= item.title %>
-<%= item.article&.blog&.name %><%= " [🆕 First Flight]" if item.article&.blog_id && @first_flight_blog_ids.include?(item.article.blog_id) %>
-<%= item.description %>
+<% if (blog = article_blog_for(item)) %><%= blog.name %><%= " [First Flight]" if @first_flight_blog_ids.include?(blog.id) %>
+<% elsif (source = source_label_for(item)) %>via <%= source %>
+<% end %><%= item.description %>
 <%= item.tracked_link.tracked_url(subscriber: @subscriber) %>
 
 <% end %>

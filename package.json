@@ -2,7 +2,9 @@
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^7.3.0",
+    "@hotwired/turbo": "8.0.23",
+    "@hotwired/turbo-rails": "8.0.23",
+    "@rails/request.js": "^0.0.13",
     "@tailwindcss/cli": "^4.0.9",
     "esbuild": "0.17.19",
     "sortablejs": "^1.15.7",

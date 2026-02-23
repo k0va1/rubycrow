@@ -1,20 +1,17 @@
 class GithubRepo < ApplicationRecord
+  include NewsletterSource
+  include HttpFetchable
+
   API_BASE = "https://api.github.com/search/repositories"
   API_TIMEOUT = 15
-
-  has_many :newsletter_items, as: :linkable, dependent: :nullify
 
   validates :full_name, presence: true, uniqueness: true
   validates :name, presence: true
   validates :url, presence: true
 
-  default_scope { order(repo_pushed_at: :desc) }
-
-  scope :recent, ->(limit = 15) { limit(limit) }
-  scope :unprocessed, -> { where(processed: false) }
-  scope :featured, -> { where.not(featured_in_issue: nil) }
+  scope :by_push_date, -> { order(repo_pushed_at: :desc) }
   scope :search_by_name, ->(query) { where("full_name ILIKE ?", "%#{sanitize_sql_like(query)}%") }
-  scope :popular, -> { unscoped.order(stars: :desc) }
+  scope :popular, -> { order(stars: :desc) }
 
   def self.sync_from_api!
     daily_repos = fetch_repos(1.day.ago)
@@ -31,14 +28,11 @@ class GithubRepo < ApplicationRecord
       unique_by: :index_github_repos_on_full_name,
       update_only: %i[name description url stars forks language owner_name owner_avatar_url topics repo_pushed_at last_synced_at]
     )
-  rescue Faraday::Error, JSON::ParserError => e
-    Rails.logger.error("GithubRepo sync failed: #{e.message}")
-    []
   end
 
   def self.fetch_repos(pushed_after)
     date = pushed_after.strftime("%Y-%m-%d")
-    response = http_client.get(API_BASE) do |req|
+    response = github_client.get(API_BASE) do |req|
       req.params["q"] = "language:ruby pushed:>#{date}"
       req.params["sort"] = "stars"
       req.params["order"] = "desc"
@@ -74,16 +68,12 @@ class GithubRepo < ApplicationRecord
     {}
   end
 
-  def self.http_client
-    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
-      f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
-      f.headers["Accept"] = "application/vnd.github+json"
-      token = Rails.application.credentials.github_token
-      f.headers["Authorization"] = "Bearer #{token}" if token.present?
-      f.response :follow_redirects
-      f.adapter Faraday.default_adapter
-    end
+  def self.github_client
+    token = Rails.application.credentials.github_token
+    headers = {"Accept" => "application/vnd.github+json"}
+    headers["Authorization"] = "Bearer #{token}" if token.present?
+    http_client(headers: headers)
   end
 
-  private_class_method :fetch_repos, :http_client
+  private_class_method :fetch_repos, :github_client
 end

@@ -1,8 +1,11 @@
 module Admin
   class GithubRepoSearchesController < BaseController
+    include ActionView::Helpers::NumberHelper
+
     def index
       if params[:id].present?
-        repo = GithubRepo.find(params[:id])
+        repo = GithubRepo.find_by(id: params[:id])
+        return render json: {error: "not found"}, status: :not_found unless repo
         render json: {id: repo.id, title: repo.full_name, url: repo.url, description: repo.description}
       elsif params[:q].present?
         repos = GithubRepo.search_by_name(params[:q]).recent(20)
@@ -12,12 +15,6 @@ module Admin
       else
         render json: []
       end
-    end
-
-    private
-
-    def number_with_delimiter(number)
-      ActiveSupport::NumberHelper.number_to_delimited(number)
     end
   end
 end

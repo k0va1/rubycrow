@@ -30,18 +30,21 @@ class GithubRepoTest < ActiveSupport::TestCase
     assert_includes repo.errors[:url], "can't be blank"
   end
 
-  test "default scope orders by repo_pushed_at desc" do
-    repos = GithubRepo.all
+  test "by_push_date scope orders by repo_pushed_at desc" do
+    repos = GithubRepo.by_push_date
     dates = repos.map(&:repo_pushed_at).compact
+    assert dates.any?
     assert_equal dates, dates.sort.reverse
   end
 
   test "recent scope limits results" do
-    assert GithubRepo.recent(2).count <= 2
+    assert_equal 2, GithubRepo.recent(2).count
   end
 
   test "unprocessed scope returns unprocessed repos" do
-    GithubRepo.unprocessed.each do |repo|
+    unprocessed = GithubRepo.unprocessed
+    assert unprocessed.any?
+    unprocessed.each do |repo|
       assert_not repo.processed?
     end
   end

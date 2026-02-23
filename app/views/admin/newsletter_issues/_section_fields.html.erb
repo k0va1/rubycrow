@@ -7,11 +7,18 @@
   style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);"
 >
   <div class="flex items-end gap-2">
-    <span data-sortable-handle class="admin-faint mb-2 cursor-grab text-lg">☰</span>
+    <span
+      data-sortable-handle
+      class="admin-faint mb-2 cursor-grab text-lg"
+      role="img"
+      aria-label="Drag to reorder"
+    >
+      &#9776;
+    </span>
+
     <div class="flex-1"><%= lui.input(name: :title, form: section_form, label: "Section Title") %></div>
-    <div class="mb-0.5">
-      <%= lui.button(type: :button, style: :outline, icon: "trash", data: { action: "nested-form#remove" }) %>
-    </div>
+
+    <%= lui.button(type: :button, style: :outline, icon: "trash", data: { action: "nested-form#remove" }) %>
   </div>
 
   <%= section_form.hidden_field :id %>

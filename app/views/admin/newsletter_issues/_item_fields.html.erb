@@ -5,7 +5,14 @@
   style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);"
 >
   <div data-controller="linkable-selector" class="flex items-end gap-2">
-    <span data-sortable-handle class="admin-faint mb-2 cursor-grab text-lg">&#9776;</span>
+    <span
+      data-sortable-handle
+      class="admin-faint mb-2 cursor-grab text-lg"
+      role="img"
+      aria-label="Drag to reorder"
+    >
+      &#9776;
+    </span>
 
     <div class="grid flex-1 grid-cols-2 gap-2">
       <div>
@@ -24,9 +31,13 @@
         ) %>
       </div>
 
-      <div data-linkable-selector-target="panel" data-linkable-type="Article"
-           data-controller="linkable-autofill" data-linkable-autofill-url-value="<%= admin_article_searches_path %>"
-           class="<%= "hidden" unless item_form.object.linkable_type == "Article" %>">
+      <div
+        data-linkable-selector-target="panel"
+        data-linkable-type="Article"
+        data-controller="linkable-autofill"
+        data-linkable-autofill-url-value="<%= admin_article_searches_path %>"
+        class="<%= "hidden" unless item_form.object.linkable_type == "Article" %>"
+      >
         <%= lui.combobox(
           name: :linkable_id,
           form: item_form,
@@ -38,9 +49,13 @@
         ) %>
       </div>
 
-      <div data-linkable-selector-target="panel" data-linkable-type="RubyGem"
-           data-controller="linkable-autofill" data-linkable-autofill-url-value="<%= admin_gem_searches_path %>"
-           class="<%= "hidden" unless item_form.object.linkable_type == "RubyGem" %>">
+      <div
+        data-linkable-selector-target="panel"
+        data-linkable-type="RubyGem"
+        data-controller="linkable-autofill"
+        data-linkable-autofill-url-value="<%= admin_gem_searches_path %>"
+        class="<%= "hidden" unless item_form.object.linkable_type == "RubyGem" %>"
+      >
         <%= lui.combobox(
           name: :linkable_id,
           form: item_form,
@@ -52,9 +67,13 @@
         ) %>
       </div>
 
-      <div data-linkable-selector-target="panel" data-linkable-type="GithubRepo"
-           data-controller="linkable-autofill" data-linkable-autofill-url-value="<%= admin_github_repo_searches_path %>"
-           class="<%= "hidden" unless item_form.object.linkable_type == "GithubRepo" %>">
+      <div
+        data-linkable-selector-target="panel"
+        data-linkable-type="GithubRepo"
+        data-controller="linkable-autofill"
+        data-linkable-autofill-url-value="<%= admin_github_repo_searches_path %>"
+        class="<%= "hidden" unless item_form.object.linkable_type == "GithubRepo" %>"
+      >
         <%= lui.combobox(
           name: :linkable_id,
           form: item_form,
@@ -66,9 +85,13 @@
         ) %>
       </div>
 
-      <div data-linkable-selector-target="panel" data-linkable-type="RedditPost"
-           data-controller="linkable-autofill" data-linkable-autofill-url-value="<%= admin_reddit_post_searches_path %>"
-           class="<%= "hidden" unless item_form.object.linkable_type == "RedditPost" %>">
+      <div
+        data-linkable-selector-target="panel"
+        data-linkable-type="RedditPost"
+        data-controller="linkable-autofill"
+        data-linkable-autofill-url-value="<%= admin_reddit_post_searches_path %>"
+        class="<%= "hidden" unless item_form.object.linkable_type == "RedditPost" %>"
+      >
         <%= lui.combobox(
           name: :linkable_id,
           form: item_form,
@@ -81,9 +104,7 @@
       </div>
     </div>
 
-    <div class="mb-0.5">
-      <%= lui.button(type: :button, style: :outline, icon: "trash", data: { action: "nested-form#remove" }) %>
-    </div>
+    <%= lui.button(type: :button, style: :outline, icon: "trash", data: { action: "nested-form#remove" }) %>
   </div>
 
   <%= lui.input(name: :title, form: item_form, label: "Title") %>

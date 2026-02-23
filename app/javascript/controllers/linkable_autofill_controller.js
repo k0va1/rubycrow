@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { get } from "@rails/request.js"
 
 export default class extends Controller {
   static values = { url: String }
@@ -34,24 +35,26 @@ export default class extends Controller {
   }
 
   async itemSelected(itemId) {
-    const url = `${this.urlValue}?id=${encodeURIComponent(itemId)}`
-    const response = await fetch(url, {
-      headers: { "Accept": "application/json" }
-    })
+    try {
+      const url = `${this.urlValue}?id=${encodeURIComponent(itemId)}`
+      const response = await get(url, { responseKind: "json" })
 
-    if (!response.ok) return
+      if (!response.ok) return
 
-    const data = await response.json()
+      const data = await response.json
 
-    const wrapper = this.element.closest("[data-nested-form-wrapper]")
-    if (!wrapper) return
+      const wrapper = this.element.closest("[data-nested-form-wrapper]")
+      if (!wrapper) return
 
-    const titleInput = wrapper.querySelector('input[name$="[title]"]')
-    const urlInput = wrapper.querySelector('input[name$="[url]"]')
-    const descInput = wrapper.querySelector('textarea[name$="[description]"]')
+      const titleInput = wrapper.querySelector('input[name$="[title]"]')
+      const urlInput = wrapper.querySelector('input[name$="[url]"]')
+      const descInput = wrapper.querySelector('textarea[name$="[description]"]')
 
-    if (titleInput) titleInput.value = data.title
-    if (urlInput) urlInput.value = data.url
-    if (descInput) descInput.value = data.description || ""
+      if (titleInput) titleInput.value = data.title
+      if (urlInput) urlInput.value = data.url
+      if (descInput) descInput.value = data.description || ""
+    } catch {
+      // silently ignore network errors
+    }
   }
 }

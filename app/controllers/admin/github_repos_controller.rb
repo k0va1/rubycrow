@@ -1,15 +1,11 @@
 module Admin
   class GithubReposController < BaseController
+    include PeriodFilterable
+
     before_action :set_github_repo, only: [:show, :edit, :update, :destroy]
 
-    PERIOD_FILTERS = {
-      "last_week" => 1.week,
-      "last_2_weeks" => 2.weeks,
-      "last_month" => 1.month
-    }.freeze
-
     def index
-      scope = GithubRepo.all
+      scope = GithubRepo.by_push_date
 
       @period = params[:period]
       scope = scope.where("repo_pushed_at >= ?", PERIOD_FILTERS[@period].ago) if PERIOD_FILTERS.key?(@period)

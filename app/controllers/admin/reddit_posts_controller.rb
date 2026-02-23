@@ -1,15 +1,11 @@
 module Admin
   class RedditPostsController < BaseController
+    include PeriodFilterable
+
     before_action :set_reddit_post, only: [:show, :edit, :update, :destroy]
 
-    PERIOD_FILTERS = {
-      "last_week" => 1.week,
-      "last_2_weeks" => 2.weeks,
-      "last_month" => 1.month
-    }.freeze
-
     def index
-      scope = RedditPost.all
+      scope = RedditPost.by_post_date
       scope = scope.from_subreddit(params[:subreddit]) if params[:subreddit].present?
 
       @period = params[:period]

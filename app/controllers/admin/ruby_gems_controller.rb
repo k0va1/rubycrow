@@ -1,15 +1,11 @@
 module Admin
   class RubyGemsController < BaseController
+    include PeriodFilterable
+
     before_action :set_ruby_gem, only: [:show, :edit, :update, :destroy]
 
-    PERIOD_FILTERS = {
-      "last_week" => 1.week,
-      "last_2_weeks" => 2.weeks,
-      "last_month" => 1.month
-    }.freeze
-
     def index
-      scope = RubyGem.all
+      scope = RubyGem.by_version_date
       scope = scope.where(activity_type: params[:activity_type]) if params[:activity_type].present?
 
       @period = params[:period]

@@ -1,8 +1,13 @@
 class NewsletterMailer < ApplicationMailer
+  helper ApplicationHelper
+
   def issue(newsletter_issue:, subscriber:)
     @newsletter_issue = newsletter_issue
     @subscriber = subscriber
-    @sections = newsletter_issue.newsletter_sections.includes(newsletter_items: [:tracked_link, :linkable])
+    @sections = newsletter_issue.newsletter_sections
+      .order(:position)
+      .includes(newsletter_items: [:tracked_link, :linkable])
+    preload_article_blogs(@sections)
     @first_flight_blog_ids = first_flight_blog_ids(newsletter_issue)
 
     attachments.inline["rubycrow.png"] = {
@@ -17,6 +22,19 @@ class NewsletterMailer < ApplicationMailer
   end
 
   private
+
+  def preload_article_blogs(sections)
+    article_linkables = sections.flat_map(&:newsletter_items)
+      .select { |item| item.linkable_type == "Article" }
+      .filter_map(&:linkable)
+
+    if article_linkables.any?
+      ActiveRecord::Associations::Preloader.new(
+        records: article_linkables,
+        associations: :blog
+      ).call
+    end
+  end
 
   def first_flight_blog_ids(newsletter_issue)
     article_ids = newsletter_issue.newsletter_items

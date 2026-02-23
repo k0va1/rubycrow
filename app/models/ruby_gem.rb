@@ -31,32 +31,29 @@
 #  index_ruby_gems_on_version_created_at  (version_created_at)
 #
 class RubyGem < ApplicationRecord
+  include NewsletterSource
+  include HttpFetchable
+
   API_BASE = "https://rubygems.org/api/v1/activity"
   API_TIMEOUT = 15
   ACTIVITY_TYPES = %w[new updated].freeze
-
-  has_many :newsletter_items, as: :linkable, dependent: :nullify
 
   validates :name, presence: true, uniqueness: true
   validates :version, presence: true
   validates :project_url, presence: true
   validates :activity_type, presence: true, inclusion: {in: ACTIVITY_TYPES}
 
-  default_scope { order(version_created_at: :desc) }
-
-  scope :recent, ->(limit = 15) { limit(limit) }
-  scope :unprocessed, -> { where(processed: false) }
+  scope :by_version_date, -> { order(version_created_at: :desc) }
   scope :newly_created, -> { where(activity_type: "new") }
   scope :recently_updated, -> { where(activity_type: "updated") }
-  scope :featured, -> { where.not(featured_in_issue: nil) }
   scope :search_by_name, ->(query) { where("name ILIKE ?", "%#{sanitize_sql_like(query)}%") }
-  scope :popular, -> { unscoped.order(downloads: :desc) }
+  scope :popular, -> { order(downloads: :desc) }
 
   def self.sync_from_api!
     updated_gems = fetch_gems("just_updated.json", "updated")
     new_gems = fetch_gems("latest.json", "new")
 
-    records = new_gems.merge(updated_gems)
+    records = updated_gems.merge(new_gems)
     return [] if records.empty?
 
     now = Time.current
@@ -67,9 +64,6 @@ class RubyGem < ApplicationRecord
       unique_by: :index_ruby_gems_on_name,
       update_only: %i[version authors info licenses downloads project_url homepage_url source_code_url version_created_at activity_type last_synced_at]
     )
-  rescue Faraday::Error, JSON::ParserError => e
-    Rails.logger.error("RubyGem sync failed: #{e.message}")
-    []
   end
 
   def self.fetch_gems(endpoint, activity_type)
@@ -103,13 +97,5 @@ class RubyGem < ApplicationRecord
     {}
   end
 
-  def self.http_client
-    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
-      f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
-      f.response :follow_redirects
-      f.adapter Faraday.default_adapter
-    end
-  end
-
-  private_class_method :fetch_gems, :http_client
+  private_class_method :fetch_gems
 end

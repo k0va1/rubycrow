@@ -70,6 +70,9 @@
                         &#x1F195; First Flight
                       </span>
                     <% end %>
+                  <% elsif (source = source_label_for(item)) %>
+                    via
+                    <span style="color: #999;"><%= source %></span>
                   <% end %>
                 </p>
 
@@ -126,6 +129,9 @@
                         &#x1F195; First Flight
                       </span>
                     <% end %>
+                  <% elsif (source = source_label_for(item)) %>
+                    via
+                    <span style="color: #999;"><%= source %></span>
                   <% end %>
                 </p>
 
@@ -186,6 +192,9 @@
                         &#x1F195; First Flight
                       </span>
                     <% end %>
+                  <% elsif (source = source_label_for(item)) %>
+                    via
+                    <span style="color: #999;"><%= source %></span>
                   <% end %>
                 </p>
 
@@ -238,6 +247,8 @@
                       </span>
                     <% end %>
                   </p>
+                <% elsif (source = source_label_for(item)) %>
+                  <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;">via <%= source %></p>
                 <% end %>
               </td>
             </tr>

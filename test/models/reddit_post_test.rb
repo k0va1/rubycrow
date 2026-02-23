@@ -46,24 +46,28 @@ class RedditPostTest < ActiveSupport::TestCase
     assert post.valid?
   end
 
-  test "default scope orders by posted_at desc" do
-    posts = RedditPost.all
+  test "by_post_date scope orders by posted_at desc" do
+    posts = RedditPost.by_post_date
     dates = posts.map(&:posted_at).compact
+    assert dates.any?
     assert_equal dates, dates.sort.reverse
   end
 
   test "recent scope limits results" do
-    assert RedditPost.recent(2).count <= 2
+    assert_equal 2, RedditPost.recent(2).count
   end
 
   test "unprocessed scope returns unprocessed posts" do
-    RedditPost.unprocessed.each do |post|
+    unprocessed = RedditPost.unprocessed
+    assert unprocessed.any?
+    unprocessed.each do |post|
       assert_not post.processed?
     end
   end
 
   test "from_subreddit scope filters by subreddit" do
     ruby_posts = RedditPost.from_subreddit("ruby")
+    assert ruby_posts.any?
     ruby_posts.each do |post|
       assert_equal "ruby", post.subreddit
     end
@@ -122,6 +126,16 @@ class RedditPostTest < ActiveSupport::TestCase
   test "sync_from_api! returns empty array on api error" do
     stub_request(:get, "https://www.reddit.com/r/ruby/hot/.rss?limit=50")
       .to_return(status: 500)
+    stub_request(:get, "https://www.reddit.com/r/rails/hot/.rss?limit=50")
+      .to_return(status: 200, body: '<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>r/rails</title></feed>', headers: {"Content-Type" => "application/xml"})
+
+    result = RedditPost.sync_from_api!
+    assert_equal [], result
+  end
+
+  test "sync_from_api! handles malformed XML" do
+    stub_request(:get, "https://www.reddit.com/r/ruby/hot/.rss?limit=50")
+      .to_return(status: 200, body: "not valid xml at all", headers: {"Content-Type" => "application/xml"})
     stub_request(:get, "https://www.reddit.com/r/rails/hot/.rss?limit=50")
       .to_return(status: 200, body: '<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"><title>r/rails</title></feed>', headers: {"Content-Type" => "application/xml"})
 

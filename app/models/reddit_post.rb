@@ -1,20 +1,17 @@
 class RedditPost < ApplicationRecord
+  include NewsletterSource
+  include HttpFetchable
+
   SUBREDDITS = %w[ruby rails].freeze
   FEED_TIMEOUT = 15
-
-  has_many :newsletter_items, as: :linkable, dependent: :nullify
 
   validates :reddit_id, presence: true, uniqueness: true
   validates :title, presence: true
   validates :url, presence: true
   validates :subreddit, presence: true, inclusion: {in: SUBREDDITS}
 
-  default_scope { order(posted_at: :desc) }
-
-  scope :recent, ->(limit = 15) { limit(limit) }
-  scope :unprocessed, -> { where(processed: false) }
+  scope :by_post_date, -> { order(posted_at: :desc) }
   scope :from_subreddit, ->(sub) { where(subreddit: sub) }
-  scope :featured, -> { where.not(featured_in_issue: nil) }
   scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{sanitize_sql_like(query)}%") }
 
   def self.sync_from_api!
@@ -34,9 +31,6 @@ class RedditPost < ApplicationRecord
       unique_by: :index_reddit_posts_on_reddit_id,
       update_only: %i[title url last_synced_at]
     )
-  rescue Faraday::Error, Feedjira::NoParserAvailable => e
-    Rails.logger.error("RedditPost sync failed: #{e.message}")
-    []
   end
 
   def self.fetch_feed(subreddit)
@@ -85,13 +79,5 @@ class RedditPost < ApplicationRecord
     link
   end
 
-  def self.http_client
-    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
-      f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
-      f.response :follow_redirects
-      f.adapter Faraday.default_adapter
-    end
-  end
-
-  private_class_method :fetch_feed, :extract_reddit_id, :extract_external_url, :http_client
+  private_class_method :fetch_feed, :extract_reddit_id, :extract_external_url
 end
