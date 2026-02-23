@@ -536,6 +536,12 @@
   tags:
     - personal
 
+- name: "Robert Hopman"
+  url: "https://roberthopman.com/"
+  rss_url: "https://roberthopman.com/feed.xml"
+  tags:
+    - personal
+
 - name: "Robert Pankowecki"
   url: "https://pankowecki.pl/"
   rss_url: "https://pankowecki.pl/index.xml"
