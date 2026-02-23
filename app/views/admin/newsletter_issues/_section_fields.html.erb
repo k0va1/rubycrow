@@ -6,10 +6,19 @@
   class="space-y-4 rounded-lg border p-4"
   style="border-color: var(--lui-theme-border); background: var(--lui-theme-surface-secondary);"
 >
-  <div class="flex items-center gap-2">
-    <span data-sortable-handle class="admin-faint cursor-grab text-lg">☰</span>
+  <div class="flex items-end gap-2">
+    <span
+      data-sortable-handle
+      class="admin-faint mb-2 cursor-grab text-lg"
+      role="img"
+      aria-label="Drag to reorder"
+    >
+      &#9776;
+    </span>
+
     <div class="flex-1"><%= lui.input(name: :title, form: section_form, label: "Section Title") %></div>
-    <button type="button" data-action="nested-form#remove" class="admin-delete-btn text-sm">✕</button>
+
+    <%= lui.button(type: :button, style: :outline, icon: "trash", data: { action: "nested-form#remove" }) %>
   </div>
 
   <%= section_form.hidden_field :id %>
@@ -19,7 +28,7 @@
   <div data-controller="nested-form">
     <div class="mb-2 flex items-center justify-between">
       <h4 class="admin-subtext text-sm font-medium">Items</h4>
-      <button type="button" data-action="nested-form#add" class="admin-link-secondary text-sm">+ Add Item</button>
+      <%= lui.button(type: :button, style: :outline, icon: "plus", data: { action: "nested-form#add" }) %>
     </div>
 
     <div data-nested-form-target="container" data-controller="sortable" class="space-y-2">

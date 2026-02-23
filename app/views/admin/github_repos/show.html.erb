@@ -1,0 +1,51 @@
+<div class="mb-2"><%= link_to "← GitHub Repos", admin_github_repos_path, class: "text-sm admin-link-back" %></div>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="admin-heading text-2xl font-semibold"><%= @github_repo.full_name %></h1>
+
+  <div class="flex gap-2">
+    <%= lui.button(url: edit_admin_github_repo_path(@github_repo), style: :outline, icon: "pencil") { "Edit" } %>
+    <%= lui.button(url: admin_github_repo_path(@github_repo), style: :outline, icon: "trash", data: { turbo_method: :delete, turbo_confirm: "Delete this repo?" }) { "Delete" } %>
+  </div>
+</div>
+
+<%= lui.description_list do |list| %>
+  <% list.with_item(label: "Full Name", value: @github_repo.full_name) %>
+  <% list.with_item(label: "Name", value: @github_repo.name) %>
+  <% list.with_item(label: "Description", value: @github_repo.description || "—") %>
+
+  <% list.with_item(label: "URL") do %>
+    <%= link_to @github_repo.url, safe_external_url(@github_repo.url), target: "_blank", rel: "noopener noreferrer" %>
+  <% end %>
+
+  <% list.with_item(label: "Stars", value: number_with_delimiter(@github_repo.stars)) %>
+  <% list.with_item(label: "Forks", value: number_with_delimiter(@github_repo.forks)) %>
+  <% list.with_item(label: "Language", value: @github_repo.language || "—") %>
+  <% list.with_item(label: "Owner", value: @github_repo.owner_name || "—") %>
+
+  <% list.with_item(label: "Topics") do %>
+    <% if @github_repo.topics.any? %>
+      <div class="flex flex-wrap gap-1.5">
+        <% @github_repo.topics.each do |topic| %>
+          <%= lui.badge { topic } %>
+        <% end %>
+      </div>
+    <% else %>
+      —
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Processed") do %>
+    <% if @github_repo.processed? %>
+      <%= lui.badge(status: :success) { "Yes" } %>
+    <% else %>
+      <%= lui.badge(status: :warning) { "No" } %>
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Featured in Issue", value: @github_repo.featured_in_issue || "—") %>
+  <% list.with_item(label: "Repo Created", value: @github_repo.repo_created_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Repo Pushed", value: @github_repo.repo_pushed_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "First Seen", value: @github_repo.first_seen_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+  <% list.with_item(label: "Last Synced", value: @github_repo.last_synced_at&.strftime("%b %d, %Y %H:%M") || "—") %>
+<% end %>

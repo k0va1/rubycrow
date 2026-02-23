@@ -66,11 +66,11 @@ class NewsletterIssueTest < ActiveSupport::TestCase
     article = articles(:rails_performance)
     issue = NewsletterIssue.create!(issue_number: 101, subject: "Test")
     section = issue.newsletter_sections.create!(title: "Crows Pick", position: 0)
-    section.newsletter_items.create!(title: article.title, url: article.url, position: 0, article: article)
+    section.newsletter_items.create!(title: article.title, url: article.url, position: 0, linkable: article)
 
     issue.create_tracked_links!
 
     link = issue.tracked_links.first
-    assert_equal article, link.trackable.article
+    assert_equal article, link.trackable.linkable
   end
 end

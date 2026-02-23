@@ -1,0 +1,62 @@
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="admin-heading text-2xl font-semibold">GitHub Repos</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @pagy.count %> repos total</p>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by name...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
+    <div data-controller="auto-submit">
+      <%= lui.select(
+        name: :period,
+        label: false,
+        options_for_select: options_for_select(
+          [["All time", ""], ["Last week", "last_week"], ["Last 2 weeks", "last_2_weeks"], ["Last month", "last_month"]],
+          @period
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+
+    <%= lui.button(url: new_admin_github_repo_path, icon: "plus") { "New Repo" } %>
+  </div>
+</div>
+
+<% if @github_repos.any? %>
+  <%= lui.table(data: @github_repos) do |table| %>
+    <% table.with_column("Name") { |repo| link_to repo.full_name, admin_github_repo_path(repo) } %>
+    <% table.with_column("Stars") { |repo| number_with_delimiter(repo.stars) } %>
+    <% table.with_column("Forks") { |repo| number_with_delimiter(repo.forks) } %>
+    <% table.with_column("Language") { |repo| repo.language || "—" } %>
+    <% table.with_column("Pushed") { |repo| repo.repo_pushed_at&.strftime("%b %d, %Y") || "—" } %>
+
+    <% table.with_column("Processed") do |repo| %>
+      <% if repo.processed? %>
+        <%= lui.badge(status: :success) { "Yes" } %>
+      <% else %>
+        <%= lui.badge(status: :warning) { "No" } %>
+      <% end %>
+    <% end %>
+
+    <% table.with_action { |repo| link_to "Edit", edit_admin_github_repo_path(repo) } %>
+    <% table.with_action { |repo| link_to "Delete", admin_github_repo_path(repo), data: { turbo_method: :delete, turbo_confirm: "Delete this repo?" } } %>
+  <% end %>
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="admin-card py-12 text-center">
+    <p class="admin-subtext mb-4 text-sm">No GitHub repos yet</p>
+    <%= lui.button(url: new_admin_github_repo_path, icon: "plus") { "Add your first repo" } %>
+  </div>
+<% end %>

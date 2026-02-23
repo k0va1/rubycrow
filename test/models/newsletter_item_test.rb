@@ -35,28 +35,81 @@ class NewsletterItemTest < ActiveSupport::TestCase
     assert item.valid?
   end
 
-  test "article_id is optional" do
+  test "linkable is optional" do
     item = NewsletterItem.new(
       newsletter_section: newsletter_sections(:crows_pick),
-      title: "No Article",
+      title: "No Linkable",
       url: "https://example.com/test",
       position: 0
     )
     assert item.valid?
-    assert_nil item.article_id
+    assert_nil item.linkable
   end
 
-  test "belongs_to article when set" do
+  test "linkable can be an article" do
     article = articles(:rails_performance)
+    item = newsletter_items(:rails_update)
+    assert_equal "Article", item.linkable_type
+    assert_equal article, item.linkable
+  end
+
+  test "linkable can be a ruby gem" do
+    gem = ruby_gems(:rack_updated)
+    item = newsletter_items(:ruby_gem)
+    assert_equal "RubyGem", item.linkable_type
+    assert_equal gem, item.linkable
+  end
+
+  test "linkable can be a github repo" do
+    repo = github_repos(:rails_repo)
+    item = newsletter_items(:github_repo)
+    assert_equal "GithubRepo", item.linkable_type
+    assert_equal repo, item.linkable
+  end
+
+  test "linkable can be a reddit post" do
+    post = reddit_posts(:ruby_post)
+    item = newsletter_items(:reddit_post)
+    assert_equal "RedditPost", item.linkable_type
+    assert_equal post, item.linkable
+  end
+
+  test "clear_blank_linkable nils both fields when linkable_type is blank" do
     item = NewsletterItem.new(
       newsletter_section: newsletter_sections(:crows_pick),
-      title: article.title,
-      url: article.url,
-      position: 0,
-      article: article
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "",
+      linkable_id: 1
     )
-    assert item.valid?
-    assert_equal article, item.article
+    item.valid?
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "clear_blank_linkable nils both fields when linkable_id is blank" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "Article",
+      linkable_id: nil
+    )
+    item.valid?
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "rejects invalid linkable_type" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "User",
+      linkable_id: 1
+    )
+    assert_not item.valid?
+    assert_includes item.errors[:linkable_type], "is not included in the list"
   end
 
   test "first_flight? returns false when item has no article" do
@@ -79,7 +132,7 @@ class NewsletterItemTest < ActiveSupport::TestCase
     article = articles(:martians_article)
     another_item = NewsletterItem.create!(
       newsletter_section: section,
-      article: article,
+      linkable: article,
       title: "Another Martians Post",
       url: "https://example.com/another-martians",
       position: 2

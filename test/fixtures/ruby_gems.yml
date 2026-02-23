@@ -1,0 +1,83 @@
+# == Schema Information
+#
+# Table name: ruby_gems
+#
+#  id                 :bigint           not null, primary key
+#  activity_type      :string           not null
+#  authors            :string
+#  downloads          :integer          default(0)
+#  featured_in_issue  :integer
+#  first_seen_at      :datetime
+#  homepage_url       :string
+#  info               :text
+#  last_synced_at     :datetime
+#  licenses           :text             default([]), is an Array
+#  name               :string           not null
+#  processed          :boolean          default(FALSE)
+#  project_url        :string           not null
+#  source_code_url    :string
+#  version            :string           not null
+#  version_created_at :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_ruby_gems_on_activity_type       (activity_type)
+#  index_ruby_gems_on_downloads           (downloads)
+#  index_ruby_gems_on_featured_in_issue   (featured_in_issue)
+#  index_ruby_gems_on_name                (name) UNIQUE
+#  index_ruby_gems_on_processed           (processed)
+#  index_ruby_gems_on_version_created_at  (version_created_at)
+#
+rack_updated:
+  name: "rack"
+  version: "3.1.0"
+  authors: "Leah Neukirchen, Aaron Patterson"
+  info: "Rack provides a minimal interface between web servers and Ruby frameworks"
+  licenses:
+    - MIT
+  downloads: 500000000
+  project_url: "https://rubygems.org/gems/rack"
+  homepage_url: "https://github.com/rack/rack"
+  source_code_url: "https://github.com/rack/rack"
+  version_created_at: <%= 1.day.ago.to_fs(:db) %>
+  activity_type: "updated"
+  processed: false
+  first_seen_at: <%= 1.day.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.hour.ago.to_fs(:db) %>
+
+new_gem:
+  name: "cool_new_gem"
+  version: "0.1.0"
+  authors: "Jane Developer"
+  info: "A cool new gem for Ruby developers"
+  licenses:
+    - MIT
+  downloads: 42
+  project_url: "https://rubygems.org/gems/cool_new_gem"
+  homepage_url: "https://github.com/jane/cool_new_gem"
+  source_code_url: "https://github.com/jane/cool_new_gem"
+  version_created_at: <%= 2.hours.ago.to_fs(:db) %>
+  activity_type: "new"
+  processed: false
+  first_seen_at: <%= 2.hours.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.hour.ago.to_fs(:db) %>
+
+featured_gem:
+  name: "solid_queue"
+  version: "1.0.0"
+  authors: "Rosa Gutierrez"
+  info: "Database-backed Active Job backend"
+  licenses:
+    - MIT
+  downloads: 1000000
+  project_url: "https://rubygems.org/gems/solid_queue"
+  homepage_url: "https://github.com/rails/solid_queue"
+  source_code_url: "https://github.com/rails/solid_queue"
+  version_created_at: <%= 3.days.ago.to_fs(:db) %>
+  activity_type: "new"
+  processed: true
+  featured_in_issue: 1
+  first_seen_at: <%= 3.days.ago.to_fs(:db) %>
+  last_synced_at: <%= 1.day.ago.to_fs(:db) %>

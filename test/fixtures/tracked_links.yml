@@ -30,3 +30,17 @@ link_two:
   destination_url: "https://evilmartians.com/chronicles/viewcomponent?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
   total_clicks: 2
   unique_clicks: 1
+
+link_github_repo:
+  token: "ghi789token"
+  trackable: github_repo (NewsletterItem)
+  destination_url: "https://github.com/rails/rails?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
+  total_clicks: 0
+  unique_clicks: 0
+
+link_reddit_post:
+  token: "jkl012token"
+  trackable: reddit_post (NewsletterItem)
+  destination_url: "https://www.reddit.com/r/ruby/comments/abc123/whats_new_in_ruby_40/?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_1"
+  total_clicks: 0
+  unique_clicks: 0

@@ -22,7 +22,7 @@
   <div data-controller="nested-form">
     <div class="mb-4 flex items-center justify-between">
       <h3 class="admin-heading text-lg font-semibold">Sections</h3>
-      <button type="button" data-action="nested-form#add" class="admin-link-secondary text-sm">+ Add Section</button>
+      <%= lui.button(type: :button, style: :outline, icon: "plus", data: { action: "nested-form#add" }) %>
     </div>
 
     <div data-nested-form-target="container" data-controller="sortable" class="space-y-4">

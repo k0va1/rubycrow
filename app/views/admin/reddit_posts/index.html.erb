@@ -1,0 +1,77 @@
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="admin-heading text-2xl font-semibold">Reddit Posts</h1>
+    <p class="admin-subtext mt-1 text-sm"><%= @pagy.count %> posts total</p>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <div data-controller="search-form">
+      <%= lui.input(
+        name: :search,
+        label: false,
+        placeholder: "Search by title...",
+        value: @search,
+        input_data: {
+          search_form_target: "input",
+          action: "input->search-form#search"
+        }
+      ) %>
+    </div>
+
+    <div data-controller="auto-submit">
+      <%= lui.select(
+        name: :subreddit,
+        label: false,
+        options_for_select: options_for_select(
+          [["All subreddits", ""], ["r/ruby", "ruby"], ["r/rails", "rails"]],
+          params[:subreddit]
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+
+    <div data-controller="auto-submit">
+      <%= lui.select(
+        name: :period,
+        label: false,
+        options_for_select: options_for_select(
+          [["All time", ""], ["Last week", "last_week"], ["Last 2 weeks", "last_2_weeks"], ["Last month", "last_month"]],
+          @period
+        ),
+        select_data: { action: "change->auto-submit#submit" }
+      ) %>
+    </div>
+
+    <%= lui.button(url: new_admin_reddit_post_path, icon: "plus") { "New Post" } %>
+  </div>
+</div>
+
+<% if @reddit_posts.any? %>
+  <%= lui.table(data: @reddit_posts) do |table| %>
+    <% table.with_column("Title") { |post| link_to truncate(post.title, length: 60), admin_reddit_post_path(post) } %>
+
+    <% table.with_column("Subreddit") do |post| %>
+      <%= lui.badge { "r/#{post.subreddit}" } %>
+    <% end %>
+
+    <% table.with_column("Author") { |post| post.author || "—" } %>
+    <% table.with_column("Posted") { |post| post.posted_at&.strftime("%b %d, %Y") || "—" } %>
+
+    <% table.with_column("Processed") do |post| %>
+      <% if post.processed? %>
+        <%= lui.badge(status: :success) { "Yes" } %>
+      <% else %>
+        <%= lui.badge(status: :warning) { "No" } %>
+      <% end %>
+    <% end %>
+
+    <% table.with_action { |post| link_to "Edit", edit_admin_reddit_post_path(post) } %>
+    <% table.with_action { |post| link_to "Delete", admin_reddit_post_path(post), data: { turbo_method: :delete, turbo_confirm: "Delete this post?" } } %>
+  <% end %>
+  <%= render "admin/shared/pagination", pagy: @pagy %>
+<% else %>
+  <div class="admin-card py-12 text-center">
+    <p class="admin-subtext mb-4 text-sm">No Reddit posts yet</p>
+    <%= lui.button(url: new_admin_reddit_post_path, icon: "plus") { "Add your first post" } %>
+  </div>
+<% end %>

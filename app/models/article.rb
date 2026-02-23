@@ -29,17 +29,14 @@
 #  fk_rails_...  (blog_id => blogs.id)
 #
 class Article < ApplicationRecord
+  include NewsletterSource
+
   self.ignored_columns += ["content_snippet"]
   belongs_to :blog
-  has_many :newsletter_items, dependent: :nullify
-
-  default_scope { order(Arel.sql("published_at DESC NULLS LAST")) }
 
   validates :title, presence: true
   validates :url, presence: true, uniqueness: true
 
-  scope :recent, ->(limit = 15) { limit(limit) }
-  scope :unprocessed, -> { where(processed: false) }
-  scope :featured, -> { where.not(featured_in_issue: nil) }
+  scope :by_publish_date, -> { order(Arel.sql("published_at DESC NULLS LAST")) }
   scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{sanitize_sql_like(query)}%") }
 end

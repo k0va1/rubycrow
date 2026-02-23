@@ -1,0 +1,7 @@
+<div class="mb-6">
+  <%= link_to "← #{truncate(@reddit_post.title, length: 40)}", admin_reddit_post_path(@reddit_post), class: "text-sm admin-link-back" %>
+
+  <h1 class="admin-heading mt-2 text-2xl font-semibold">Edit Reddit Post</h1>
+</div>
+
+<%= render "form", reddit_post: @reddit_post %>

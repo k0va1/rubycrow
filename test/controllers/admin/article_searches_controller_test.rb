@@ -48,6 +48,6 @@ class Admin::ArticleSearchesControllerTest < ActionDispatch::IntegrationTest
     assert_equal article.id, result["id"]
     assert_equal article.title, result["title"]
     assert_equal article.url, result["url"]
-    assert_equal article.summary, result["summary"]
+    assert_equal article.summary, result["description"]
   end
 end

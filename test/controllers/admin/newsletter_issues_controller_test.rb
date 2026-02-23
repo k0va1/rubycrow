@@ -77,7 +77,7 @@ class Admin::NewsletterIssuesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, issue.newsletter_sections.first.newsletter_items.count
   end
 
-  test "create with nested item including article_id" do
+  test "create with nested item including article linkable" do
     article = articles(:rails_performance)
     assert_difference ["NewsletterIssue.count", "NewsletterItem.count"] do
       post admin_newsletter_issues_path, params: {newsletter_issue: {
@@ -88,14 +88,37 @@ class Admin::NewsletterIssuesControllerTest < ActionDispatch::IntegrationTest
             title: "Test Section",
             position: 0,
             newsletter_items_attributes: {
-              "0" => {title: article.title, url: article.url, position: 0, article_id: article.id}
+              "0" => {title: article.title, url: article.url, position: 0, linkable_type: "Article", linkable_id: article.id}
             }
           }
         }
       }}
     end
     item = NewsletterIssue.last.newsletter_sections.first.newsletter_items.first
-    assert_equal article.id, item.article_id
+    assert_equal article.id, item.linkable_id
+    assert_equal "Article", item.linkable_type
+  end
+
+  test "create with nested item including ruby_gem linkable" do
+    gem = ruby_gems(:rack_updated)
+    assert_difference ["NewsletterIssue.count", "NewsletterItem.count"] do
+      post admin_newsletter_issues_path, params: {newsletter_issue: {
+        issue_number: 102,
+        subject: "With Gem",
+        newsletter_sections_attributes: {
+          "0" => {
+            title: "Test Section",
+            position: 0,
+            newsletter_items_attributes: {
+              "0" => {title: gem.name, url: gem.project_url, position: 0, linkable_type: "RubyGem", linkable_id: gem.id}
+            }
+          }
+        }
+      }}
+    end
+    item = NewsletterIssue.last.newsletter_sections.first.newsletter_items.first
+    assert_equal gem.id, item.linkable_id
+    assert_equal "RubyGem", item.linkable_type
   end
 
   test "create with nested items auto-generates tracked links" do
