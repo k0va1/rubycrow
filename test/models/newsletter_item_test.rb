@@ -112,6 +112,106 @@ class NewsletterItemTest < ActiveSupport::TestCase
     assert_nil item.linkable_id
   end
 
+  test "github_repo_id= sets linkable to github repo" do
+    repo = github_repos(:rails_repo)
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com"
+    )
+    item.github_repo_id = repo.id
+    assert_equal "GithubRepo", item.linkable_type
+    assert_equal repo.id, item.linkable_id
+  end
+
+  test "reddit_post_id= sets linkable to reddit post" do
+    post_record = reddit_posts(:ruby_post)
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com"
+    )
+    item.reddit_post_id = post_record.id
+    assert_equal "RedditPost", item.linkable_type
+    assert_equal post_record.id, item.linkable_id
+  end
+
+  test "github_repo_id= with blank clears github repo linkable" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "GithubRepo",
+      linkable_id: github_repos(:rails_repo).id
+    )
+    item.github_repo_id = ""
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "reddit_post_id= with blank clears reddit post linkable" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "RedditPost",
+      linkable_id: reddit_posts(:ruby_post).id
+    )
+    item.reddit_post_id = ""
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "github_repo returns nil when linkable is an article" do
+    item = newsletter_items(:rails_update)
+    assert_nil item.github_repo
+    assert_nil item.github_repo_id
+  end
+
+  test "reddit_post returns nil when linkable is an article" do
+    item = newsletter_items(:rails_update)
+    assert_nil item.reddit_post
+    assert_nil item.reddit_post_id
+  end
+
+  test "clear_blank_linkable nils both fields when linkable_type is blank" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "",
+      linkable_id: 1
+    )
+    item.valid?
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "clear_blank_linkable nils both fields when linkable_id is blank" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "Article",
+      linkable_id: nil
+    )
+    item.valid?
+    assert_nil item.linkable_type
+    assert_nil item.linkable_id
+  end
+
+  test "rejects invalid linkable_type" do
+    item = NewsletterItem.new(
+      newsletter_section: newsletter_sections(:crows_pick),
+      title: "Test",
+      url: "https://example.com",
+      linkable_type: "User",
+      linkable_id: 1
+    )
+    assert_not item.valid?
+    assert_includes item.errors[:linkable_type], "is not included in the list"
+  end
+
   test "first_flight? returns false when item has no article" do
     item = newsletter_items(:ruby_gem)
     assert_not item.first_flight?

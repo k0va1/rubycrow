@@ -18,7 +18,7 @@
   <%= lui.input(name: :version, form: form, label: "Version") %>
   <%= lui.input(name: :authors, form: form, label: "Authors") %>
   <%= lui.textarea(name: :info, form: form, label: "Info", rows: 3) %>
-  <%= lui.select(name: :activity_type, form: form, label: "Activity Type", options_for_select: [["New", "new"], ["Updated", "updated"]], include_blank: false) %>
+  <%= lui.select(name: :activity_type, form: form, label: "Activity Type", options_for_select: options_for_select([["New", "new"], ["Updated", "updated"]], ruby_gem.activity_type), include_blank: false) %>
   <%= lui.input(name: :downloads, form: form, type: :number, label: "Downloads") %>
   <%= lui.input(name: :project_url, form: form, type: :url, label: "RubyGems URL") %>
   <%= lui.input(name: :homepage_url, form: form, type: :url, label: "Homepage URL") %>

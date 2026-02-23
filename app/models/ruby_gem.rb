@@ -56,7 +56,7 @@ class RubyGem < ApplicationRecord
     updated_gems = fetch_gems("just_updated.json", "updated")
     new_gems = fetch_gems("latest.json", "new")
 
-    records = updated_gems.merge(new_gems)
+    records = new_gems.merge(updated_gems)
     return [] if records.empty?
 
     now = Time.current
@@ -104,7 +104,7 @@ class RubyGem < ApplicationRecord
   end
 
   def self.http_client
-    @http_client ||= Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
+    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
       f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
       f.response :follow_redirects
       f.adapter Faraday.default_adapter

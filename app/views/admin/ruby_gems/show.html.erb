@@ -4,8 +4,8 @@
   <h1 class="admin-heading text-2xl font-semibold"><%= @ruby_gem.name %></h1>
 
   <div class="flex gap-2">
-    <%= lui.button(url: edit_admin_ruby_gem_path(@ruby_gem), style: :outline) { "Edit" } %>
-    <%= link_to "Delete", admin_ruby_gem_path(@ruby_gem), data: { turbo_method: :delete, turbo_confirm: "Delete this gem?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
+    <%= lui.button(url: edit_admin_ruby_gem_path(@ruby_gem), style: :outline, icon: "pencil") { "Edit" } %>
+    <%= lui.button(url: admin_ruby_gem_path(@ruby_gem), style: :outline, icon: "trash", data: { turbo_method: :delete, turbo_confirm: "Delete this gem?" }) { "Delete" } %>
   </div>
 </div>
 

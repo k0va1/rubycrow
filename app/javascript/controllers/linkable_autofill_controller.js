@@ -4,8 +4,15 @@ export default class extends Controller {
   static values = { url: String }
 
   connect() {
-    const hiddenField = this.element.querySelector('[data-lui-combobox-target="hiddenField"]')
-    if (hiddenField) this.interceptHiddenField(hiddenField)
+    this.hiddenField = this.element.querySelector('[data-lui-combobox-target="hiddenField"]')
+    if (this.hiddenField) this.interceptHiddenField(this.hiddenField)
+  }
+
+  disconnect() {
+    if (this.hiddenField) {
+      const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")
+      Object.defineProperty(this.hiddenField, "value", descriptor)
+    }
   }
 
   interceptHiddenField(field) {

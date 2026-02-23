@@ -10,6 +10,8 @@ module Admin
       @total_issues = NewsletterIssue.count
       @sent_issues = NewsletterIssue.sent.count
       @total_clicks = Click.count
+      @total_ruby_gems = RubyGem.count
+      @unprocessed_ruby_gems = RubyGem.unprocessed.count
       @total_github_repos = GithubRepo.count
       @unprocessed_github_repos = GithubRepo.unprocessed.count
       @total_reddit_posts = RedditPost.count

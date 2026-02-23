@@ -18,7 +18,7 @@
   <%= lui.input(name: :title, form: form, label: "Title") %>
   <%= lui.input(name: :url, form: form, type: :url, label: "URL") %>
   <%= lui.input(name: :external_url, form: form, type: :url, label: "External URL") %>
-  <%= lui.select(name: :subreddit, form: form, label: "Subreddit", options_for_select: [["r/ruby", "ruby"], ["r/rails", "rails"]], include_blank: false) %>
+  <%= lui.select(name: :subreddit, form: form, label: "Subreddit", options_for_select: options_for_select([["r/ruby", "ruby"], ["r/rails", "rails"]], reddit_post.subreddit), include_blank: false) %>
   <%= lui.input(name: :author, form: form, label: "Author") %>
   <%= lui.input(name: :score, form: form, type: :number, label: "Score") %>
   <%= lui.input(name: :num_comments, form: form, type: :number, label: "Comments") %>

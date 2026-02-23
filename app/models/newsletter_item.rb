@@ -28,8 +28,11 @@ class NewsletterItem < ApplicationRecord
   belongs_to :linkable, polymorphic: true, optional: true
   has_one :tracked_link, as: :trackable, dependent: :destroy
 
+  LINKABLE_TYPES = %w[Article RubyGem GithubRepo RedditPost].freeze
+
   validates :title, presence: true
   validates :url, presence: true
+  validates :linkable_type, inclusion: {in: LINKABLE_TYPES}, allow_nil: true
 
   before_validation :clear_blank_linkable
 
@@ -103,17 +106,6 @@ class NewsletterItem < ApplicationRecord
     end
   end
 
-  private
-
-  def clear_blank_linkable
-    if linkable_type.blank? || linkable_id.blank?
-      self.linkable_type = nil
-      self.linkable_id = nil
-    end
-  end
-
-  public
-
   def first_flight?
     return false unless article&.blog_id
 
@@ -127,5 +119,14 @@ class NewsletterItem < ApplicationRecord
       .where.not(newsletter_sections: {newsletter_issue_id: current_issue.id})
       .where(linkable_id: Article.where(blog_id: blog_id).select(:id))
       .exists?
+  end
+
+  private
+
+  def clear_blank_linkable
+    if linkable_type.blank? || linkable_id.blank?
+      self.linkable_type = nil
+      self.linkable_id = nil
+    end
   end
 end

@@ -142,7 +142,7 @@ class RubyGemTest < ActiveSupport::TestCase
     assert_equal "new", new_gem.activity_type
   end
 
-  test "sync_from_api! new gems overwrite updated gems with same name" do
+  test "sync_from_api! updated gems take precedence over new gems with same name" do
     shared_gem = {
       "name" => "shared_gem",
       "version" => "1.0.0",
@@ -164,7 +164,7 @@ class RubyGemTest < ActiveSupport::TestCase
     RubyGem.sync_from_api!
 
     gem = RubyGem.find_by(name: "shared_gem")
-    assert_equal "new", gem.activity_type
+    assert_equal "updated", gem.activity_type
   end
 
   test "sync_from_api! returns empty array on api error" do

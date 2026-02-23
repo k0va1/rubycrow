@@ -32,7 +32,7 @@ class RedditPost < ApplicationRecord
     upsert_all(
       rows,
       unique_by: :index_reddit_posts_on_reddit_id,
-      update_only: %i[title url score num_comments last_synced_at]
+      update_only: %i[title url last_synced_at]
     )
   rescue Faraday::Error, Feedjira::NoParserAvailable => e
     Rails.logger.error("RedditPost sync failed: #{e.message}")
@@ -86,7 +86,7 @@ class RedditPost < ApplicationRecord
   end
 
   def self.http_client
-    @http_client ||= Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
+    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
       f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
       f.response :follow_redirects
       f.adapter Faraday.default_adapter

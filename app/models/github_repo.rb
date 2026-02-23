@@ -20,7 +20,7 @@ class GithubRepo < ApplicationRecord
     daily_repos = fetch_repos(1.day.ago)
     weekly_repos = fetch_repos(1.week.ago)
 
-    records = daily_repos.merge(weekly_repos)
+    records = weekly_repos.merge(daily_repos)
     return [] if records.empty?
 
     now = Time.current
@@ -75,7 +75,7 @@ class GithubRepo < ApplicationRecord
   end
 
   def self.http_client
-    @http_client ||= Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
+    Faraday.new(ssl: {min_version: OpenSSL::SSL::TLS1_2_VERSION}) do |f|
       f.headers["User-Agent"] = "RubyCrow/1.0 (+https://rubycrow.com)"
       f.headers["Accept"] = "application/vnd.github+json"
       token = Rails.application.credentials.github_token
