@@ -51,7 +51,6 @@ class NewsletterItemTest < ActiveSupport::TestCase
     item = newsletter_items(:rails_update)
     assert_equal "Article", item.linkable_type
     assert_equal article, item.linkable
-    assert_equal article, item.article
   end
 
   test "linkable can be a ruby gem" do
@@ -59,119 +58,6 @@ class NewsletterItemTest < ActiveSupport::TestCase
     item = newsletter_items(:ruby_gem)
     assert_equal "RubyGem", item.linkable_type
     assert_equal gem, item.linkable
-    assert_equal gem, item.ruby_gem
-  end
-
-  test "article returns nil when linkable is a ruby gem" do
-    item = newsletter_items(:ruby_gem)
-    assert_nil item.article
-    assert_nil item.article_id
-  end
-
-  test "ruby_gem returns nil when linkable is an article" do
-    item = newsletter_items(:rails_update)
-    assert_nil item.ruby_gem
-    assert_nil item.ruby_gem_id
-  end
-
-  test "article_id= sets linkable to article" do
-    article = articles(:rails_performance)
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com"
-    )
-    item.article_id = article.id
-    assert_equal "Article", item.linkable_type
-    assert_equal article.id, item.linkable_id
-  end
-
-  test "ruby_gem_id= sets linkable to ruby gem" do
-    gem = ruby_gems(:rack_updated)
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com"
-    )
-    item.ruby_gem_id = gem.id
-    assert_equal "RubyGem", item.linkable_type
-    assert_equal gem.id, item.linkable_id
-  end
-
-  test "article_id= with blank clears article linkable" do
-    item = newsletter_items(:rails_update)
-    item.article_id = ""
-    assert_nil item.linkable_type
-    assert_nil item.linkable_id
-  end
-
-  test "ruby_gem_id= with blank clears gem linkable" do
-    item = newsletter_items(:ruby_gem)
-    item.ruby_gem_id = ""
-    assert_nil item.linkable_type
-    assert_nil item.linkable_id
-  end
-
-  test "github_repo_id= sets linkable to github repo" do
-    repo = github_repos(:rails_repo)
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com"
-    )
-    item.github_repo_id = repo.id
-    assert_equal "GithubRepo", item.linkable_type
-    assert_equal repo.id, item.linkable_id
-  end
-
-  test "reddit_post_id= sets linkable to reddit post" do
-    post_record = reddit_posts(:ruby_post)
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com"
-    )
-    item.reddit_post_id = post_record.id
-    assert_equal "RedditPost", item.linkable_type
-    assert_equal post_record.id, item.linkable_id
-  end
-
-  test "github_repo_id= with blank clears github repo linkable" do
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com",
-      linkable_type: "GithubRepo",
-      linkable_id: github_repos(:rails_repo).id
-    )
-    item.github_repo_id = ""
-    assert_nil item.linkable_type
-    assert_nil item.linkable_id
-  end
-
-  test "reddit_post_id= with blank clears reddit post linkable" do
-    item = NewsletterItem.new(
-      newsletter_section: newsletter_sections(:crows_pick),
-      title: "Test",
-      url: "https://example.com",
-      linkable_type: "RedditPost",
-      linkable_id: reddit_posts(:ruby_post).id
-    )
-    item.reddit_post_id = ""
-    assert_nil item.linkable_type
-    assert_nil item.linkable_id
-  end
-
-  test "github_repo returns nil when linkable is an article" do
-    item = newsletter_items(:rails_update)
-    assert_nil item.github_repo
-    assert_nil item.github_repo_id
-  end
-
-  test "reddit_post returns nil when linkable is an article" do
-    item = newsletter_items(:rails_update)
-    assert_nil item.reddit_post
-    assert_nil item.reddit_post_id
   end
 
   test "clear_blank_linkable nils both fields when linkable_type is blank" do

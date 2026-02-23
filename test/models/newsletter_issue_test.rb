@@ -71,6 +71,6 @@ class NewsletterIssueTest < ActiveSupport::TestCase
     issue.create_tracked_links!
 
     link = issue.tracked_links.first
-    assert_equal article, link.trackable.article
+    assert_equal article, link.trackable.linkable
   end
 end

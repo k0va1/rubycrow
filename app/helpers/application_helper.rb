@@ -6,4 +6,8 @@ module ApplicationHelper
   rescue URI::InvalidURIError
     "#"
   end
+
+  def article_blog_for(item)
+    item.linkable&.blog if item.linkable_type == "Article"
+  end
 end

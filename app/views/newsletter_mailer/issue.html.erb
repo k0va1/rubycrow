@@ -60,10 +60,10 @@
                 </a>
 
                 <p class="article-meta" style="margin: 0 0 12px 0; font-size: 13px; color: #666;">
-                  <% if item.article&.blog %>
+                  <% if (blog = article_blog_for(item)) %>
                     by
-                    <span style="color: #999;"><%= item.article.blog.name %></span>
-                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                    <span style="color: #999;"><%= blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(blog.id) %>
                       <span
                         style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;"
                       >
@@ -116,10 +116,10 @@
                 </a>
 
                 <p class="article-meta" style="margin: 0 0 10px 0; font-size: 13px; color: #666;">
-                  <% if item.article&.blog %>
+                  <% if (blog = article_blog_for(item)) %>
                     by
-                    <span style="color: #999;"><%= item.article.blog.name %></span>
-                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                    <span style="color: #999;"><%= blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(blog.id) %>
                       <span
                         style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;"
                       >
@@ -176,10 +176,10 @@
                 </a>
 
                 <p class="article-meta" style="margin: 0 0 10px 0; font-size: 13px; color: #666;">
-                  <% if item.article&.blog %>
+                  <% if (blog = article_blog_for(item)) %>
                     by
-                    <span style="color: #999;"><%= item.article.blog.name %></span>
-                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                    <span style="color: #999;"><%= blog.name %></span>
+                    <% if @first_flight_blog_ids.include?(blog.id) %>
                       <span
                         style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;"
                       >
@@ -226,11 +226,11 @@
                   <%= item.title %> →
                 </a>
 
-                <% if item.article&.blog %>
+                <% if (blog = article_blog_for(item)) %>
                   <p style="margin: 4px 0 0 0; font-size: 13px; color: #666;">
-                    <%= item.article.blog.name %>
+                    <%= blog.name %>
 
-                    <% if @first_flight_blog_ids.include?(item.article.blog_id) %>
+                    <% if @first_flight_blog_ids.include?(blog.id) %>
                       <span
                         style="display: inline-block; background-color: #1a3a2a; color: #4a9e6b; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;"
                       >

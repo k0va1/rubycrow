@@ -38,78 +38,10 @@ class NewsletterItem < ApplicationRecord
 
   default_scope { order(:position) }
 
-  def article
-    linkable if linkable_type == "Article"
-  end
-
-  def article_id
-    linkable_id if linkable_type == "Article"
-  end
-
-  def article_id=(id)
-    if id.present?
-      self.linkable_type = "Article"
-      self.linkable_id = id
-    elsif linkable_type == "Article"
-      self.linkable = nil
-    end
-  end
-
-  def ruby_gem
-    linkable if linkable_type == "RubyGem"
-  end
-
-  def ruby_gem_id
-    linkable_id if linkable_type == "RubyGem"
-  end
-
-  def ruby_gem_id=(id)
-    if id.present?
-      self.linkable_type = "RubyGem"
-      self.linkable_id = id
-    elsif linkable_type == "RubyGem"
-      self.linkable = nil
-    end
-  end
-
-  def github_repo
-    linkable if linkable_type == "GithubRepo"
-  end
-
-  def github_repo_id
-    linkable_id if linkable_type == "GithubRepo"
-  end
-
-  def github_repo_id=(id)
-    if id.present?
-      self.linkable_type = "GithubRepo"
-      self.linkable_id = id
-    elsif linkable_type == "GithubRepo"
-      self.linkable = nil
-    end
-  end
-
-  def reddit_post
-    linkable if linkable_type == "RedditPost"
-  end
-
-  def reddit_post_id
-    linkable_id if linkable_type == "RedditPost"
-  end
-
-  def reddit_post_id=(id)
-    if id.present?
-      self.linkable_type = "RedditPost"
-      self.linkable_id = id
-    elsif linkable_type == "RedditPost"
-      self.linkable = nil
-    end
-  end
-
   def first_flight?
-    return false unless article&.blog_id
+    return false unless linkable_type == "Article" && linkable&.blog_id
 
-    blog_id = article.blog_id
+    blog_id = linkable.blog_id
     current_issue = newsletter_section.newsletter_issue
 
     !NewsletterItem

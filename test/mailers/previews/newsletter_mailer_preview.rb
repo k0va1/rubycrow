@@ -38,7 +38,7 @@ class NewsletterMailerPreview < ActionMailer::Preview
       items.each_with_index do |attrs, item_idx|
         url = "https://example.com/preview-#{SecureRandom.hex(4)}"
         article = blog.articles.create!(title: attrs[:title], url: url, summary: attrs[:description], published_at: item_idx.days.ago)
-        item = section.newsletter_items.create!(title: attrs[:title], description: attrs[:description], url: url, position: item_idx, article: article)
+        item = section.newsletter_items.create!(title: attrs[:title], description: attrs[:description], url: url, position: item_idx, linkable: article)
 
         utm_url = "#{url}?utm_source=rubycrow&utm_medium=email&utm_campaign=issue_9999"
         item.create_tracked_link!(destination_url: utm_url)
