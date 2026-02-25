@@ -1,3 +1,33 @@
+# == Schema Information
+#
+# Table name: reddit_posts
+#
+#  id                :bigint           not null, primary key
+#  author            :string
+#  external_url      :string
+#  featured_in_issue :integer
+#  first_seen_at     :datetime
+#  last_synced_at    :datetime
+#  num_comments      :integer          default(0)
+#  posted_at         :datetime
+#  processed         :boolean          default(FALSE)
+#  score             :integer          default(0)
+#  subreddit         :string           not null
+#  title             :string           not null
+#  url               :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  reddit_id         :string           not null
+#
+# Indexes
+#
+#  index_reddit_posts_on_featured_in_issue  (featured_in_issue)
+#  index_reddit_posts_on_posted_at          (posted_at)
+#  index_reddit_posts_on_processed          (processed)
+#  index_reddit_posts_on_reddit_id          (reddit_id) UNIQUE
+#  index_reddit_posts_on_score              (score)
+#  index_reddit_posts_on_subreddit          (subreddit)
+#
 class RedditPost < ApplicationRecord
   include NewsletterSource
   include HttpFetchable

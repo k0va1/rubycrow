@@ -1,3 +1,35 @@
+# == Schema Information
+#
+# Table name: github_repos
+#
+#  id                :bigint           not null, primary key
+#  description       :text
+#  featured_in_issue :integer
+#  first_seen_at     :datetime
+#  forks             :integer          default(0)
+#  full_name         :string           not null
+#  language          :string
+#  last_synced_at    :datetime
+#  name              :string           not null
+#  owner_avatar_url  :string
+#  owner_name        :string
+#  processed         :boolean          default(FALSE)
+#  repo_created_at   :datetime
+#  repo_pushed_at    :datetime
+#  stars             :integer          default(0)
+#  topics            :text             default([]), is an Array
+#  url               :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+# Indexes
+#
+#  index_github_repos_on_featured_in_issue  (featured_in_issue)
+#  index_github_repos_on_full_name          (full_name) UNIQUE
+#  index_github_repos_on_processed          (processed)
+#  index_github_repos_on_repo_pushed_at     (repo_pushed_at)
+#  index_github_repos_on_stars              (stars)
+#
 rails_repo:
   full_name: "rails/rails"
   name: "rails"

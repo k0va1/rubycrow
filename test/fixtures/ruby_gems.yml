@@ -5,7 +5,7 @@
 #  id                 :bigint           not null, primary key
 #  activity_type      :string           not null
 #  authors            :string
-#  downloads          :integer          default(0)
+#  downloads          :bigint           default(0)
 #  featured_in_issue  :integer
 #  first_seen_at      :datetime
 #  homepage_url       :string
