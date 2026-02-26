@@ -1341,12 +1341,6 @@
   tags:
     - company
 
-- name: "Snyk"
-  url: "https://snyk.io/blog/"
-  rss_url: "https://snyk.io/blog/feed/"
-  tags:
-    - company
-
 - name: "Splitwise"
   url: "https://blog.splitwise.com/"
   rss_url: "https://blog.splitwise.com/feed/"
