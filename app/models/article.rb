@@ -3,6 +3,7 @@
 # Table name: articles
 #
 #  id                :bigint           not null, primary key
+#  archived_at       :datetime
 #  featured_in_issue :integer
 #  processed         :boolean          default(FALSE)
 #  published_at      :datetime
@@ -39,4 +40,19 @@ class Article < ApplicationRecord
 
   scope :by_publish_date, -> { order(Arel.sql("published_at DESC NULLS LAST")) }
   scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{sanitize_sql_like(query)}%") }
+  scope :archived, -> { where.not(archived_at: nil) }
+  scope :not_archived, -> { where(archived_at: nil) }
+  scope :archived_last, -> { order(Arel.sql("archived_at IS NOT NULL")) }
+
+  def archived?
+    archived_at.present?
+  end
+
+  def archive!
+    update!(archived_at: Time.current)
+  end
+
+  def unarchive!
+    update!(archived_at: nil)
+  end
 end

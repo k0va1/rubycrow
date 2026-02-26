@@ -4,6 +4,11 @@
   <h1 class="admin-heading text-2xl font-semibold"><%= truncate(@article.title, length: 60) %></h1>
 
   <div class="flex gap-2">
+    <% if @article.archived? %>
+      <%= lui.button(url: unarchive_admin_article_path(@article), style: :outline, data: { turbo_method: :patch }) { "Unarchive" } %>
+    <% else %>
+      <%= lui.button(url: archive_admin_article_path(@article), style: :outline, data: { turbo_method: :patch }) { "Archive" } %>
+    <% end %>
     <%= lui.button(url: edit_admin_article_path(@article), style: :outline) { "Edit" } %>
     <%= link_to "Delete", admin_article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
   </div>
@@ -39,6 +44,14 @@
       </div>
     <% else %>
       —
+    <% end %>
+  <% end %>
+
+  <% list.with_item(label: "Archived") do %>
+    <% if @article.archived? %>
+      <%= lui.badge(status: :error) { "Yes — #{@article.archived_at.strftime("%b %d, %Y %H:%M")}" } %>
+    <% else %>
+      <%= lui.badge { "No" } %>
     <% end %>
   <% end %>
 

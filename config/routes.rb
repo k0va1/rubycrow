@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     resource :session, only: [:new, :create, :destroy]
 
     resources :blogs
-    resources :articles
+    resources :articles do
+      member do
+        patch :archive
+        patch :unarchive
+      end
+    end
     resources :ruby_gems
     resources :github_repos
     resources :reddit_posts

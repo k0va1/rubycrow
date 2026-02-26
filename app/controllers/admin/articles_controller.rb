@@ -2,10 +2,10 @@ module Admin
   class ArticlesController < BaseController
     include PeriodFilterable
 
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :set_article, only: [:show, :edit, :update, :destroy, :archive, :unarchive]
 
     def index
-      scope = Article.includes(:blog).by_publish_date
+      scope = Article.includes(:blog).archived_last.by_publish_date
       scope = scope.where(blog_id: params[:blog_id]) if params[:blog_id].present?
 
       @period = params[:period]
@@ -43,6 +43,16 @@ module Admin
       else
         render :edit, status: :unprocessable_content
       end
+    end
+
+    def archive
+      @article.archive!
+      redirect_to admin_article_path(@article), notice: "Article archived."
+    end
+
+    def unarchive
+      @article.unarchive!
+      redirect_to admin_article_path(@article), notice: "Article unarchived."
     end
 
     def destroy
