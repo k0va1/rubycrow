@@ -11,7 +11,8 @@ module Admin
     def index
       blogs = Blog
         .left_joins(:articles)
-        .select("blogs.*, MAX(articles.published_at) AS latest_article_at")
+        .where(articles: {archived_at: nil})
+        .or(Blog.where.missing(:articles))
         .group("blogs.id")
         .order(Arel.sql("MAX(articles.published_at) DESC NULLS LAST"))
 

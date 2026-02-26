@@ -9,6 +9,7 @@
     <% else %>
       <%= lui.button(url: archive_admin_article_path(@article), style: :outline, data: { turbo_method: :patch }) { "Archive" } %>
     <% end %>
+
     <%= lui.button(url: edit_admin_article_path(@article), style: :outline) { "Edit" } %>
     <%= link_to "Delete", admin_article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Delete this article?" }, class: "inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium admin-delete-btn" %>
   </div>
