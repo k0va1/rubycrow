@@ -7,7 +7,11 @@
   <%= render "admin/dashboard/stat_card", label: "Subscribers", value: @active_subscribers, value_label: "active", total: @total_subscribers %>
   <%= render "admin/dashboard/stat_card", label: "Blogs", value: @active_blogs, value_label: "active", total: @total_blogs %>
   <%= render "admin/dashboard/stat_card", label: "Articles", value: @unprocessed_articles, value_label: "unprocessed", total: @total_articles %>
+  <%= render "admin/dashboard/stat_card", label: "Gems", value: @unprocessed_ruby_gems, value_label: "unprocessed", total: @total_ruby_gems %>
+  <%= render "admin/dashboard/stat_card", label: "GitHub Repos", value: @unprocessed_github_repos, value_label: "unprocessed", total: @total_github_repos %>
+  <%= render "admin/dashboard/stat_card", label: "Reddit Posts", value: @unprocessed_reddit_posts, value_label: "unprocessed", total: @total_reddit_posts %>
   <%= render "admin/dashboard/stat_card", label: "Issues", value: @sent_issues, value_label: "sent", total: @total_issues %>
+  <%= render "admin/dashboard/stat_card", label: "Clicks", value: @total_clicks, value_label: "total", total: @total_clicks %>
 </div>
 
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -36,7 +40,6 @@
         <% table.with_column("Title") { |article| link_to truncate(article.title, length: 35), admin_article_path(article) } %>
         <% table.with_column("Blog") { |article| article.blog.name } %>
         <% table.with_column("Published") { |article| article.published_at&.strftime("%b %d, %Y") || "—" } %>
-        <% table.with_action { |article| link_to "View", admin_article_path(article) } %>
       <% end %>
     <% else %>
       <div class="admin-card py-8 text-center">

@@ -17,7 +17,7 @@ module Admin
       @total_reddit_posts = RedditPost.count
       @unprocessed_reddit_posts = RedditPost.unprocessed.count
       @recent_issues = NewsletterIssue.order(created_at: :desc).limit(5)
-      @recent_articles = Article.includes(:blog).order(published_at: :desc).limit(5)
+      @recent_articles = Article.includes(:blog).archived_last.by_publish_date.recent(10)
     end
   end
 end
