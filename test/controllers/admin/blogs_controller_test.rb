@@ -86,4 +86,10 @@ class Admin::BlogsControllerTest < ActionDispatch::IntegrationTest
     blog = Blog.last
     assert_equal ["ruby", "rails", "web"], blog.tags
   end
+
+  test "index excludes archived articles from blog ordering" do
+    articles(:martians_article).update!(archived_at: Time.current)
+    get admin_blogs_path
+    assert_response :success
+  end
 end

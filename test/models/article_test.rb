@@ -51,4 +51,53 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes featured, articles(:featured_article)
     assert_not_includes featured, articles(:rails_performance)
   end
+
+  test "archived? returns true when archived_at is set" do
+    article = articles(:rails_performance)
+    assert_not article.archived?
+
+    article.archive!
+    assert article.archived?
+  end
+
+  test "archive! sets archived_at" do
+    article = articles(:rails_performance)
+    assert_nil article.archived_at
+
+    article.archive!
+    assert_not_nil article.reload.archived_at
+  end
+
+  test "unarchive! clears archived_at" do
+    article = articles(:rails_performance)
+    article.update!(archived_at: Time.current)
+
+    article.unarchive!
+    assert_nil article.reload.archived_at
+  end
+
+  test "archived scope returns only archived articles" do
+    article = articles(:rails_performance)
+    article.update!(archived_at: Time.current)
+
+    assert_includes Article.archived, article
+    assert_not_includes Article.not_archived, article
+  end
+
+  test "not_archived scope excludes archived articles" do
+    article = articles(:rails_performance)
+    assert_includes Article.not_archived, article
+
+    article.update!(archived_at: Time.current)
+    assert_not_includes Article.not_archived, article
+  end
+
+  test "archived_last scope puts archived articles at the end" do
+    recent = articles(:martians_article)
+    older = articles(:rails_performance)
+    recent.update!(archived_at: Time.current)
+
+    results = Article.archived_last.by_publish_date.to_a
+    assert results.index(older) < results.index(recent)
+  end
 end

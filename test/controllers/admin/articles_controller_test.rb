@@ -78,4 +78,24 @@ class Admin::ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to admin_articles_path
   end
+
+  test "archive" do
+    assert_nil @article.archived_at
+    patch archive_admin_article_path(@article)
+    assert_redirected_to admin_article_path(@article)
+    assert_not_nil @article.reload.archived_at
+  end
+
+  test "unarchive" do
+    @article.update!(archived_at: Time.current)
+    patch unarchive_admin_article_path(@article)
+    assert_redirected_to admin_article_path(@article)
+    assert_nil @article.reload.archived_at
+  end
+
+  test "index shows archived articles at the end" do
+    articles(:martians_article).update!(archived_at: Time.current)
+    get admin_articles_path
+    assert_response :success
+  end
 end
